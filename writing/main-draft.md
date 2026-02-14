@@ -9,7 +9,7 @@ CinemaCLIP is a model and a collection of datasets that represent a comprehensiv
 
 ### What Is Visual Language?
 
-When you write in any language, you're using the rules of grammar to put forth your point, regardless of whether that's a conscious effort or not. Images have a similar visual grammar. Filmmakers and photographers are experts of this language, but this language doesn't just apply to their work, it permeates across every photo you've ever taken in your life. 
+When you write in any language, you're using the rules of grammar to put forth your point, regardless of whether that's a conscious effort or not. Images have a similar visual grammar. Filmmakers and photographers are experts of this language, but this language doesn't just apply to their work, it permeates across every photo you've ever taken in your life too. 
 
 Concretely, how you frame the image, where you place your subject in the frame, where the camera is relative to them, the angle the camera is at, the various aspects of color -- saturation, contrast, tonality, palette, and similarly, the various aspects of lighting, are all part of this language. Take a look at the visual browser below to see some of these concepts at a glance.
 
