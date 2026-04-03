@@ -9,7 +9,7 @@ What we found matched our qualtative assesement; even state of the art large lan
 
 CinemaCLIP is a model and a collection of 22 datasets that represent an extensive taxonomy of visual language. Evaluating leading CLIP models against these datasets show a fundamental gap in their understanding of the nuances of this language.
 
-< overall accuracy dot plot: CinemaCLIP vs baselines across categories >
+< OVERALL ACCURACY DOT PLOT: CINEMACLIP VS BASELINES ACROSS CATEGORIES >
 
 We're bridging this gap with a hybrid CLIP model that pairs zero-shot inference with specialised classification heads, outperforming existing SOTA CLIP models in both settings. Trained on 3 RTX 3090s.
 
