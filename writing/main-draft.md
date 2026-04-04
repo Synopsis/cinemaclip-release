@@ -33,7 +33,7 @@ Cinematographers, photographers, editors and directors all use very specific lan
 
 Modern models are trained on internet scale data, of which most captions are from are non-experts, and do a poor or even incorrect job at describing an image. The result are models which have a fuzzy understanding of these specific terms of art, and are less effective when used in professional contexts.
 
-For some many use cases, internet scale data along with correct training formulations result in models that out perform non-expert users. But these models also vastly underperform against trained professionals. If your use case is to build intelligent tools for professionals, this gap in performance matters. 
+For some many use cases, internet scale data along with correct training formulations result in models that out perform non-expert users. But these models also vastly underperform when compared to trained professionals. If your use case is to build intelligent tools for professionals, this gap in performance matters. 
 
 ## The Gap In Existing Approaches
 
