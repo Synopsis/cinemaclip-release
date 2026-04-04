@@ -69,7 +69,7 @@ Not only is this much more readable to the human eye, it's a fundamentally bette
 
 < EXAMPLES OF IMAGES WITH 1 CAPTION VS. 8 CAPTIONS>
 
-In addition to 8 captioning tasks, we also had 23 dedicated classification task heads - a combination of single-label, multi-label, and binary classifiers per concept. The data for these tasks was generated automatically by specialist in-house models we've developed over the past few years. See our [CVEU 2021](https://youtu.be/7aYgLALc_24?t=32741) talk from 2021 for more details.
+In addition to 8 captioning tasks, we create 23 dedicated classification task heads - a combination of single-label, multi-label, and binary classifiers per concept. The data for these tasks was generated automatically by specialist in-house models we've developed over the past few years. See our [CVEU 2021](https://youtu.be/7aYgLALc_24?t=32741) talk from 2021 for more details.
 
 < VISUAL TAXONOMY EXPLORER >
 
