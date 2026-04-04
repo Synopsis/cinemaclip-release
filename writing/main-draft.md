@@ -91,12 +91,12 @@ Here is a categorical comparison of CinemaCLIP against the leading existing CLIP
 
 ## 'General' Knowledge Retention / Improvement
 
-We also don't want to over-specialize. Its important for our models to retain a wide understanding of general concepts so that existing functionality is retained. To that end, we validate our data set and multi task training approach by using existing datasets as proxies for generalist tasks. CinemaCLIP retains good generalist knowledge, and we intentionally trade ~7% ImageNet accuracy for significantly improved performance on real-world visual tasks relevant to our users. 
+We also don't want to over-specialize. Its important for our models to retain a wide understanding of general concepts so that existing functionality is retained. To that end, we validate our data set and multi task training approach by using existing datasets as proxies for generalist tasks.
 
 
 < 4 CHARS OF NON-CINEMAIC TASK ACCURACY >
 
-Note that there are many different concepts, many of which could command dedicated taxonomies and tasks themselves (and indeed, there are many publicly available datasets in many of these domains), but we lumped them all into two tasks as our focus was teaching CLIP the language of cinema. Coverage of these concepts is far from exhaustive throughout the dataset. Regardless, we saw a notable improvement in accuracy across most of these tasks compared to the pre-trained model. On the other hand, we lost ~7% accuracy on ImageNet, but this not surprising given the nature of our dataset, and the model held up quite well in real world usage.
+Note that there are many different groups of concepts, like emotion, wardrobe, etc, many of which could command dedicated taxonomies and tasks themselves (and indeed, there are many publicly available datasets in many of these domains), but we lumped them all into two tasks as our focus was teaching CLIP the language of cinema. Coverage of these concepts is far from exhaustive throughout the dataset. Regardless, we saw a notable improvement in accuracy across most of these tasks compared to the pre-trained model. CinemaCLIP retains good generalist knowledge, and we intentionally trade ~7% ImageNet accuracy for significantly improved performance on real-world visual tasks relevant to our users. 
 
 ### Latent Space Comparisons | Text Embedding Comparisons
 
