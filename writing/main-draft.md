@@ -1,17 +1,18 @@
 # Introducing CinemaCLIP
+
 A hybrid CLIP model and taxonomy for the visual language of cinema
 
-At OZU, our goal is to build ML systems that deeply understand the art of cinema and visual story telling. In pursuing that goal, we noticed a qualitative gap - existing ml models that bridge natural language and cinematic concepts massively underperform compared to humans, especially domain experts like cinematographers, editors, directors, etc.
+At OZU, our goal is to build ML systems that deeply understand the art of cinema and visual story telling. In pursuing that goal, we noticed a qualitative gap; existing ml models that bridge natural language and vision massively underperform when tasked with understanding cinematic concepts compared to humans, especially domain experts like cinematographers, editors, and directors.
 
-To explore this gap, we created a taxonomy and ontology of cinematic concepts and evaluated existing models, and our own Cinema family of models agains the data set.
+To understand this gap, we first carefully created a taxonomy of cinematic concepts by working with industry specialists. We then evaluated existing models, as well as our own Cinema family of models agains the a new set of benchmark data sets.
 
-What we found matched our qualtative assesement; even state of the art large language models underperform in tasks like video search and retrieval, shot matching, data set anotation and others.
+What we found matched our qualtative assesement; evaluating leading CLIP models against these datasets show a fundamental gap in their understanding of the nuances of visual grammar. Furthermore, model scale alone does not solve this problem; models up to X× larger still fail to capture the structure of cinematic visual language.
 
-CinemaCLIP is a model and a collection of 22 datasets that represent an extensive taxonomy of visual language. Evaluating leading CLIP models against these datasets show a fundamental gap in their understanding of the nuances of this language.
+The result of our work is a new model; CinemaCLIP, and a collection of 22 datasets that represent an extensive taxonomy of professional visual language.
 
 < OVERALL ACCURACY DOT PLOT: CINEMACLIP VS BASELINES ACROSS CATEGORIES >
 
-We're bridging this gap with a hybrid CLIP model that pairs zero-shot inference with specialised classification heads, outperforming existing SOTA CLIP models in both settings. Trained on 3 RTX 3090s.
+CinemaCLIP is a hybrid CLIP model that pairs zero-shot inference with specialised classification heads, outperforming existing state of the art CLIP models as well as state of the art Vision Language models in both zero shot inference and one shot classification tasks.
 
 **Authors**  
 Rahul Somani  
@@ -28,7 +29,11 @@ Released artifacts ↗
 
 ## The Problem
 
-Cinematographers, Photographers, Editors and Directors all use very specific language when referring to visual concepts. But modern models trained on internet data scale use non expert captions which may do a bad job at describing visual features of an image. The result are models which have a fuzzy understanding of these specific terms of art. For example, When you write in any language, you're using the rules of grammar to put forth your point, regardless of whether that's a conscious effort or not. Images have a similar visual grammar. Filmmakers and photographers are experts of this language, but this language doesn't just apply to their work, it permeates across every photo you've ever taken in your life too.
+Cinematographers, photographers, editors and directors all use very specific language on the job. However their language can fuzzy, and not all cinematographers and photographers share the same opinion of when a "close up shot" begins, and a "medium shot" ends. Furthermore, industry terms of art often attempt to capture multiple competing visual concepts which lead to poor machine interpretability. 
+
+Modern models are trained on internet scale data, of which most are non expert captions that do a poor or even incorrect job at describing an image. The result are models which have a fuzzy understanding of these specific terms of art, and are less effective when used in professional contexts.
+
+For some many use cases, internet scale data along with correct training formulations result in models that out perform non expert users. But these models also vastly underperform against trained professionals. Ff your use case is to build intelligent tools for professionals, this gap in performance matters. 
 
 ## The Gap In Existing Approaches
 
@@ -36,50 +41,86 @@ CLIP learns by matching images to captions. Whether it's the original contrastiv
 
 < CLIP DIAGRAM >
 
-Crucially, what's in the caption limits what the model can learn. Captions from standard datasets capture a sliver of what's in the image.
+Crucially, what's in the caption limits what the model can learn. Existing captions from industry standard datasets capture a sliver of what's meaningful in the image. Specifically, this is an information problem; existing captions don’t consistently encode information like shot size, camera angle, or composition (etc),so the model never learns them.  The limitation is not the architecture but the dataset. Lets look at some sample data and captions to show what this really means, and why they dont work.
 
 < LAION EXAMPLES WITH WEB LIKE CAPTIONS >
 
-The most obvious antidote to this problem is richer captions. LongCLIP showed that most CLIP models have an effective context length of ~20 tokens (a side effect of existing datasets) and demonstrated gains from extending the actual and effective context length. In the VLM space, Pixmo (Molmo) took this further to great effect with exhaustive captions for pre-training:
+The most obvious antidote to this problem is richer captions. [LongCLIP](https://arxiv.org/abs/2403.15378) showed that most CLIP models have an effective context length of ~20 tokens (a side effect of existing datasets) and demonstrated gains from extending the actual and effective context length. In the VLM space, [Pixmo (Molmo)](https://arxiv.org/abs/2409.17146) took this further to great effect with exhaustive captions for pre-training:
 
 < PIXMO & SHAREGPT4V ESSAY LENGTH CAPTION EXPLORER > [see this doc](./laion-pixmo-sharegpt4vcoco-examples.md)
 
-These captions look exhaustive, but there's little to no information about the visual language. There is some structure overall, but it's effectively meaningless as everything is still a single caption. 
+To the untrained eye, these captions appear exhaustive, but there's often little to no information about the visual grammar of the image from the perspective of a domain expert / industry professional. 
 
-Instead of matching captions to images, you're now matching essays to images. While this solves the information problem, it introduces a precision problem: the model can satisfy the objective by latching onto whichever concepts are easiest to match and ignore the rest. You also can't construct meaningful negatives against essays.
-
+Instead of matching concise captions to images, you're now matching essays to images. While this solves the information problem in principle, it introduces a precision problem: the model can satisfy the objective by latching onto whichever visual features are easiest to match and simply ignore the rest. 
 
 ## The solution: Decomposition
 
-Visual grammar is structured and consists of concepts that are mutually exclusive. Instead of mushing them all into a single long caption, we treat this as a multi-task problem, running 8 parallel tasks that all attend to distinct aspects of the image.
+Visual language has a gammar, and this grammar is structured and consists of visual concepts that are mutually exclusive. Instead of combinging them all into a single long caption, we treat this as a multi-task problem, running 8 parallel tasks that all attend to distinct aspects of the image. 
 
-Not only is this much more readable to the human eye, it's a fundamentally better training formulation. Adding this structure allows us to learn multiple dimensions of the same image concurrently, leading to a ~14% improvement over the basic single caption formulation.
+In other words, instead of asking one question ; ‘what’s in this image?’, we ask multiple focused questions:
+* What is the shot type?
+* What is the camera angle?
+* What is the lighting style?
+* What is the composition? 
+
+Each of these is learned independently, but from the same image.
+
+Not only is this much more readable to the human eye, it's a fundamentally better training formulation. Adding this structure allows us to learn multiple dimensions of the same image concurrently, leading to a ~14% improvement over the basic single caption formulation. This approach is also compatible with learning negation, offering additional opportunities for the model to learn appropriate features.
 
 < EXAMPLES OF IMAGES WITH 1 CAPTION VS. 8 CAPTIONS>
 
-In addition to 8 captioning tasks, we also had 23 dedicated classification task heads - a combination of single-label, multi-label, and binary classifiers per concept. The data for these tasks was generated automatically by specialist in-house models we've developed over the past few years. See our CVEU talk from 2021 for more details.
+In addition to 8 captioning tasks, we also had 23 dedicated classification task heads - a combination of single-label, multi-label, and binary classifiers per concept. The data for these tasks was generated automatically by specialist in-house models we've developed over the past few years. See our [CVEU 2021](https://youtu.be/7aYgLALc_24?t=32741) talk from 2021 for more details.
 
 < VISUAL TAXONOMY EXPLORER >
 
-
 ## Dataset Size
 
-As seen above, CinemaCLIP is trained on cinematic data. While the validation datasets were labelled (and re-labelled multiple times) by hand, the training data we used was entirely generated by specialist models that we'd fine-tuned. These specialist models were created by training largely on carefully labelled human data, and we encourage you to check out our talk at CVEU 2021 for more details regarding the process.
+As seen above, CinemaCLIP is trained on cinematic data. Our data set consists of a validation set hand labelled (and re-labelled multiple times) by domain experts. We then fine tuned domain specific teacher models that on specific visual grammar. Finally we generated our training data sets via our teacher models. We encourage you to check out our talk at [CVEU 2021](https://youtu.be/7aYgLALc_24?t=32741) for more details regarding the process.
 
-We had 750k samples with human labelled tags, picked another 750k images from DataComp to maintain a 50-50 split to preserve prior knowledge, and labelled all these images with our cinematic specialists as well as BLIP-v1 and v2 for some more variety.
-
-A modern VLM may do a decent enough job of replacing the human labelled tags, at which point the dataset might be infinitely scalable. We'd love to hear from you if you take on such experiments.
+Our data set consisted of 750k samples with human labelled tags. Another 750k images from DataComp was labeled by our our teacher models to maintain a 50-50 split of generalist labels and visual domain expertise  to preserve generalist knowledge in the models.
 
 
 ## Cinematic Performance
 
-Here is a categorical comparison of CinemaCLIP against the leading existing CLIP models across all our cinematographic datasets. The solid dot is CinemaCLIP zero-shot and the ring is with classifier heads — grey dots are existing models.
+Here is a categorical comparison of CinemaCLIP against the leading existing CLIP models and state of the art VLMs across all our cinematography datasets. The solid dot is CinemaCLIP zero-shot and the ring is with classifier heads — grey dots are existing models.
 
 < CHART SHOWING 23 INDIVIDUAL CLASSIFIERS ACCURACY >
 
 ---
 
-## Training Dynamics & Hyperparameters
+
+## 'General' Knowledge Retention / Improvement
+
+We also dont want to over-specialize. Its important for our models to retain a wide understanding of the world and general concepts so that existing functionality is retained. To that end, we intentionally trade some ImageNet accuracy (~7%) for significantly improved performance on real-world visual tasks relevant to our users.
+
+
+
+< 4 CHARS OF NON-CINEMAIC TASK ACCURACY >
+
+Note that there are many different concepts, many of which could command dedicated taxonomies and tasks themselves (and indeed, there are many publicly available datasets in many of these domains), but we lumped them all into two tasks as our focus was teaching CLIP the language of cinema. Coverage of these concepts is far from exhaustive throughout the dataset. Regardless, we saw a notable improvement in accuracy across most of these tasks compared to the pre-trained model. On the other hand, we lost ~7% accuracy on ImageNet, but this not surprising given the nature of our dataset, and the model held up quite well in real world usage.
+
+### Latent Space Comparisons | Text Embedding Comparisons
+
+< CVEU LIKE SIDE BY SIDE COMPARISON >
+
+## Conclusion
+
+We believe CinemaCLIP offers a demonstrable improvement over CLIP and VLM models for many industry professional use cases. With a x% improvement over the latest VLMs CinemaClip can be run on commodity hardware on edge, at greatly faster than realtime rates. This enables opportunities like realtime video search and retrival systems, live camera assist systems, on set validation, and more. 
+
+CinemaCLIP is one part of a family of models and techniques that we built at OZU to understand the art of visual storytelling, and is the backbone for a suite of tools and processes that power OZU's state of the art narrative understanding systems.   
+
+Stay tuned for more.
+
+
+### Technical Addendum
+
+## Note on Generalist Knowledge
+
+Zero-shot accuracy on ImageNet-1K is a popular proxy for measuring a CLIP models' general performance. ImageNet is an object centric dataset and doesn't capture a lot of the nuance our users care about in real world usage. 
+
+For instance, about 12% of ImageNet consists of dog breeds. There is little to no representation for the color of objects, materials, and textures. 'General' is a nebulous term; to measure 'general knowledge' in the way relevant to our use cases, we constructed 39 datasets that are a non-exhaustive representation of the types of search terms we care about. The captions in 'Task 1' displayed in "" Figure Something Above "" have data relevant to these concepts. Take a look at some of these annotated images to get a sense of the types of data we're talking about here.
+
+## Note on Training Dynamics & Hyperparameters
 
 Fine-tuning CLIP models can be fiddly. We found that we needed to adapt our approach depending on the architecture being trained. Here's some key hyperparameters we needed to tune:
 
@@ -92,16 +133,3 @@ Fine-tuning CLIP models can be fiddly. We found that we needed to adapt our appr
 - Learning rate  |  2e-5 for CLIP, 2e-3 for classifier heads  |  Used Leslie Smith / FastAI's LR finder technique to find the sweet spot
 - Alpha blending ratio  |  0.75  |  Alpha=1.0 means fully fine-tuned ratio. This led to +1% accuracy on classifiers, equivalent 0-shot cinematic, and -7% on ImageNet
 
-## 'General' Knowledge Retention / Improvement
-
-Zero-shot accuracy on ImageNet-1K is a popular proxy for measuring CLIP models' general performance. ImageNet is an object centric dataset and doesn't capture a lot of the nuance our users care about in real world usage. For instance, about 12% of ImageNet consists of dog breeds. There is little to no representation for the color of objects, materials, and textures. 'General' is a nebulous term; to measure 'general knowledge' in the way relevant to our use cases, we constructed 39 datasets that are a non-exhaustive representation of the types of search terms we care about. The captions in 'Task 1' displayed in "" Figure Something Above "" have data relevant to these concepts. Take a look at some of these annotated images to get a sense of the types of data we're talking about here.
-
-< 4 CHARS OF NON-CINEMAIC TASK ACCURACY >
-
-Note that there are many different concepts, many of which could command dedicated taxonomies and tasks themselves (and indeed, there are many publicly available datasets in many of these domains), but we lumped them all into two tasks as our focus was teaching CLIP the language of cinema. Coverage of these concepts is far from exhaustive throughout the dataset. Regardless, we saw a notable improvement in accuracy across most of these tasks compared to the pre-trained model. On the other hand, we lost ~7% accuracy on ImageNet, but this not surprising given the nature of our dataset, and the model held up quite well in real world usage.
-
-### Latent Space Comparisons | Text Embedding Comparisons
-
-< CVEU LIKE SIDE BY SIDE COMPARISON >
-
-## Conclusion
