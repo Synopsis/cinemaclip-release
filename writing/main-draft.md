@@ -29,9 +29,9 @@ Released artifacts ↗
 
 ## The Problem
 
-Cinematographers, photographers, editors and directors all use very specific language on the job. However their language can be fuzzy, and not all cinematographers and photographers share the same opinion of when a "close up shot" begins, and a "medium shot" ends. Furthermore, industry terms of art often attempt to capture multiple competing visual concepts which lead to poor machine interpretability. 
+Cinematographers, photographers, editors and directors all use very specific language to describe imagery on the hob. However their language can be fuzzy, and not all cinematographers and photographers share the same opinion of when a "close up shot" begins, and a "medium shot" ends. Furthermore, industry terms of art often attempt to capture multiple competing visual concepts which lead to poor machine interpretability. 
 
-Modern models are trained on internet scale data, of which most are non-expert captions that do a poor or even incorrect job at describing an image. The result are models which have a fuzzy understanding of these specific terms of art, and are less effective when used in professional contexts.
+Modern models are trained on internet scale data, of which most captions are from are non-experts, and do a poor or even incorrect job at describing an image. The result are models which have a fuzzy understanding of these specific terms of art, and are less effective when used in professional contexts.
 
 For some many use cases, internet scale data along with correct training formulations result in models that out perform non-expert users. But these models also vastly underperform against trained professionals. If your use case is to build intelligent tools for professionals, this gap in performance matters. 
 
