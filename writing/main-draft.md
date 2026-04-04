@@ -33,7 +33,7 @@ Cinematographers, photographers, editors and directors all use very specific lan
 
 Modern models are trained on internet scale data, of which most captions are from are non-experts, and do a poor or even incorrect job at describing an image. The result are models which have a fuzzy understanding of these specific terms of art, and are less effective when used in professional contexts.
 
-For some many use cases, internet scale data along with correct training formulations result in models that out perform non-expert users. But these models also vastly underperform when compared to trained professionals. If your use case is to build intelligent tools for professionals, this gap in performance matters. 
+For many use cases, internet scale data along with correct training formulations result in models that out perform non-expert users. But these models also vastly underperform when compared to trained professionals. If your use case is to build intelligent tools for professionals, this gap in performance matters. 
 
 ## The Gap In Existing Approaches
 
@@ -41,7 +41,7 @@ CLIP learns by matching images to captions. Whether it's the original contrastiv
 
 < CLIP DIAGRAM >
 
-Crucially, what's in the caption limits what the model can learn. Existing captions from industry standard datasets capture a sliver of what's meaningful in the image. Specifically, this is an information problem; existing captions don’t consistently encode information (e.g. shot size, camera angle, composition), so the model never learns them.  The limitation is not the architecture but the dataset. Let's look at some sample data and captions to show what this really means, and why they don't work.
+Crucially, what's in the caption limits what the model can learn. Existing captions from industry standard datasets capture a sliver of what's meaningful in the image. Specifically, this is an information problem: existing captions don’t consistently encode information (e.g. shot size, camera angle, composition), so the model never learns them.  The limitation is not the architecture but the dataset. Let's look at some sample data and captions to show what this really means, and why they don't work.
 
 < LAION EXAMPLES WITH WEB LIKE CAPTIONS >
 
@@ -65,7 +65,7 @@ In other words, instead of asking one question: ‘what’s in this image?’, w
 
 Each is learned independently, but from the same underlying image.
 
-Not only is this much more readable to the human eye, it's a fundamentally better training formulation. Each task provides a clean, unambiguous training signal, preventing the model from collapsing multiple concepts into a single representation. Adding this structure allows us to learn multiple dimensions of the same image concurrently, leading to a ~14% improvement over the basic single caption formulation. This approach is also compatible with learning negation, offering additional opportunities for the model to learn appropriate features.
+Not only is this much more readable to the human eye, it's a fundamentally better training formulation. Each task provides a clean, unambiguous training signal, preventing the model from collapsing multiple concepts into a single representation. Adding this structure allows us to learn multiple dimensions of the same image concurrently, leading to a ~14% improvement over the basic single caption formulation. This approach is also compatible with learning [negation](https://github.com/jaisidhsingh/CoN-CLIP?tab=readme-ov-file), offering additional opportunities for the model to learn appropriate features.
 
 < EXAMPLES OF IMAGES WITH 1 CAPTION VS. 8 CAPTIONS>
 
@@ -82,9 +82,9 @@ Our data set consisted of 750k samples with human labelled tags. Another 750k im
 
 ## Cinematic Performance
 
-Here is a categorical comparison of CinemaCLIP against the leading existing CLIP models and state of the art VLMs across all our cinematography datasets. The solid dot is CinemaCLIP zero-shot and the ring is with classifier heads — grey dots are existing models.
+Here is a categorical comparison of CinemaCLIP against the leading existing CLIP models and state of the art VLMs across all our cinematography datasets.
 
-< CHART SHOWING 23 INDIVIDUAL CLASSIFIERS ACCURACY >
+< CHART SHOWING 23 INDIVIDUAL CLASSIFIERS ACCURACY WITH LEGEND FOR CLARITY - SOLID DOT, OUTLINE DOT, GRAY DOT>
 
 ---
 
@@ -96,7 +96,7 @@ We also don't want to over-specialize. Its important for our models to retain a 
 
 < 4 CHARS OF NON-CINEMAIC TASK ACCURACY >
 
-Note that there are many different groups of concepts, like emotion, wardrobe, etc, many of which could command dedicated taxonomies and tasks themselves (and indeed, there are many publicly available datasets in many of these domains), but we lumped them all into two tasks as our focus was teaching CLIP the language of cinema. Coverage of these concepts is far from exhaustive throughout the dataset. Regardless, we saw a notable improvement in accuracy across most of these tasks compared to the pre-trained model. CinemaCLIP retains good generalist knowledge, and we intentionally trade ~7% ImageNet accuracy for significantly improved performance on real-world visual tasks relevant to our users. 
+Note that there are many different groups of concepts within these datasets, like emotion, wardrobe, etc, many of which could command dedicated taxonomies and tasks themselves (and indeed, there are many publicly available datasets in many of these domains), but we lumped them all into two tasks as our focus was teaching CLIP the language of cinema. Coverage of these concepts is far from exhaustive throughout the dataset. Regardless, we saw a notable improvement in accuracy across most of these tasks compared to the pre-trained model. CinemaCLIP retains good generalist knowledge, and we intentionally trade ~7% ImageNet accuracy for significantly improved performance on real-world visual tasks relevant to our users. 
 
 ### Latent Space Comparisons | Text Embedding Comparisons
 
