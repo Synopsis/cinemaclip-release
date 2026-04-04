@@ -2,17 +2,17 @@
 
 A hybrid CLIP model and taxonomy for the visual language of cinema
 
-At OZU, our goal is to build ML systems that deeply understand the art of cinema and visual story telling. In pursuing that goal, we noticed a qualitative gap; existing ml models that bridge natural language and vision massively underperform when tasked with understanding cinematic concepts compared to humans, especially domain experts like cinematographers, editors, and directors.
+At OZU, our goal is to build ML systems that deeply understand the art of cinema and visual story telling. In pursuing that goal, we noticed a qualitative gap; existing ML models that bridge natural language and vision massively underperform when tasked with understanding cinematic concepts compared to humans, especially domain experts like cinematographers, editors, and directors.
 
-To understand this gap, we first carefully created a taxonomy of cinematic concepts by working with industry specialists. We then evaluated existing models, as well as our own Cinema family of models agains the a new set of benchmark data sets.
+To understand this gap, we first carefully created a taxonomy of cinematic concepts by working with industry specialists. We then evaluated existing models, as well as our own Cinema family of models against a new set of benchmark datasets.
 
-What we found matched our qualtative assesement; evaluating leading CLIP models against these datasets show a fundamental gap in their understanding of the nuances of visual grammar. Furthermore, model scale alone does not solve this problem; models up to X× larger still fail to capture the structure of cinematic visual language.
+What we found matched our qualitative assesement; evaluating leading CLIP models against these datasets shows a fundamental gap in their understanding of the nuances of visual grammar. Furthermore, model scale alone does not solve this problem; models up to X× larger still fail to capture the structure of cinematic visual language. This limits their usefulness in real-world professional video tasks where understanding visual language is critical.
 
 The result of our work is a new model; CinemaCLIP, and a collection of 22 datasets that represent an extensive taxonomy of professional visual language.
 
 < OVERALL ACCURACY DOT PLOT: CINEMACLIP VS BASELINES ACROSS CATEGORIES >
 
-CinemaCLIP is a hybrid CLIP model that pairs zero-shot inference with specialised classification heads, outperforming existing state of the art CLIP models as well as state of the art Vision Language models in both zero shot inference and one shot classification tasks.
+CinemaCLIP is a hybrid CLIP model that pairs zero-shot inference with specialised classification heads, outperforming existing CLIP models as well as state of the art Vision Language models in both zero shot inference and one shot classification tasks.
 
 **Authors**  
 Rahul Somani  
@@ -29,11 +29,11 @@ Released artifacts ↗
 
 ## The Problem
 
-Cinematographers, photographers, editors and directors all use very specific language on the job. However their language can fuzzy, and not all cinematographers and photographers share the same opinion of when a "close up shot" begins, and a "medium shot" ends. Furthermore, industry terms of art often attempt to capture multiple competing visual concepts which lead to poor machine interpretability. 
+Cinematographers, photographers, editors and directors all use very specific language on the job. However their language can be fuzzy, and not all cinematographers and photographers share the same opinion of when a "close up shot" begins, and a "medium shot" ends. Furthermore, industry terms of art often attempt to capture multiple competing visual concepts which lead to poor machine interpretability. 
 
-Modern models are trained on internet scale data, of which most are non expert captions that do a poor or even incorrect job at describing an image. The result are models which have a fuzzy understanding of these specific terms of art, and are less effective when used in professional contexts.
+Modern models are trained on internet scale data, of which most are non-expert captions that do a poor or even incorrect job at describing an image. The result are models which have a fuzzy understanding of these specific terms of art, and are less effective when used in professional contexts.
 
-For some many use cases, internet scale data along with correct training formulations result in models that out perform non expert users. But these models also vastly underperform against trained professionals. Ff your use case is to build intelligent tools for professionals, this gap in performance matters. 
+For some many use cases, internet scale data along with correct training formulations result in models that out perform non-expert users. But these models also vastly underperform against trained professionals. If your use case is to build intelligent tools for professionals, this gap in performance matters. 
 
 ## The Gap In Existing Approaches
 
@@ -41,7 +41,7 @@ CLIP learns by matching images to captions. Whether it's the original contrastiv
 
 < CLIP DIAGRAM >
 
-Crucially, what's in the caption limits what the model can learn. Existing captions from industry standard datasets capture a sliver of what's meaningful in the image. Specifically, this is an information problem; existing captions don’t consistently encode information like shot size, camera angle, or composition (etc),so the model never learns them.  The limitation is not the architecture but the dataset. Lets look at some sample data and captions to show what this really means, and why they dont work.
+Crucially, what's in the caption limits what the model can learn. Existing captions from industry standard datasets capture a sliver of what's meaningful in the image. Specifically, this is an information problem; existing captions don’t consistently encode information (e.g. shot size, camera angle, composition), so the model never learns them.  The limitation is not the architecture but the dataset. Let's look at some sample data and captions to show what this really means, and why they don't work.
 
 < LAION EXAMPLES WITH WEB LIKE CAPTIONS >
 
@@ -51,21 +51,21 @@ The most obvious antidote to this problem is richer captions. [LongCLIP](https:/
 
 To the untrained eye, these captions appear exhaustive, but there's often little to no information about the visual grammar of the image from the perspective of a domain expert / industry professional. 
 
-Instead of matching concise captions to images, you're now matching essays to images. While this solves the information problem in principle, it introduces a precision problem: the model can satisfy the objective by latching onto whichever visual features are easiest to match and simply ignore the rest. 
+Instead of matching concise captions to images, you're now matching essays to images. While this solves the information problem in principle, it introduces a precision problem: the model can satisfy the objective by matching whichever visual features are easiest, and ignore the rest, without ever learning structured visual concepts. 
 
 ## The solution: Decomposition
 
-Visual language has a gammar, and this grammar is structured and consists of visual concepts that are mutually exclusive. Instead of combinging them all into a single long caption, we treat this as a multi-task problem, running 8 parallel tasks that all attend to distinct aspects of the image. 
+Visual language has a grammar, and this grammar is structured and consists of visual concepts that are mutually exclusive. Instead of combining them all into a single long caption, we treat this as a multi-task problem, running 8 parallel tasks that all attend to distinct aspects of the image. 
 
-In other words, instead of asking one question ; ‘what’s in this image?’, we ask multiple focused questions:
+In other words, instead of asking one question: ‘what’s in this image?’, we ask multiple focused questions:
 * What is the shot type?
 * What is the camera angle?
 * What is the lighting style?
 * What is the composition? 
 
-Each of these is learned independently, but from the same image.
+Each is learned independently, but from the same underlying image.
 
-Not only is this much more readable to the human eye, it's a fundamentally better training formulation. Adding this structure allows us to learn multiple dimensions of the same image concurrently, leading to a ~14% improvement over the basic single caption formulation. This approach is also compatible with learning negation, offering additional opportunities for the model to learn appropriate features.
+Not only is this much more readable to the human eye, it's a fundamentally better training formulation. Each task provides a clean, unambiguous training signal, preventing the model from collapsing multiple concepts into a single representation. Adding this structure allows us to learn multiple dimensions of the same image concurrently, leading to a ~14% improvement over the basic single caption formulation. This approach is also compatible with learning negation, offering additional opportunities for the model to learn appropriate features.
 
 < EXAMPLES OF IMAGES WITH 1 CAPTION VS. 8 CAPTIONS>
 
@@ -75,9 +75,9 @@ In addition to 8 captioning tasks, we also had 23 dedicated classification task 
 
 ## Dataset Size
 
-As seen above, CinemaCLIP is trained on cinematic data. Our data set consists of a validation set hand labelled (and re-labelled multiple times) by domain experts. We then fine tuned domain specific teacher models that on specific visual grammar. Finally we generated our training data sets via our teacher models. We encourage you to check out our talk at [CVEU 2021](https://youtu.be/7aYgLALc_24?t=32741) for more details regarding the process.
+As seen above, CinemaCLIP is trained on cinematic data. Our data set consists of a validation set hand labelled (and re-labelled multiple times) by domain experts. We fine tuned domain-specific teacher models for individual aspects of visual grammar (e.g. shot type, lighting, composition), and used them to generate high-confidence labels at scale. Finally we generated our training datasets via our teacher models. We encourage you to check out our talk at [CVEU 2021](https://youtu.be/7aYgLALc_24?t=32741) for more details regarding the process.
 
-Our data set consisted of 750k samples with human labelled tags. Another 750k images from DataComp was labeled by our our teacher models to maintain a 50-50 split of generalist labels and visual domain expertise  to preserve generalist knowledge in the models.
+Our data set consisted of 750k samples with human labelled tags. Another 750k images from DataComp was labeled by our teacher models to maintain a 50-50 split of generalist labels and visual domain expertise  to preserve generalist knowledge in the models.
 
 
 ## Cinematic Performance
@@ -91,8 +91,7 @@ Here is a categorical comparison of CinemaCLIP against the leading existing CLIP
 
 ## 'General' Knowledge Retention / Improvement
 
-We also dont want to over-specialize. Its important for our models to retain a wide understanding of the world and general concepts so that existing functionality is retained. To that end, we intentionally trade some ImageNet accuracy (~7%) for significantly improved performance on real-world visual tasks relevant to our users.
-
+We also don't want to over-specialize. Its important for our models to retain a wide understanding of general concepts so that existing functionality is retained. To that end, we validate our data set and multi task training approach by using existing datasets as proxies for generalist tasks. CinemaCLIP retains good generalist knowledge, and we intentionally trade ~7% ImageNet accuracy for significantly improved performance on real-world visual tasks relevant to our users. 
 
 
 < 4 CHARS OF NON-CINEMAIC TASK ACCURACY >
@@ -105,7 +104,7 @@ Note that there are many different concepts, many of which could command dedicat
 
 ## Conclusion
 
-We believe CinemaCLIP offers a demonstrable improvement over CLIP and VLM models for many industry professional use cases. With a x% improvement over the latest VLMs CinemaClip can be run on commodity hardware on edge, at greatly faster than realtime rates. This enables opportunities like realtime video search and retrival systems, live camera assist systems, on set validation, and more. 
+We believe CinemaCLIP offers a demonstrable improvement over CLIP and VLM models for many industry professional use cases. With a x% improvement over the latest VLMs, CinemaClip can be run on commodity hardware on edge, at greatly faster than real-time rates. This enables opportunities like real-time video search and retrieval systems, live camera assist systems, on set validation, and more. 
 
 CinemaCLIP is one part of a family of models and techniques that we built at OZU to understand the art of visual storytelling, and is the backbone for a suite of tools and processes that power OZU's state of the art narrative understanding systems.   
 
