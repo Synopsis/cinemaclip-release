@@ -69,7 +69,6 @@ Not only is this much more readable to the human eye, it's a fundamentally bette
 
 < EXAMPLES OF IMAGES WITH 1 CAPTION VS. 8 CAPTIONS>
 
-In addition to 8 captioning tasks, we create 23 dedicated classification task heads - a combination of single-label, multi-label, and binary classifiers per concept. The data for these tasks was generated automatically by specialist in-house models we've developed over the past few years. See our [CVEU 2021](https://youtu.be/7aYgLALc_24?t=32741) talk from 2021 for more details.
 
 < VISUAL TAXONOMY EXPLORER >
 
@@ -77,10 +76,49 @@ In addition to 8 captioning tasks, we create 23 dedicated classification task he
 
 As seen above, CinemaCLIP is trained on cinematic data. Our data set consists of a validation set hand labelled (and re-labelled multiple times) by domain experts. We fine tuned domain-specific teacher models for individual aspects of visual grammar (e.g. shot type, lighting, composition), and used them to generate high-confidence labels at scale. Finally we generated our training datasets via our teacher models. We encourage you to check out our talk at [CVEU 2021](https://youtu.be/7aYgLALc_24?t=32741) for more details regarding the process.
 
-Our data set consisted of 750k samples with human labelled tags. Another 750k images from DataComp was labeled by our teacher models to maintain a 50-50 split of generalist labels and visual domain expertise  to preserve generalist knowledge in the models.
+Our data set consisted of 750k samples with human labelled tags. Another 750k images from DataComp was labeled by our teacher models to maintain a 50-50 split of generalist labels and visual domain expertise  to preserve generalist knowledge in the models. 
 
+## Architecture (New)
 
-## Cinematic Performance
+Given the use cases for CinemaClip, we chose Mobile Clip S1 - a modern clip architecture that can be deployed on edge devices, and run faster than realtime. During development of CinemaClip, we've had the privilege of running inference across petabytes of video archives in various data centers and compute environments. 
+
+This process is expensive and time consuming, and running models capable of fast inference on cheaper hardware is a huge win and enables analysis of very large archives in reasonable time for reasonable costs. This also enables local inference, for on set, and even in camera use cases. 
+
+Mobile Clip S1 is designed to run on Apples Neural Engine, a hardware accelerated inference chip shipped with phones, laptop and desktop systems. It balances strong out of the box performance with size. 
+
+The capabality for on device model deployment and integration into native applications allows inference to run where video resides and on available compute, be it cloud based video archives, local production or post production storage networks, or near-line local device storage.  
+
+## Training Formulation (New)
+
+Given our insights to captioning in our decomposition section above, we proposed a multi task training approach, where each image in a batch has 8 unique captions, 6 domain specialist tasks and 2 generalist tasks to retain knowledge and protect against catastrophic forgetting.
+
+In addition to the 8 captioning tasks, we create 23 dedicated classification task heads - a combination of single-label, multi-label, and binary classifiers per concept. The data for these tasks was generated automatically by specialist in-house models we've developed over the past few years. See our [CVEU 2021](https://youtu.be/7aYgLALc_24?t=32741) talk from 2021 for more details.
+
+Having strong classification performance is useful to help the models learn concepts consistently. For many use cases, having domain language classififers out performed zero shot classification and provided better overall model performance for both general knowedge and cinematic tasks. 
+
+Additionaly, having classifiers and natural language embeddings from a single model lets you compose searches more reliably and flexibly. 
+
+### Ablations (New)
+
+Given that any pretrained clip model consists of 2 components, a text encoder and vision encoder, we ran ablations to determine how much of each encoder to unfreeze for training. Our intition is as follows - expert text captions are formulated differently than non expert captions. Additionally, cinematic images has a different distribution - shots are typically darker, and consist of more diverse compositions compared to product shots, advertisements and social media images which dominate the internet scale data.
+
+We curated a subsection of our main data set and ran ablations across the text encoder and vision encoder to determine which layers to unfreeze. 
+
+TODO: RAHUL
+* x for text 
+* y for vision
+
+These findings scale with larger data sets. 
+
+### Augmentations (New)
+
+Augmentations were applied only on the text side. Every image augmentation applied may be relevant for one tasks, but undermines performance in another. Cinematic content is shot with intention, and augmentations destroy the salient information and build invariances where we dont want them. 
+
+### Post Training (NEW)
+
+Finally, we weight blend (model soup / alpha mix ) our resulting model with the pretrained model - 75% of our new fine tuned weights with 25% of the pretrained model. This last step ensures we retain generalist performance. Without it, our fine tuned model alone would perform 1-2 % better on cinematic tasks but lose %10 on general purpose tasks. Alpha mixing allows us to retain 14% better cinematic knowledge with next to no loss in general purpose performance. 
+
+## Evaluations
 
 Here is a categorical comparison of CinemaCLIP against the leading existing CLIP models and state of the art VLMs across all our cinematography datasets.
 
@@ -88,11 +126,9 @@ Here is a categorical comparison of CinemaCLIP against the leading existing CLIP
 
 ---
 
-
 ## 'General' Knowledge Retention / Improvement
 
 We also don't want to over-specialize. Its important for our models to retain a wide understanding of general concepts so that existing functionality is retained. To that end, we validate our data set and multi task training approach by using existing datasets as proxies for generalist tasks.
-
 
 < 4 CHARS OF NON-CINEMAIC TASK ACCURACY >
 
@@ -108,12 +144,22 @@ We believe CinemaCLIP offers a demonstrable improvement over CLIP and VLM models
 
 CinemaCLIP is one part of a family of models and techniques that we built at OZU to understand the art of visual storytelling, and is the backbone for a suite of tools and processes that power OZU's state of the art narrative understanding systems.   
 
+We also believe that our training formulation is useful for other tasks / domains - and is a strategy that can be adopted to add domain expertise to existing pretrained clip without performance loss in other domains. 
+
 Stay tuned for more.
 
+# Technical Addendum
 
-### Technical Addendum
+## 50 / 50 new data / pretrained data
+ - TODO: RAHUL
 
-## Note on Generalist Knowledge
+## Ablations on teacher models 
+ - TODO: RAHUL
+
+## Training / Batch Sizes 
+ - TODO: RAHUL
+
+### Note on Generalist Knowledge
 
 Zero-shot accuracy on ImageNet-1K is a popular proxy for measuring a CLIP models' general performance. ImageNet is an object centric dataset and doesn't capture a lot of the nuance our users care about in real world usage. 
 
