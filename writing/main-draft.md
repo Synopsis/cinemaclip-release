@@ -156,19 +156,34 @@ Stay tuned for more.
 
 We tried blending our fine-tuned model with the pre-trained one at various `alpha`s and found that `0.75` (75% fine-tuned weights, 25% pre-trained) was the best combination. Not only did we perform better at ImageNet, which was expected, but we also had superior zero-shot performance on cinematic tasks. The classifier heads were slightly worse (88% vs. 89%), which was reasonable tradeoff.
 
-< Include table with final numbers >
+| | ImageNet 0-Shot Top-1 | Cinematic 0-Shot | Cinematic Classifiers |
+|---|---|---|---|
+| α = 0.5 | x | x | x |
+| α = 0.75 | 63.4% | 82.2% | 87.5% |
+| α = 1.0 | 57% | x | 88.5% |
 
 ### Teacher Model Labelling Threshold
 
 Our 23 teacher models, all classifiers, provided labels for 6/8 tasks. Being classifiers, we experimented with the confidence threshold at which we decide to use the model's prediction as part of the caption. Higher confidence levels meant more high quality labels, but too high a confidence would lead to too many empty captions. In practice, 85% worked best.
 
-< Include table with final numbers >
+| Threshold | Cinematic 0-Shot |
+|---|---|
+| 0.0 | 74.9% |
+| 0.5 | 79.5% |
+| 0.6 | 79.0% |
+| 0.7 | 80.2% |
+| 0.8 | 81.0% |
+| 0.85 | 82.2% |
 
 ### No. of Tasks
 
 We experimented with the ideal no. of tasks to include in our multi-task formulation. Generally, adding more tasks led to better performance. Beyond 6 cinematic tasks, there were no notable gains and with the confidence thresholding mentioned above, we ended up with over 40% of a batch having empty captions. For our formulation, 6 was the right balance. If one were to extend this to more domains, we expect performance to generally increase as long as they are well formulated. We only added expertise in the cinematic domain, and it'd be interesting to see how far this can be pushed - could we train models with a hundred domain expert tasks at once?
 
-< Insert table >
+| No. of Captions | ImageNet 0-Shot Top-1 | Cinematic 0-Shot |
+|---|---|---|
+| 2 | 65.6% | 72.4% |
+| 3 | 65.4% | 72.8% |
+| 8 | 63.4% | 82.2% |
 
 ## On Batch Size
  
