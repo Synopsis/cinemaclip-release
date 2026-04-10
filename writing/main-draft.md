@@ -150,24 +150,33 @@ Stay tuned for more.
 
 # Technical Addendum
 
-## 50 / 50 new data / pretrained data
- - TODO: RAHUL
+## Selected Ablations
 
-## Ablations on teacher models 
- - TODO: RAHUL
+### Alpha Mixing
 
-## Training / Batch Sizes 
- - TODO: RAHUL
+We tried blending our fine-tuned model with the pre-trained one at various `alpha`s and found that `0.75` (75% fine-tuned weights, 25% pre-trained) was the best combination. Not only did we perform better at ImageNet, which was expected, but we also had superior zero-shot performance on cinematic tasks. The classifier heads were slightly worse (88% vs. 89%), which was reasonable tradeoff.
 
-### Note on Generalist Knowledge
+< Include table with final numbers >
 
-Zero-shot accuracy on ImageNet-1K is a popular proxy for measuring a CLIP models' general performance. ImageNet is an object centric dataset and doesn't capture a lot of the nuance our users care about in real world usage. 
+### Teacher Model Labelling Threshold
 
-For instance, about 12% of ImageNet consists of dog breeds. There is little to no representation for the color of objects, materials, and textures. 'General' is a nebulous term; to measure 'general knowledge' in the way relevant to our use cases, we constructed 39 datasets that are a non-exhaustive representation of the types of search terms we care about. The captions in 'Task 1' displayed in "" Figure Something Above "" have data relevant to these concepts. Take a look at some of these annotated images to get a sense of the types of data we're talking about here.
+Our 23 teacher models, all classifiers, provided labels for 6/8 tasks. Being classifiers, we experimented with the confidence threshold at which we decide to use the model's prediction as part of the caption. Higher confidence levels meant more high quality labels, but too high a confidence would lead to too many empty captions. In practice, 85% worked best.
+
+< Include table with final numbers >
+
+### No. of Tasks
+
+We experimented with the ideal no. of tasks to include in our multi-task formulation. Generally, adding more tasks led to better performance. Beyond 6 cinematic tasks, there were no notable gains and with the confidence thresholding mentioned above, we ended up with over 40% of a batch having empty captions. For our formulation, 6 was the right balance. If one were to extend this to more domains, we expect performance to generally increase as long as they are well formulated. We only added expertise in the cinematic domain, and it'd be interesting to see how far this can be pushed - could we train models with a hundred domain expert tasks at once?
+
+< Insert table >
+
+## On Batch Size
+ 
+Our effective batch size was 1,152 images with 9,216 captions per batch. We were bound by our hardware constraints (3x RTX 3090s w/ 24GB VRAM each) and were unable to test if performance increases further with larger batches. Most CLIP research and practitioners' experiences suggest that larger batch sizes are better, but there hasn't been a systematic study of the effect of batch size when _fine-tuning_ CLIP models.
 
 ## Note on Training Dynamics & Hyperparameters
 
-Fine-tuning CLIP models can be fiddly. We found that we needed to adapt our approach depending on the architecture being trained. Here's some key hyperparameters we needed to tune:
+Fine-tuning CLIP models can be fiddly. Many parameters need to be tuned specifically to the architecture you're training. We needed to be judicious about the areas we dove deeper into. We were systematic about some ablations, as elaborated above, and lacked bandwidth to go deeper on other hyperparameters. Here is our assessment of the most significant hyperparameters:
 
 - No. of layers fine-tuned in the vision encoder  |  6  | Sweet spot
 - No. of layers fine-tuned in the text encoder  |  3  | Sweet spot
