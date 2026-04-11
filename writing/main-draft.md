@@ -150,7 +150,7 @@ Stay tuned for more.
 
 # Technical Addendum
 
-## Selected Ablations
+## Ablations
 
 ### Alpha Mixing
 
@@ -185,7 +185,7 @@ We experimented with the ideal no. of tasks to include in our multi-task formula
 | 3 | 65.4% | 72.8% |
 | 8 | 63.4% | 82.2% |
 
-## On Batch Size
+### Batch Size
  
 Our effective batch size was 1,152 images with 9,216 captions per batch. We were bound by our hardware constraints (3x RTX 3090s w/ 24GB VRAM each) and were unable to test if performance increases further with larger batches. Most CLIP research and practitioners' experiences suggest that larger batch sizes are better, but there hasn't been a systematic study of the effect of batch size when _fine-tuning_ CLIP models.
 
