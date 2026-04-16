@@ -56,7 +56,7 @@ export default function CinemaCLIPExplorer() {
           To understand this gap, we first carefully created a taxonomy of cinematic concepts by working with industry specialists. We then evaluated existing models, as well as our own Cinema family of models against a new set of benchmark datasets.
         </p>
         <p style={STYLES.Paragraph}>
-          What we found matched our qualitative assesement: evaluating leading CLIP models against these datasets shows a fundamental gap in their understanding of the nuances of visual grammar. Furthermore, model scale alone does not solve this problem; models up to 28× larger still fail to capture the structure of cinematic visual language. This limits their usefulness in real-world professional video tasks where understanding visual language is critical.
+          What we found matched our qualitative assessment: evaluating leading CLIP models against these datasets shows a fundamental gap in their understanding of the nuances of visual grammar. Furthermore, model scale alone does not solve this problem; models up to 28× larger still fail to capture the structure of cinematic visual language. This limits their usefulness in real-world professional video tasks where understanding visual language is critical.
         </p>
         <p style={STYLES.Paragraph}>
           The result of our work is a new model: CinemaCLIP, and a collection of 22 datasets that represent an extensive taxonomy of professional visual language.
@@ -86,14 +86,14 @@ export default function CinemaCLIPExplorer() {
           The Problem
         </h2>
         <p style={STYLES.Paragraph}>
-          Cinematographers, photographers, editors and directors all use very specific language to describe imagery on the job. However their language can be fuzzy, and not all cinematographers and photographers share the same opinion of when a "close up shot" begins, and a "medium shot" ends. Furthermore, industry terms of art often attempt to capture multiple competing visual concepts which lead to poor machine interpretability. 
+          Cinematographers, photographers, editors and directors all use very specific language to describe imagery on the job. However their language can be fuzzy, and not all cinematographers and photographers share the same opinion of when a "close up shot" begins and a "medium shot" ends. Furthermore, industry terms of art often attempt to capture multiple competing visual concepts which lead to poor machine interpretability. 
         </p>
 
         <p style={STYLES.Paragraph}>
-          Modern models are trained on internet scale data, of which most captions are from are non-experts, and do a poor or even incorrect job at describing an image. The result are models which have a fuzzy understanding of these specific terms of art, and are less effective when used in professional contexts.
+          Modern models are trained on internet scale data, of which most captions are from non-experts, and do a poor or even incorrect job of describing an image. The result are models which have a fuzzy understanding of these specific terms of art, and are less effective when used in professional contexts.
         </p>
         <p style={STYLES.Paragraph}>
-          For many use cases, internet scale data along with correct training formulations result in models that out perform non-expert users. But these models also vastly underperform when compared to trained professionals. If your use case is to build intelligent tools for professionals, this gap in performance matters. 
+          For many use cases, internet scale data along with correct training formulations result in models that outperform non-expert users. But these models also vastly underperform when compared to trained professionals. If your use case is to build intelligent tools for professionals, this gap in performance matters. 
         </p>
       </div>
 
@@ -221,10 +221,10 @@ export default function CinemaCLIPExplorer() {
       <div id="dataset" style={Prose}>
         <h2 style={STYLES.H2}>Dataset Size</h2>
         <p style={STYLES.Paragraph}>
-          As seen above, CinemaCLIP is trained on cinematic data. Our data set consists of a validation set hand labelled (and re-labelled multiple times) by domain experts. We fine tuned domain-specific teacher models for individual aspects of visual grammar (e.g. shot type, lighting, composition), and used them to generate high-confidence labels at scale. Finally we generated our training datasets via our teacher models. We encourage you to check out our talk at <a href="https://youtu.be/7aYgLALc_24?t=32741" target="_blank" rel="noopener noreferrer" style={STYLES.Link}>CVEU 2021</a> for more details regarding the process.
+          As seen above, CinemaCLIP is trained on cinematic data. Our dataset consists of a validation set hand labelled (and re-labelled multiple times) by domain experts. We fine tuned domain-specific teacher models for individual aspects of visual grammar (e.g. shot type, lighting, composition), and used them to generate high-confidence labels at scale. Finally, we generated our training datasets via our teacher models. We encourage you to check out our talk at <a href="https://youtu.be/7aYgLALc_24?t=32741" target="_blank" rel="noopener noreferrer" style={STYLES.Link}>CVEU 2021</a> for more details regarding the process.
         </p>
         <p style={STYLES.Paragraph}>
-          Our data set consisted of 750k samples with human labelled tags. Another 750k images from DataComp was labeled by our teacher models to maintain a 50-50 split of generalist labels and visual domain expertise  to preserve generalist knowledge in the models.
+          Our dataset consisted of 750k samples with human labelled tags. Another 750k images from DataComp were labelled by our teacher models to maintain a 50-50 split of generalist labels and visual domain expertise to preserve generalist knowledge in the models.
         </p>
       </div>
 
@@ -235,16 +235,16 @@ export default function CinemaCLIPExplorer() {
       <div id="architecture" style={Prose}>
         <h2 style={STYLES.H2}>Architecture</h2>
         <p style={STYLES.Paragraph}>
-          Given the use cases for CinemaCLIP, we chose Mobile Clip S1 - a modern clip architecture that can be deployed on edge devices, and run faster than realtime. During development of CinemaCLIP, we've had the privilege of running inference across petabytes of video archives in various data centers and compute environments. 
+          Given the use cases for CinemaCLIP, we chose MobileCLIP-S1 - a modern clip architecture that can be deployed on edge devices, and run faster than realtime. During development of CinemaCLIP, we've had the privilege of running inference across petabytes of video archives in various data centers and compute environments. 
         </p>
         <p style={STYLES.Paragraph}>
           This process is expensive and time consuming, and running models capable of fast inference on cheaper hardware is a huge win and enables analysis of very large archives in reasonable time for reasonable costs. This also enables local inference, for on set, and even in camera use cases. 
         </p>
         <p style={STYLES.Paragraph}>
-          Mobile Clip S1 is designed to run on Apples Neural Engine, a hardware accelerated inference chip shipped with phones, laptop and desktop systems. It balances strong out of the box performance with size. 
+          MobileCLIP-S1 is designed to run on Apple's Neural Engine, a hardware accelerated inference chip shipped with phones, laptops and desktop systems. It balances strong out of the box performance with size. 
         </p>
         <p style={STYLES.Paragraph}>
-          The capabality for on device model deployment and integration into native applications allows inference to run where video resides and on available compute, be it cloud based video archives, local production or post production storage networks, or near-line local device storage.  
+          The capability for on device model deployment and integration into native applications allows inference to run where video resides and on available compute, be it cloud based video archives, local production or post production storage networks, or near-line local device storage.  
         </p>
       </div>
 
@@ -255,17 +255,17 @@ export default function CinemaCLIPExplorer() {
       <div id="ablations" style={Prose}>
         <h3 style={STYLES.H3}>Ablations</h3>
         <p style={STYLES.Paragraph}>
-          Given that any pretrained clip model consists of 2 components, a text encoder and vision encoder, we ran ablations to determine how much of each encoder to unfreeze for training. Our intition is as follows - expert text captions are formulated differently than non expert captions. Additionally, cinematic images has a different distribution - shots are typically darker, and consist of more diverse compositions compared to product shots, advertisements and social media images which dominate the internet scale data.
+          Given that any pretrained clip model consists of 2 components, a text encoder and vision encoder, we ran ablations to determine how much of each encoder to unfreeze for training. Our intuition is as follows - expert text captions are formulated differently than non expert captions. Additionally, cinematic images have a different distribution - shots are typically darker, and consist of more diverse compositions compared to product shots, advertisements and social media images which dominate the internet scale data.
         </p>
         <p style={STYLES.Paragraph}>
-          We curated a subsection of our main data set and ran ablations across the text encoder and vision encoder to determine which layers to unfreeze. 
+          We curated a subsection of our main dataset and ran ablations across the text encoder and vision encoder to determine which layers to unfreeze. 
         </p>
         <ul style={STYLES.List}>
           <li style={STYLES.ListItem}>Text: Projection + last 2 attention blocks</li>
           <li style={STYLES.ListItem}>Vision: Projection + last 5 attention blocks</li>
         </ul>
         <p style={STYLES.Paragraph}>
-          These findings scale with larger data sets. 
+          These findings scale with larger datasets. 
         </p>
       </div>
 
@@ -277,7 +277,7 @@ export default function CinemaCLIPExplorer() {
           Augmentations
         </h3>
         <p style={STYLES.Paragraph}>
-          Augmentations were applied only on the text side. Every image augmentation applied may be relevant for one tasks, but undermines performance in another. Cinematic content is shot with intention, and augmentations destroy the salient information and build invariances where we dont want them. 
+          Augmentations were applied only on the text side. Every image augmentation applied may be relevant for one task, but undermines performance in another. Cinematic content is shot with intention, and augmentations destroy the salient information and build invariances where we don't want them. 
         </p>
       </div>
 
@@ -289,7 +289,7 @@ export default function CinemaCLIPExplorer() {
           Post Training
         </h3>
         <p style={STYLES.Paragraph}>
-          Finally, we weight blend (model soup / alpha mix ) our resulting model with the pretrained model - 75% of our new fine tuned weights with 25% of the pretrained model. This last step ensures we retain generalist performance. Without it, our fine tuned model alone would perform 1-2 % better on cinematic tasks but lose %10 on general purpose tasks. Alpha mixing allows us to retain 14% better cinematic knowledge with next to no loss in general purpose performance. 
+          Finally, we weight blend (model soup / alpha mix) our resulting model with the pretrained model - 75% of our new fine tuned weights with 25% of the pretrained model. This last step ensures we retain generalist performance. Without it, our fine tuned model alone would perform 1-2% better on cinematic tasks but lose ~10% on general purpose tasks. Alpha mixing allows us to retain 14% better cinematic knowledge with next to no loss in general purpose performance. 
         </p>
       </div>
 
@@ -316,7 +316,7 @@ export default function CinemaCLIPExplorer() {
       <div id="retention" style={Prose}>
         <h2 style={STYLES.H2}>'General' Knowledge Retention / Improvement</h2>
         <p style={STYLES.Paragraph}>
-          We also don't want to over-specialize. Its important for our models to retain a wide understanding of general concepts so that existing functionality is retained. To that end, we validate our data set and multi task training approach by using existing datasets as proxies for generalist tasks.
+          We also don't want to over-specialize. It's important for our models to retain a wide understanding of general concepts so that existing functionality is retained. To that end, we validate our dataset and multi-task training approach by using existing datasets as proxies for generalist tasks.
         </p>
       </div>
 
@@ -386,7 +386,7 @@ export default function CinemaCLIPExplorer() {
       <div style={Prose}>
         <h3 style={STYLES.H3}>Note on Generalist Knowledge</h3>
         <p style={STYLES.Paragraph}>
-          Zero-shot accuracy on ImageNet-1K is a popular proxy for measuring a CLIP models' general performance. ImageNet is an object centric dataset and doesn't capture a lot of the nuance our users care about in real world usage. For instance, about 12% of ImageNet consists of dog breeds. There is little to no representation for the color of objects, materials, and textures.
+          Zero-shot accuracy on ImageNet-1K is a popular proxy for measuring a CLIP model's general performance. ImageNet is an object centric dataset and doesn't capture a lot of the nuance our users care about in real world usage. For instance, about 12% of ImageNet consists of dog breeds. There is little to no representation for the color of objects, materials, and textures.
         </p>
         <p style={STYLES.Paragraph}>
            Additionally, zero-shot evaluation on ImageNet uses 82 prompts per class, and many of these use terms that are part of the cinematic language, but used here without intentionality. For example, some of the prompts use the words <a href="https://github.com/mlfoundations/open_clip/blob/54c9754a94baacac5b2d9b1c76318078d48912af/src/open_clip/zero_shot_metadata.py#L41" target="_blank" rel="noopener noreferrer" style={STYLES.Link}>"close up"</a>, <a href="https://github.com/mlfoundations/open_clip/blob/54c9754a94baacac5b2d9b1c76318078d48912af/src/open_clip/zero_shot_metadata.py#L24" target="_blank" rel="noopener noreferrer" style={STYLES.Link}>"black and white photo"</a> for <em>each</em> concept.
@@ -407,7 +407,7 @@ export default function CinemaCLIPExplorer() {
           Alpha Mixing
         </h4>
         <p style={STYLES.Paragraph}>
-          We tried blending our fine-tuned model with the pre-trained one at various <code style={STYLES.InlineCode}>alpha</code>s and found that <code style={STYLES.InlineCode}>0.75</code> (75% fine-tuned weights, 25% pre-trained) was the best combination. Not only did we perform better at ImageNet, which was expected, but we also had superior zero-shot performance on cinematic tasks. The classifier heads were slightly worse (88% vs. 89%), which was reasonable tradeoff.
+          We tried blending our fine-tuned model with the pre-trained one at various <code style={STYLES.InlineCode}>alpha</code>s and found that <code style={STYLES.InlineCode}>0.75</code> (75% fine-tuned weights, 25% pre-trained) was the best combination. Not only did we perform better at ImageNet, which was expected, but we also had superior zero-shot performance on cinematic tasks. The classifier heads were slightly worse (88% vs. 89%), which was a reasonable tradeoff.
         </p>
       </div>
 
@@ -448,7 +448,7 @@ export default function CinemaCLIPExplorer() {
           No. of Contrastive Tasks
         </h4>
         <p style={STYLES.Paragraph}>
-          We experimented with the ideal no. of tasks to include in our multi-task formulation. Generally, adding more tasks led to better performance. Beyond 6 cinematic tasks, there were no notable gains and with the confidence thresholding mentioned above, we ended up with over 40% of a batch having empty captions. For our formulation, 6 was the right balance. If one were to extend this to more domains, we expect performance to generally increase as long as they are well formulated. We only added expertise in the cinematic domain, and it'd be interesting to see how far this can be pushed - could we train models with a hundred domain expert tasks at once?
+          We experimented with the ideal no. of tasks to include in our multi-task formulation. Generally, adding more tasks led to better performance. Beyond 6 cinematic tasks, there were no notable gains, and with the confidence thresholding mentioned above, we ended up with over 40% of a batch having empty captions. For our formulation, 6 was the right balance. If one were to extend this to more domains, we expect performance to generally increase as long as they are well formulated. We only added expertise in the cinematic domain, and it'd be interesting to see how far this can be pushed - could we train models with a hundred domain expert tasks at once?
         </p>
       </div>
 

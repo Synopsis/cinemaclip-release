@@ -78,10 +78,10 @@ SPACE.elementGap  = SPACE[6];  // 24 — between elements within a block
 
 export const TEXT_SIZE = {
   // Display / headings (user says these read fine — tuned independently)
-  h1:             45,
-  h2:             35,
-  h3:             22,
-  h4:             17,
+  h1:             50,
+  h2:             40,
+  h3:             30,
+  h4:             20,
   subtitle:       26,
 
   // Body copy
