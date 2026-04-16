@@ -1,0 +1,233 @@
+{
+  "caption_noncinematic": {
+    "real": "leaning on railing, algae on water, back to camera, facing away, pond",
+    "synthetic": [
+      "a man and a woman standing on a bridge",
+      "a man and woman standing on a wooden bridge overlooking a pond"
+    ]
+  },
+  "caption_cinematic": [
+    {
+      "name": "cinemanet-color",
+      "caption": "analogous colors, de-saturated colors, warm colours",
+      "categories": [
+        "color.key",
+        "color.contrast",
+        "color.saturation",
+        "color.theory",
+        "color.tones"
+      ]
+    },
+    {
+      "name": "cinemanet-composition",
+      "caption": "",
+      "categories": [
+        "shot.composition",
+        "shot.composition.symmetric"
+      ]
+    },
+    {
+      "name": "cinemanet-framing",
+      "caption": "no camera tilt",
+      "categories": [
+        "shot.framing",
+        "shot.angle",
+        "shot.focus",
+        "shot.lens-size"
+      ]
+    },
+    {
+      "name": "cinemanet-shot-type",
+      "caption": "eye level",
+      "categories": [
+        "shot.height",
+        "shot.level.tilted",
+        "shot.type",
+        "shot.type.crowd",
+        "shot.type.over-the-shoulder"
+      ]
+    },
+    {
+      "name": "cinemanet-lighting",
+      "caption": "back lighting",
+      "categories": [
+        "shot.lighting.cast",
+        "shot.lighting.contrast",
+        "shot.lighting.direction",
+        "shot.lighting.edge",
+        "shot.lighting.silhouette"
+      ]
+    },
+    {
+      "name": "cinemanet-location-timeofday",
+      "caption": "outdoors, day",
+      "categories": [
+        "shot.location",
+        "shot.time-of-day"
+      ]
+    }
+  ],
+  "caption_all_variants": "leaning on railing, algae on water, back to camera, facing away, pond, tall trees, de-saturated colors, analogous colour scheme, warm color tones, levelled camera angle, eye level shot, backlit, exterior, day-time, a man and woman standing on a wooden bridge overlooking a pond",
+  "classifier_labels": {
+    "color.contrast": {
+      "label": [
+        "color.contrast.neutral"
+      ],
+      "confidence": [
+        0.61572265625
+      ]
+    },
+    "color.key": {
+      "label": [
+        "color.key.na"
+      ],
+      "confidence": [
+        0.8564453125
+      ]
+    },
+    "color.saturation": {
+      "label": [
+        "color.saturation.desaturated"
+      ],
+      "confidence": [
+        0.888671875
+      ]
+    },
+    "color.theory": {
+      "label": [
+        "color.theory.analagous"
+      ],
+      "confidence": [
+        0.9580078125
+      ]
+    },
+    "color.tones": {
+      "label": [
+        "color.tones.warm"
+      ],
+      "confidence": [
+        0.99853515625
+      ]
+    },
+    "shot.angle": {
+      "label": [
+        "shot.angle.level"
+      ],
+      "confidence": [
+        0.95166015625
+      ]
+    },
+    "shot.composition": {
+      "label": [
+        "shot.composition.balanced"
+      ],
+      "confidence": [
+        0.75634765625
+      ]
+    },
+    "shot.composition.symmetric": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.focus": {
+      "label": [
+        "shot.focus.neutral"
+      ],
+      "confidence": [
+        0.765625
+      ]
+    },
+    "shot.framing": {
+      "label": [
+        "shot.framing.wide"
+      ],
+      "confidence": [
+        0.72705078125
+      ]
+    },
+    "shot.height": {
+      "label": [
+        "shot.height.eye-level"
+      ],
+      "confidence": [
+        0.92041015625
+      ]
+    },
+    "shot.lens-size": {
+      "label": [
+        "shot.lens-size.wide"
+      ],
+      "confidence": [
+        0.79345703125
+      ]
+    },
+    "shot.level.tilted": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.lighting.cast": {
+      "label": [
+        "shot.lighting.cast.soft"
+      ],
+      "confidence": [
+        0.53515625
+      ]
+    },
+    "shot.lighting.contrast": {
+      "label": [
+        "shot.lighting.contrast.low"
+      ],
+      "confidence": [
+        0.732421875
+      ]
+    },
+    "shot.lighting.direction": {
+      "label": [
+        "shot.lighting.direction.back"
+      ],
+      "confidence": [
+        0.99267578125
+      ]
+    },
+    "shot.lighting.edge": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.lighting.silhouette": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.location": {
+      "label": [
+        "shot.location.exterior"
+      ],
+      "confidence": [
+        0.92333984375
+      ]
+    },
+    "shot.time-of-day": {
+      "label": [
+        "shot.time-of-day.day"
+      ],
+      "confidence": [
+        0.9560546875
+      ]
+    },
+    "shot.type": {
+      "label": [
+        "shot.type.twoshot"
+      ],
+      "confidence": [
+        0.8203125
+      ]
+    },
+    "shot.type.crowd": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.type.over-the-shoulder": {
+      "label": [],
+      "confidence": []
+    }
+  }
+}

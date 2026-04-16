@@ -1,0 +1,233 @@
+{
+  "caption_noncinematic": {
+    "real": "laughing, drunk, sitting, table, dinner",
+    "synthetic": [
+      "a man with long hair and a beard sitting at a table",
+      "a man with long hair and a beard is laughing"
+    ]
+  },
+  "caption_cinematic": [
+    {
+      "name": "cinemanet-color",
+      "caption": "analogous colour palette, warm colours, neutral color contrast",
+      "categories": [
+        "color.key",
+        "color.contrast",
+        "color.saturation",
+        "color.theory",
+        "color.tones"
+      ]
+    },
+    {
+      "name": "cinemanet-composition",
+      "caption": "subject in the center",
+      "categories": [
+        "shot.composition",
+        "shot.composition.symmetric"
+      ]
+    },
+    {
+      "name": "cinemanet-framing",
+      "caption": "medium closeup shot, medium lens, narrow depth of field, level angle",
+      "categories": [
+        "shot.framing",
+        "shot.angle",
+        "shot.focus",
+        "shot.lens-size"
+      ]
+    },
+    {
+      "name": "cinemanet-shot-type",
+      "caption": "over the shoulder, clean single",
+      "categories": [
+        "shot.height",
+        "shot.level.tilted",
+        "shot.type",
+        "shot.type.crowd",
+        "shot.type.over-the-shoulder"
+      ]
+    },
+    {
+      "name": "cinemanet-lighting",
+      "caption": "neutral contrast lighting, hard lighting cast",
+      "categories": [
+        "shot.lighting.cast",
+        "shot.lighting.contrast",
+        "shot.lighting.direction",
+        "shot.lighting.edge",
+        "shot.lighting.silhouette"
+      ]
+    },
+    {
+      "name": "cinemanet-location-timeofday",
+      "caption": "interior",
+      "categories": [
+        "shot.location",
+        "shot.time-of-day"
+      ]
+    }
+  ],
+  "caption_all_variants": "laughing, drunk, sitting, table, dinner, wine glass, curtains, wallapaper, suit, jacket, vest, necktie, linen shirt, neutral color contrast, analogous color scheme, warm colours, levelled camera angle, subject in the center, narrow depth of field, medium closeup framing, medium lens, hard lighting cast, neutral contrast lighting, interior, single, over the shoulder, a man with long hair and a beard is laughing",
+  "classifier_labels": {
+    "color.contrast": {
+      "label": [
+        "color.contrast.neutral"
+      ],
+      "confidence": [
+        0.99560546875
+      ]
+    },
+    "color.key": {
+      "label": [
+        "color.key.na"
+      ],
+      "confidence": [
+        0.9150390625
+      ]
+    },
+    "color.saturation": {
+      "label": [
+        "color.saturation.neutral"
+      ],
+      "confidence": [
+        0.50146484375
+      ]
+    },
+    "color.theory": {
+      "label": [
+        "color.theory.analagous"
+      ],
+      "confidence": [
+        0.98828125
+      ]
+    },
+    "color.tones": {
+      "label": [
+        "color.tones.warm"
+      ],
+      "confidence": [
+        0.9619140625
+      ]
+    },
+    "shot.angle": {
+      "label": [
+        "shot.angle.level"
+      ],
+      "confidence": [
+        0.9208984375
+      ]
+    },
+    "shot.composition": {
+      "label": [
+        "shot.composition.center"
+      ],
+      "confidence": [
+        0.9990234375
+      ]
+    },
+    "shot.composition.symmetric": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.focus": {
+      "label": [
+        "shot.focus.shallow"
+      ],
+      "confidence": [
+        0.982421875
+      ]
+    },
+    "shot.framing": {
+      "label": [
+        "shot.framing.medium-closeup"
+      ],
+      "confidence": [
+        0.9599609375
+      ]
+    },
+    "shot.height": {
+      "label": [
+        "shot.height.eye-level"
+      ],
+      "confidence": [
+        0.77294921875
+      ]
+    },
+    "shot.lens-size": {
+      "label": [
+        "shot.lens-size.medium"
+      ],
+      "confidence": [
+        0.943359375
+      ]
+    },
+    "shot.level.tilted": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.lighting.cast": {
+      "label": [
+        "shot.lighting.cast.hard"
+      ],
+      "confidence": [
+        0.93359375
+      ]
+    },
+    "shot.lighting.contrast": {
+      "label": [
+        "shot.lighting.contrast.neutral"
+      ],
+      "confidence": [
+        0.9990234375
+      ]
+    },
+    "shot.lighting.direction": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.lighting.edge": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.lighting.silhouette": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.location": {
+      "label": [
+        "shot.location.interior"
+      ],
+      "confidence": [
+        0.97314453125
+      ]
+    },
+    "shot.time-of-day": {
+      "label": [
+        "shot.time-of-day.day"
+      ],
+      "confidence": [
+        0.70458984375
+      ]
+    },
+    "shot.type": {
+      "label": [
+        "shot.type.cleansingle"
+      ],
+      "confidence": [
+        0.962890625
+      ]
+    },
+    "shot.type.crowd": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.type.over-the-shoulder": {
+      "label": [
+        "shot.type.over-the-shoulder.likelihood"
+      ],
+      "confidence": [
+        0.9921875
+      ]
+    }
+  }
+}

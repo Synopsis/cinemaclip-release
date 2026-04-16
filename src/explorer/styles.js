@@ -1,0 +1,1294 @@
+// ─── Design Tokens ──────────────────────────────────────────────────────────
+// Single source of truth for all visual styling in the blog post.
+// Change a font, color, or spacing value here and it updates everywhere.
+
+import { MONO, SERIF, LAYOUT, CHART_ACCENT, CHART_ACCENT_DIM, CHART_ACCENT_GLOW } from "./constants.js";
+import { PIXMO_SOURCE_NAME, SHAREGPT4V_SOURCE_NAME } from "./data.js";
+
+// ─── Colors ─────────────────────────────────────────────────────────────────
+
+const white = (a) => `rgba(255,255,255,${a})`;
+
+export const COLOR = {
+  bg:    "#0a0a0c",
+  bgAlt: "#d9d9e5",
+
+  // Text hierarchy — ordered by prominence
+  text: {
+    primary:   white(0.92),   // h1, h2
+    strong:    white(0.85),   // h3, metadata values, table headings
+    heading:   white(0.75),   // subtitle, subheadings
+    mid:       white(0.65),   // table header text, secondary emphasis
+    body:      white(0.45),   // paragraph text, table cells
+    secondary: white(0.35),   // metadata labels
+    tertiary:  white(0.25),   // figure captions, axis labels
+    ghost:     white(0.15),   // inactive TOC items, breadcrumb arrows
+  },
+
+  // UI surfaces — borders, dividers, backgrounds
+  ui: {
+    border:    white(0.08),   // standard borders, metadata shelf
+    divider:   white(0.06),   // section dividers, TOC rail
+    subtle:    white(0.04),   // figure caption border-top
+    hover:     white(0.03),   // hover backgrounds
+    borderDefault: `1px solid ${white(0.08)}`,
+    borderSubtle:  `1px solid ${white(0.06)}`,
+  },
+
+  // Accent — single source, replaces all duplicated TOC_ACCENT etc.
+  accent:     CHART_ACCENT,
+  accentDim:  CHART_ACCENT_DIM,
+  accentGlow: CHART_ACCENT_GLOW,
+};
+
+// ─── Fonts ──────────────────────────────────────────────────────────────────
+// Swap any typeface by editing one line here.
+
+export const FONT = {
+  serif: SERIF,                           // 'Instrument Serif', serif
+  mono:  MONO,                            // 'JetBrains Mono', monospace
+  sans:  "'Inter', system-ui, sans-serif",
+};
+
+// ─── Spacing Scale ──────────────────────────────────────────────────────────
+// Numbered 1–10. Use SPACE[n] for px values.
+
+export const SPACE = {
+  1: 4,
+  2: 8,
+  3: 12,
+  4: 16,
+  5: 20,
+  6: 24,
+  7: 32,
+  8: 48,
+  9: 64,
+  10: 96,
+};
+
+// Semantic aliases
+SPACE.sectionGap  = SPACE[10]; // 96 — major chapter breaks
+SPACE.blockGap    = SPACE[8];  // 48 — between content blocks
+SPACE.elementGap  = SPACE[6];  // 24 — between elements within a block
+
+// ─── Font Sizes ─────────────────────────────────────────────────────────────
+// Every font size in the app lives here. Bump a class (body, caption, chart,
+// toc, etc.) in one place and it flows through every component. Use semantic
+// keys — different contexts may share a value now but drift later.
+
+export const TEXT_SIZE = {
+  // Display / headings (user says these read fine — tuned independently)
+  h1:             45,
+  h2:             35,
+  h3:             22,
+  h4:             17,
+  subtitle:       26,
+
+  // Body copy
+  body:           17,   // paragraphs, list items
+  bodySmall:      15,   // secondary body, table cells, caption blobs
+
+  // Captions (mono secondary)
+  caption:               14,   // figure captions, rich-caption source copy
+  figureSubtitleCaption: 13,   // per-image subtitle captions within a figure (e.g. LAION examples)
+
+  // Labels — mono uppercase with tracking
+  label:          11,   // standard labels, table headers, category tags
+  labelSmall:     10,   // smaller labels, film credits, child numbering
+
+  // Table of contents
+  tocTitle:       16,   // top-level dropdown titles, sticky header
+  tocTitleChild:  14,   // nested dropdown titles, parent breadcrumb
+
+  // Charts — keep a graduated scale for dense compositions
+  chartValue:     11,   // primary value labels (numbers on/near data)
+  chartLabel:     10,   // category and model names
+  chartAxis:      9,    // axis tick labels
+  chartMicro:     8,    // baselines, tiny annotations
+  tooltip:        11,   // chart tooltips
+};
+
+// ─── Typography ─────────────────────────────────────────────────────────────
+// Every text style defined once. Spread into any element: <h2 style={TYPE.h2}>
+
+export const STYLES = {
+  H1: {
+    fontFamily: FONT.serif,
+    fontSize: TEXT_SIZE.h1,
+    fontWeight: 400,
+    color: COLOR.text.primary,
+    lineHeight: 1.1,
+    margin: 0,
+    paddingTop: SPACE[8],
+  },
+  H2: {
+    fontFamily: FONT.serif,
+    fontSize: TEXT_SIZE.h2,
+    fontWeight: 400,
+    color: COLOR.text.primary,
+    lineHeight: 1.15,
+    margin: `${SPACE[6]}px 0 ${SPACE[4]}px 0`,
+  },
+  H3: {
+    fontFamily: FONT.serif,
+    fontSize: TEXT_SIZE.h3,
+    fontWeight: 400,
+    color: COLOR.text.heading,
+    lineHeight: 1.3,
+    margin: `${SPACE[5]}px 0 ${SPACE[3]}px 0`,
+  },
+  H4: {
+    fontFamily: FONT.serif,
+    fontSize: TEXT_SIZE.h4,
+    fontWeight: 400,
+    color: COLOR.text.heading,
+    lineHeight: 1.3,
+    margin: `${SPACE[4]}px 0 ${SPACE[2]}px 0`,
+  },
+  Subtitle: {
+    fontFamily: FONT.serif,
+    fontSize: TEXT_SIZE.subtitle,
+    fontWeight: 400,
+    fontStyle: "italic",
+    color: COLOR.text.mid,
+    lineHeight: 1.3,
+    margin: `${SPACE[2]}px 0 ${SPACE[7]}px 0`,
+  },
+  Paragraph: {
+    fontFamily: FONT.sans,
+    fontSize: TEXT_SIZE.body,
+    color: COLOR.text.body,
+    lineHeight: 1.65,
+    margin: `0 0 ${SPACE[5]}px 0`,
+  },
+  Description: {
+    fontFamily: FONT.sans,
+    fontSize: TEXT_SIZE.bodySmall,
+    color: COLOR.text.secondary,
+    lineHeight: 1.6,
+    maxWidth: 520,
+    margin: `0 0 ${SPACE[7]}px 0`,
+  },
+  Link: {
+    color: "rgba(100,200,255,0.75)",
+    textDecoration: "none",
+    borderBottom: "1px solid rgba(100,200,255,0.45)",
+    transition: "border-color 0.2s ease, color 0.2s ease",
+  },
+  Label: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.label,
+    fontWeight: 500,
+    textTransform: "uppercase",
+    letterSpacing: "0.08em",
+    color: COLOR.text.secondary,
+  },
+  InlineCode: {
+    fontFamily: FONT.mono,
+    fontSize: "0.87em",
+    color: COLOR.text.mid,
+    background: "rgba(255,255,255,0.04)",
+    padding: "1px 5px",
+    borderRadius: 3,
+  },
+  List: {
+    fontFamily: FONT.sans,
+    fontSize: TEXT_SIZE.body,
+    color: COLOR.text.body,
+    lineHeight: 1.65,
+    margin: `0 0 ${SPACE[5]}px 0`,
+    paddingLeft: SPACE[5],
+    listStyleType: "disc",
+  },
+  ListItem: {
+    margin: `${SPACE[1]}px 0`,
+    paddingLeft: SPACE[1],
+  },
+  FigureCaption: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.caption+1,  // Fuck it.
+    color: COLOR.text.tertiary,
+    textAlign: "center",
+    lineHeight: 1.5,
+    margin: `${SPACE[3]}px 0 ${SPACE[3]}px 0`,
+    maxWidth: LAYOUT.PROSE_WIDTH,
+  },
+};
+
+// ─── Layout Containers ──────────────────────────────────────────────────────
+// Prose-width for text, visual-width for interactive elements.
+
+export const LAYOUT_CONTAINERS = {
+  Prose: {
+    maxWidth: LAYOUT.PROSE_WIDTH,
+    marginLeft: "auto",
+    marginRight: "auto",
+    paddingLeft: LAYOUT.PAGE_PADDING,
+    paddingRight: LAYOUT.PAGE_PADDING,
+  },
+  Visual: {
+    maxWidth: LAYOUT.VISUAL_WIDTH,
+    marginLeft: "auto",
+    marginRight: "auto",
+    padding: LAYOUT.PAGE_PADDING,
+  },
+};
+
+// ─── Shared UI Patterns ─────────────────────────────────────────────────────
+
+export const dividerStyle = {
+  height: 1,
+  background: `linear-gradient(to right, transparent, ${COLOR.ui.divider}, transparent)`,
+};
+
+// ─── Shared Media Tokens ────────────────────────────────────────────────────
+
+export const MEDIA = {
+  aspectRatio: "16 / 9",
+  imageRadius: 4,
+  cardRadius: 6,
+  thumbnailRadius: 3,
+  imageBg: "#000",
+};
+
+// ─── Component Specific Styles ──────────────────────────────────────────────
+
+export const RICH_CAPTION = {
+  sourceColors: {
+    [PIXMO_SOURCE_NAME]: "#a78bfa",           // soft purple
+    [SHAREGPT4V_SOURCE_NAME]: "#60a5fa",      // soft blue
+  },
+  bg: COLOR.bg,
+  layout: {
+    gap: 24,
+    marginBottom: 36,
+    imageColumnWidth: 420,
+  },
+  image: {
+    aspectRatio: MEDIA.aspectRatio,
+    borderRadius: 4,
+    background: "#000",
+  },
+  thumbnail: {
+    size: 48,
+    gap: 6,
+    marginTop: 8,
+    borderRadius: 3,
+    activeOpacity: 1,
+    inactiveOpacity: 0.45,
+    background: "#000",
+  },
+  sourceLabel: {
+    fontFamily: FONT.mono,
+    // color: COLOR.text.tertiary,
+    fontSize: TEXT_SIZE.caption,
+    fontWeight: 600,
+    letterSpacing: "0.1em",
+    textTransform: "uppercase",
+    marginBottom: 12,
+    paddingBottom: 8,
+  },
+  caption: {
+    fontFamily: FONT.sans,
+    fontSize: TEXT_SIZE.bodySmall,
+    color: white(0.55),
+    lineHeight: 1.7,
+    paddingRight: 8,
+  },
+  fade: {
+    height: 48,
+  },
+};
+
+export const PAGE_SHELL = {
+  container: {
+    background: COLOR.bg,
+    minHeight: "100vh",
+    color: "#fff",
+    fontFamily: FONT.sans,
+  },
+  metadata: {
+    wrapper: {
+      width: "100%",
+      borderTop: `1px solid ${COLOR.ui.border}`,
+      borderBottom: `1px solid ${COLOR.ui.border}`,
+    },
+    inner: {
+      paddingTop: SPACE[7],
+      paddingBottom: SPACE[7],
+      display: "flex",
+      gap: SPACE.blockGap,
+      alignItems: "baseline",
+    },
+    value: {
+      fontSize: TEXT_SIZE.bodySmall,
+      color: COLOR.text.strong,
+      lineHeight: 1.4,
+    },
+    link: {
+      color: COLOR.accent,
+      textDecoration: "none",
+    },
+  },
+  hyperparameterTable: {
+    col1Pct: 28,
+    col2Pct: 8,
+    col3Pct: 64,
+    table: {
+      width: "100%",
+      borderCollapse: "collapse",
+      fontFamily: FONT.sans,
+      fontSize: TEXT_SIZE.bodySmall,
+    },
+    th: {
+      textAlign: "left",
+      padding: "8px 16px 8px 0",
+      borderBottom: `1px solid ${white(0.15)}`,
+      color: COLOR.text.mid,
+      fontWeight: 500,
+      fontFamily: FONT.mono,
+      fontSize: TEXT_SIZE.label,
+      textTransform: "uppercase",
+      letterSpacing: "0.08em",
+    },
+    td: {
+      padding: "12px 16px 12px 0",
+      borderBottom: `1px solid ${white(0.05)}`,
+      verticalAlign: "middle",
+      lineHeight: 1.55,
+      color: COLOR.text.body,
+      fontSize: TEXT_SIZE.bodySmall,
+    },
+    paramTd: {
+      fontFamily: FONT.mono,
+      color: COLOR.text.mid,
+    },
+    valueTd: {
+      fontFamily: FONT.mono,
+      textAlign: "center",
+      whiteSpace: "nowrap",
+      color: CHART_ACCENT,
+      fontWeight: 500,
+    },
+    notesTd: {},
+    notesPaddingLeft: 28,
+    notesLineHeight: 1.6,
+    rowEven: {
+      background: white(0.02),
+    },
+    groupBorder: `1px solid ${white(0.1)}`,
+  },
+  ablationTable: {
+    table: {
+      borderCollapse: "collapse",
+      fontFamily: FONT.mono,
+      fontSize: TEXT_SIZE.bodySmall,
+      whiteSpace: "nowrap",
+    },
+    th: {
+      textAlign: "center",
+      padding: "6px 20px",
+      borderBottom: `1px solid ${white(0.15)}`,
+      color: COLOR.text.mid,
+      fontWeight: 500,
+      fontSize: TEXT_SIZE.label,
+      textTransform: "uppercase",
+      letterSpacing: "0.08em",
+    },
+    td: {
+      textAlign: "center",
+      padding: "5px 20px",
+      borderBottom: `1px solid ${white(0.04)}`,
+      color: white(0.45),
+      verticalAlign: "middle",
+      fontSize: TEXT_SIZE.bodySmall,
+    },
+    rowHeader: {
+      color: COLOR.text.mid,
+    },
+    value: {
+      color: white(0.45),
+    },
+    highlight: {
+      color: CHART_ACCENT,
+    },
+  },
+};
+
+export const LAION_EXAMPLES = {
+  marginBottom: 36,
+  rowGap: 28,
+  rowLabel: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.caption,
+    letterSpacing: "0.08em",
+    textTransform: "uppercase",
+    color: white(0.35),
+    marginBottom: 12,
+  },
+  imageContainer: {
+    display: "flex",
+    gap: 16,
+  },
+  item: {
+    flex: 1,
+    minWidth: 0,
+  },
+  image: {
+    width: "100%",
+    aspectRatio: MEDIA.aspectRatio,
+    objectFit: "cover",
+    borderRadius: MEDIA.imageRadius,
+    border: `1px solid ${COLOR.ui.border}`,
+  },
+  caption: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.figureSubtitleCaption,
+    color: COLOR.text.body,
+    lineHeight: 1.5,
+    marginTop: 8,
+  },
+};
+
+export const SECTION_NAV = {
+  container: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "4px 16px",
+    alignItems: "baseline",
+    justifyContent: "center",
+    lineHeight: 2,
+  },
+  separator: {
+    color: white(0.12),
+    fontFamily: FONT.mono,
+    fontSize: 14,
+  },
+  button: {
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    padding: "4px 0",
+    outline: "none",
+  },
+  label: {
+    fontFamily: FONT.serif,
+    fontSize: 19,
+    fontStyle: "italic",
+    transition: "all 0.3s ease",
+    paddingBottom: 2,
+  },
+  activeColor: white(0.92),
+  inactiveColor: white(0.3),
+  activeBorder: `1px solid ${white(0.4)}`,
+  inactiveBorder: "1px solid transparent",
+};
+
+export const HERO_ANNOTATION = {
+  zIndex: 10,
+  transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+  entryOffset: 8,
+  stagger: 0.12,
+  chip: {
+    background: "rgba(0,0,0,0.72)",
+    blur: 12,
+    borderRadius: 4,
+    padding: "5px 10px",
+    border: `1px solid ${white(0.12)}`,
+  },
+  category: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.chartMicro,
+    color: white(0.35),
+    letterSpacing: "0.1em",
+    textTransform: "uppercase",
+    marginBottom: 1,
+  },
+  label: {
+    fontFamily: FONT.serif,
+    fontSize: TEXT_SIZE.caption,
+    color: white(0.92),
+    fontStyle: "italic",
+  },
+};
+
+export const EXEMPLAR_IMAGE = {
+  container: {
+    width: "100%",
+    aspectRatio: MEDIA.aspectRatio,
+    borderRadius: MEDIA.cardRadius,
+    overflow: "hidden",
+    position: "relative",
+    background: MEDIA.imageBg,
+    border: `1px solid ${COLOR.ui.divider}`,
+  },
+  labelOverlay: {
+    position: "absolute",
+    bottom: 14,
+    left: 14,
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+  },
+  label: {
+    fontFamily: FONT.serif,
+    fontSize: 18,
+    fontStyle: "italic",
+    color: white(0.85),
+    textShadow: "0 1px 8px rgba(0,0,0,0.6)",
+  },
+  filmCredit: {
+    position: "absolute",
+    bottom: 14,
+    right: 12,
+    fontFamily: FONT.mono,
+    fontSize: 9,
+    color: white(0.4),
+    letterSpacing: "0.03em",
+    textShadow: "0 1px 6px rgba(0,0,0,0.8)",
+    textAlign: "right",
+  },
+};
+
+export const EXEMPLAR_PLACEHOLDER = {
+  container: {
+    width: "100%",
+    aspectRatio: MEDIA.aspectRatio,
+    borderRadius: MEDIA.cardRadius,
+    overflow: "hidden",
+    position: "relative",
+    border: `1px solid ${COLOR.ui.divider}`,
+  },
+  gradientAngle: 135,
+  gradientOpacitySuffix: "18",
+  letterbox: {
+    height: "12%",
+    background: "rgba(0,0,0,0.5)",
+  },
+  centerContent: {
+    position: "absolute",
+    inset: 0,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+  },
+  placeholderText: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.labelSmall,
+    color: white(0.2),
+    letterSpacing: "0.05em",
+  },
+  labelOverlay: {
+    position: "absolute",
+    bottom: "14%",
+    left: 14,
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+  },
+  label: {
+    fontFamily: FONT.serif,
+    fontSize: 18,
+    fontStyle: "italic",
+    color: white(0.85),
+    textShadow: "0 1px 8px rgba(0,0,0,0.6)",
+  },
+  filmCredit: {
+    position: "absolute",
+    bottom: "14%",
+    right: 12,
+    fontFamily: FONT.mono,
+    fontSize: 9,
+    color: white(0.25),
+    letterSpacing: "0.03em",
+  },
+};
+
+export const TAXONOMY_THUMBNAIL_STRIP = {
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 4,
+    padding: "0 4px",
+    overflowY: "auto",
+    maxHeight: 320,
+  },
+  button: {
+    width: 52,
+    height: 32,
+    borderRadius: MEDIA.thumbnailRadius,
+    cursor: "pointer",
+    padding: 0,
+    position: "relative",
+    overflow: "hidden",
+    transition: "all 0.25s ease",
+    flexShrink: 0,
+  },
+  activeBorder: `2px solid ${white(0.6)}`,
+  inactiveBorder: `1px solid ${COLOR.ui.border}`,
+  defaultBorder: `1px solid ${white(0.15)}`,
+  activeOpacity: 1,
+  inactiveOpacity: 0.5,
+  defaultOpacity: 0.7,
+  gradientAngle: 135,
+  activeGradientOpacity: "30",
+  inactiveGradientOpacity: "10",
+  label: {
+    position: "absolute",
+    bottom: 2,
+    right: 3,
+    fontFamily: FONT.mono,
+    fontSize: 5.5,
+    pointerEvents: "none",
+    letterSpacing: "0.02em",
+  },
+  labelActiveColor: white(0.7),
+  labelInactiveColor: white(0.25),
+  maxLabelLength: 10,
+  truncatedLength: 8,
+};
+
+export const TAXONOMY_CATEGORY_ROW = {
+  marginBottom: 48,
+  layout: {
+    display: "flex",
+    gap: 16,
+    alignItems: "center",
+  },
+  diagramColumnWidth: 280,
+  categoryName: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.label,
+    color: white(0.35),
+    letterSpacing: "0.1em",
+    textTransform: "uppercase",
+    marginBottom: 6,
+  },
+  description: {
+    fontSize: TEXT_SIZE.bodySmall,
+    color: white(0.32),
+    lineHeight: 1.5,
+    margin: "0 0 14px 0",
+  },
+  thumbnailRow: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: 4,
+    marginTop: 8,
+    overflowX: "auto",
+    padding: "2px 0",
+  },
+};
+
+export const TAXONOMY_EXEMPLAR_GRID = {
+  gap: 6,
+  transition: "0.3s ease",
+  focusedFlex: 2.5,
+  unfocusedFlex: 1,
+  otherRowPadPct: 5,
+  labelFocusedSize: 18,
+  labelDefaultSize: 13,
+  labelOtherRowSize: 10,
+  image: {
+    aspectRatio: MEDIA.aspectRatio,
+    borderRadius: MEDIA.cardRadius,
+    background: MEDIA.imageBg,
+    border: `1px solid ${COLOR.ui.divider}`,
+  },
+  label: {
+    fontFamily: FONT.serif,
+    fontStyle: "italic",
+    textShadow: "0 1px 8px rgba(0,0,0,0.6)",
+    focusedColor: white(0.85),
+    otherRowColor: white(0.25),
+    defaultColor: white(0.45),
+  },
+  labelPosition: {
+    default: 10,
+    otherRow: 4,
+  },
+  filmCredit: {
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+    fontFamily: FONT.mono,
+    fontSize: 9,
+    color: white(0.4),
+    letterSpacing: "0.03em",
+    textShadow: "0 1px 6px rgba(0,0,0,0.8)",
+  },
+};
+
+export const TABLE_OF_CONTENTS = {
+  headerHeight: 44,
+  scrollMargin: 16,
+  header: {
+    background: "rgba(10,10,12,0.88)",
+    blur: 16,
+    zIndex: 1000,
+  },
+  progressBar: {
+    height: 2,
+    gradientStart: "rgba(100,200,255,0.4)",
+    transition: "width 0.12s linear",
+  },
+  trigger: {
+    maxWidth: 640,
+    padding: SPACE[6],
+  },
+  numbering: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.labelSmall,
+    color: COLOR.text.tertiary,
+    letterSpacing: "0.08em",
+  },
+  rail: {
+    width: 1,
+    left: 21,
+  },
+  parentTitle: {
+    fontFamily: FONT.serif,
+    fontSize: TEXT_SIZE.tocTitleChild,
+    fontStyle: "italic",
+    color: white(0.3),
+  },
+  activeTitle: {
+    fontFamily: FONT.serif,
+    fontStyle: "italic",
+    topFontSize: TEXT_SIZE.tocTitle,
+    childFontSize: TEXT_SIZE.tocTitleChild,
+    activeColor: white(0.8),
+    defaultColor: COLOR.text.mid,
+    transition: "color 0.2s ease",
+  },
+  arrow: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.label,
+    color: COLOR.text.ghost,
+    margin: "0 7px",
+  },
+  chevron: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.label,
+    color: white(0.2),
+    transition: "transform 0.25s ease",
+    marginLeft: 8,
+  },
+  dropdown: {
+    maxWidth: 640,
+    background: "rgba(13,13,17,0.97)",
+    blur: 20,
+    border: `1px solid ${white(0.07)}`,
+    borderRadius: "0 0 8px 8px",
+    animation: "tocDropIn 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+    padding: "12px 0 20px",
+    groupMarginBottom: 4,
+  },
+  groupLabel: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.labelSmall,
+    color: white(0.2),
+    letterSpacing: "0.1em",
+    textTransform: "uppercase",
+    padding: "10px 16px 4px 36px",
+  },
+  item: {
+    gap: 8,
+    topLevelPadding: "7px 16px",
+    childPadding: "5px 16px",
+    transition: "background 0.15s ease",
+  },
+  dot: {
+    topLevelSize: 7,
+    childSize: 5,
+    borderRadius: "50%",
+    activeBorder: `2px solid ${COLOR.accent}`,
+    parentBorder: "1.5px solid rgba(100,200,255,0.4)",
+    defaultBorder: `1.5px solid ${COLOR.ui.border}`,
+    activeBg: "rgba(100,200,255,0.2)",
+    childMarginLeft: 8,
+    transition: "all 0.2s ease",
+  },
+  itemNumbering: {
+    fontFamily: FONT.mono,
+    topLevelFontSize: TEXT_SIZE.label,
+    childFontSize: TEXT_SIZE.labelSmall,
+    activeColor: COLOR.text.body,
+    defaultColor: COLOR.text.ghost,
+    width: 16,
+    transition: "color 0.2s ease",
+  },
+  itemTitle: {
+    fontFamily: FONT.serif,
+    topLevelFontSize: TEXT_SIZE.tocTitle,
+    childFontSize: TEXT_SIZE.tocTitleChild,
+    fontStyle: "italic",
+    activeColor: COLOR.text.strong,
+    parentColor: COLOR.text.body,
+    topLevelColor: white(0.4),
+    childColor: white(0.28),
+    transition: "color 0.2s ease",
+    lineHeight: 1.3,
+  },
+  divider: {
+    height: 16,
+  },
+};
+
+export const TOC_RAIL = {
+  position: {
+    left: 32,
+    top: 96,
+    width: 180,
+  },
+  narrowViewportBreakpoint: 1280,
+  zIndex: 50,
+  rootTransition: "opacity 260ms cubic-bezier(0.4, 0, 0.2, 1)",
+  scrollOffset: 32,
+  observer: {
+    activeRootMargin: "-20% 0px -70% 0px",
+    visualCoverageThreshold: 0.99,
+  },
+  item: {
+    gap: 12,
+    padding: "5px 0",
+    numberWidth: 22,
+  },
+  number: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.label,
+    color: white(0.2),
+    activeColor: COLOR.text.body,
+    letterSpacing: "0.08em",
+    transition: "color 180ms ease",
+  },
+  title: {
+    fontFamily: FONT.serif,
+    fontSize: TEXT_SIZE.tocTitleChild,
+    fontStyle: "italic",
+    color: white(0.32),
+    hoverColor: white(0.6),
+    activeColor: white(0.88),
+    lineHeight: 1.3,
+    transition: "color 180ms ease",
+  },
+};
+
+export const CAPTION_DECOMPOSITION = {
+  layout: {
+    gap: 40,                    // between image column and content column
+    imageColumnFlex: "0 0 40%",
+    blobMarginBottom: 18,
+    ruleMargin: "24px 0 20px",
+  },
+  image: {
+    width: "100%",
+    aspectRatio: MEDIA.aspectRatio,
+    objectFit: "cover",
+    borderRadius: MEDIA.imageRadius,
+    border: `1px solid ${COLOR.ui.border}`,
+    background: MEDIA.imageBg,
+  },
+  heading: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.caption,
+    fontWeight: 300,
+    letterSpacing: "0.1em",
+    textTransform: "uppercase",
+    color: white(0.55),
+    margin: "0 0 12px 0",
+    lineHeight: 1.2,
+  },
+  blob: {
+    fontSize: TEXT_SIZE.bodySmall,
+    lineHeight: 1.65,
+  },
+  rule: {
+    height: 1,
+    background: white(0.18),
+  },
+  table: {
+    width: "100%",
+    borderCollapse: "collapse",
+    fontFamily: FONT.sans,
+  },
+  labelCell: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.label,
+    letterSpacing: "0.08em",
+    textTransform: "uppercase",
+    verticalAlign: "top",
+    padding: "9px 16px 9px 0",
+    width: 140,
+    whiteSpace: "nowrap",
+    borderBottom: `1px solid ${white(0.05)}`,
+    transition: "color 0.15s ease",
+  },
+  captionCell: {
+    fontSize: TEXT_SIZE.bodySmall,
+    lineHeight: 1.5,
+    padding: "9px 0",
+    borderBottom: `1px solid ${white(0.05)}`,
+    transition: "color 0.15s ease",
+  },
+  text: {
+    rest:      COLOR.text.body,  // blob phrases, table captions — matches paragraph body text
+    dim:       white(0.15),      // non-hovered body text when something is hovered
+    restLabel: white(0.45),      // normal mono label
+    dimLabel:  white(0.15),      // non-hovered mono label when something is hovered
+    separator: white(0.25),      // ", " between segments in the blob
+  },
+  transition: "color 0.15s ease",
+};
+
+// ─── Chart Shared Tokens ────────────────────────────────────────────────────
+
+export const CHART = {
+  fontFamily: FONT.mono,
+  gridline: { stroke: white(0.05), strokeWidth: 0.5 },
+  axisLabel: { fill: white(0.18) },
+  baseline: { stroke: white(0.18), strokeWidth: 1 },
+  baselineLabelColor: white(0.15),
+  dumbbell: { stroke: "rgba(100,200,255,0.35)", strokeWidth: 1.5 },
+  gap: {
+    positiveStroke: CHART_ACCENT_DIM,
+    negativeStroke: "rgba(255,100,100,0.3)",
+    positiveFill: CHART_ACCENT,
+    negativeFill: "rgba(255,100,100,0.7)",
+  },
+  dot: {
+    competitorDefault: { fill: white(0.22), stroke: white(0.08), strokeWidth: 0.5 },
+    competitorBest: { fill: white(0.35), stroke: white(0.2), strokeWidth: 1 },
+    competitorHovered: white(0.6),
+    oursZeroShot: { fill: CHART_ACCENT, stroke: CHART_ACCENT_DIM },
+    oursClassifier: { fill: "none", stroke: CHART_ACCENT },
+  },
+  valueLabel: { fill: CHART_ACCENT, fontWeight: 600 },
+  categoryLabel: { fill: white(0.3) },
+  tooltip: {
+    background: "rgba(15, 15, 20, 0.95)",
+    oursBorder: `1px solid ${CHART_ACCENT_DIM}`,
+    defaultBorder: `1px solid ${white(0.15)}`,
+    borderRadius: 5,
+    padding: "5px 9px",
+    fontSize: TEXT_SIZE.tooltip,
+    fontFamily: FONT.mono,
+    color: white(0.85),
+    zIndex: 10,
+    lineHeight: 1.5,
+    oursNameColor: CHART_ACCENT,
+    defaultNameColor: white(0.9),
+    baselineNameColor: white(0.5),
+    archColor: white(0.4),
+    oursAccColor: CHART_ACCENT,
+    defaultAccColor: white(0.7),
+    flopsColor: white(0.35),
+  },
+};
+
+export const OVERALL_ACCURACY_PLOT = {
+  pad: { top: 30, right: 90, bottom: 30, left: 200 },
+  rowHeight: 30,
+  innerWidth: 340,
+  accMax: 0.95,
+  maxWidth: 640,
+  modelNameOffset: 10,
+  oursModelName: { fill: white(0.92), fontSize: 14, fontWeight: 600 },
+  competitorModelName: { fill: white(0.4), fontSize: 12, fontWeight: 400 },
+  baselineModelName: { fill: white(0.25), fontSize: 12, fontWeight: 400 },
+  oursRadius: 6,
+  oursZeroShotStrokeWidth: 2,
+  oursClassifierStrokeWidth: 1.75,
+  competitorRadius: 4,
+  baselineRadius: 3,
+  competitorFill: "rgba(158,165,173,0.6)",
+  baselineFill: white(0.15),
+  connectorStroke: white(0.035),
+  connectorStrokeWidth: 0.5,
+  oursConnectorStroke: "rgba(100,200,255,0.12)",
+  oursConnectorStrokeWidth: 1,
+  refLineStroke: white(0.12),
+  refLineDash: "3 3",
+  zeroShotDotStroke: "rgba(100,200,255,0.3)",
+  valueFontSize: 16,  // Hero percentages (82%, 88%)
+  gapFontSize: 11,    // Gap deltas and x-axis ticks
+  zeroShotGapColor: "rgba(100,200,255,0.55)",
+  classifierValueColor: "rgba(100,200,255,0.75)",
+  classifierGapColor: "rgba(100,200,255,0.4)",
+  inlineLabelFontSize: 11, // "zero-shot" / "classifiers" labels
+  zeroShotLabelColor: "rgba(100,200,255,0.45)",
+  classifierLabelColor: "rgba(100,200,255,0.38)",
+  tooltipPadding: "6px 10px",
+  tooltipLineHeight: 1.6,
+  tooltipArchColor: white(0.45),
+};
+
+export const BENCHMARK_STRIP_PLOT = {
+  defaultWidth: 136,
+  defaultHeight: 200,
+  pad: { top: 14, right: 8, bottom: 26, left: 28 },
+  competitorRadiusDefault: 2.5,
+  competitorRadiusBest: 4,
+  oursRadius: 5,
+  oursZeroShotStrokeWidth: 2,
+  oursClassifierStrokeWidth: 1.5,
+  gapFontSize: TEXT_SIZE.chartAxis,
+  valueFontSize: TEXT_SIZE.chartLabel,
+  axisLabelFontSize: TEXT_SIZE.chartAxis,
+  baselineFontSize: TEXT_SIZE.chartMicro,
+  categoryFontSize: TEXT_SIZE.chartAxis,
+  valueLabelOffset: 9,
+};
+
+export const BENCHMARK_DOT_PLOT = {
+  defaultWidth: 280,
+  aspectMultiplier: 100 / 235,
+  pad: { top: 18, right: 14, bottom: 20, left: 28 },
+  marginTop: 10,
+  competitorRadiusDefault: 3,
+  competitorRadiusBest: 4.5,
+  oursRadius: 6,
+  oursZeroShotStrokeWidth: 2.5,
+  oursClassifierStrokeWidth: 1.5,
+  gapFontSize: TEXT_SIZE.chartLabel,
+  valueFontSize: TEXT_SIZE.chartValue,
+  axisLabelFontSize: TEXT_SIZE.chartAxis,
+  baselineFontSize: TEXT_SIZE.chartMicro,
+  valueLabelOffset: 12,
+  tooltipPadding: "5px 9px",
+};
+
+export const GENERAL_KNOWLEDGE_CHARTS = {
+  chartWidth: 160,
+  chartHeight: 190,
+  pad: { top: 10, right: 8, bottom: 32, left: 28 },
+  yRange: { min: 40, max: 80 },
+  preTrained: {
+    radius: 4,
+    fill: white(0.3),
+    stroke: white(0.15),
+    strokeWidth: 1,
+    valueFill: white(0.35),
+    valueFontSize: TEXT_SIZE.chartLabel,
+  },
+  fineTuned: {
+    radius: 5,
+    strokeWidth: 2,
+    valueFontSize: TEXT_SIZE.chartValue,
+  },
+  deltaFontSize: TEXT_SIZE.chartLabel,
+  axisLabelFontSize: TEXT_SIZE.chartAxis,
+  categoryLabel: {
+    fontSize: TEXT_SIZE.chartLabel,
+    fill: white(0.4),
+    fontWeight: 500,
+  },
+  subtitle: {
+    fontSize: TEXT_SIZE.chartMicro,
+    fill: white(0.18),
+  },
+  groupLabel: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.label,
+    color: white(0.25),
+    textTransform: "uppercase",
+    letterSpacing: "0.08em",
+    marginBottom: 6,
+  },
+  chartGap: 4,
+  separator: {
+    width: 1,
+    background: white(0.08),
+    margin: "22px 24px 32px",
+  },
+  legend: {
+    gap: 8,
+    marginLeft: 32,
+    paddingTop: 28,
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.label,
+    dotSize: 8,
+    labelColor: white(0.4),
+    preDotColor: white(0.3),
+  },
+};
+
+export const TEXT_SIMILARITY = {
+  cell: 46,
+  labelWidth: 108,
+  gap: 2,
+  labelPaddingRight: 10,
+  labelFontSize: TEXT_SIZE.chartValue,
+  labelDefault: white(0.35),
+  labelHovered: white(0.7),
+  labelDimmed: white(0.2),
+  cellBorderRadius: 1,
+  hoveredOutline: `1px solid ${white(0.5)}`,
+  cellFontSize: TEXT_SIZE.chartValue,
+  modelNameFontSize: TEXT_SIZE.caption,
+  modelNameColor: white(0.35),
+  modelNameLetterSpacing: "0.04em",
+  modelNameMarginTop: 10,
+  matrixGap: 48,
+  tabSeparator: {
+    color: white(0.12),
+    fontFamily: FONT.mono,
+    fontSize: 14,
+  },
+  tabButton: {
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    padding: "4px 0",
+    outline: "none",
+  },
+  tabLabel: {
+    fontFamily: FONT.serif,
+    fontSize: 17,
+    fontStyle: "italic",
+    activeColor: white(0.85),
+    inactiveColor: white(0.3),
+    activeBorder: `1px solid ${white(0.35)}`,
+    inactiveBorder: "1px solid transparent",
+    transition: "all 0.3s ease",
+    paddingBottom: 2,
+  },
+  tabMarginBottom: 24,
+  tabGap: 16,
+  tooltip: {
+    marginTop: 8,
+    minHeight: 28,
+    fontSize: TEXT_SIZE.bodySmall,
+    gap: 8,
+    labelColor: white(0.85),
+    separatorColor: white(0.35),
+  },
+  sectionTitle: {
+    fontFamily: FONT.serif,
+    fontSize: 16,
+    fontStyle: "italic",
+    color: white(0.5),
+    marginBottom: 16,
+    textAlign: "center",
+  },
+  sectionGap: 48,
+};
+
+export const BENCHMARK_SECTION = {
+  cardWidth: 138,
+  colGap: 6,
+  header: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.chartLabel,
+    color: white(0.22),
+    letterSpacing: "0.1em",
+    textTransform: "uppercase",
+    paddingBottom: 4,
+    paddingLeft: 2,
+    lineHeight: 1,
+    topPadding: 10,
+  },
+  card: {
+    background: white(0.015),
+    border: `1px solid ${white(0.05)}`,
+    borderRadius: 4,
+  },
+};
+
+export const STANDARD_CLIP_DIAGRAM = {
+  padding: "24px 0 16px",
+  N: 3,
+  cell: 36,
+  gap: 3,
+  encoderBox: {
+    border: `1px solid ${white(0.1)}`,
+    borderRadius: 5,
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.label,
+    fontWeight: 500,
+    color: white(0.45),
+    lineHeight: 1.4,
+    background: white(0.04),
+    padding: "0 12px",
+  },
+  imageThumb: {
+    width: 50,
+    borderRadius: 3,
+    activeBorder: "rgba(100,200,255,0.4)",
+    defaultBorder: white(0.1),
+    activeShadow: "0 0 12px rgba(100,200,255,0.1)",
+    dimOpacity: 0.35,
+    transition: "all 0.2s ease",
+    barHeight: 3,
+    barBg: "rgba(0,0,0,0.6)",
+    labelFontSize: TEXT_SIZE.chartLabel,
+    labelColor: white(0.7),
+  },
+  embCell: {
+    width: 28,
+    borderRadius: 3,
+    activeColor: "rgba(100,200,255,1)",
+    defaultColor: white(0.45),
+    background: white(0.04),
+    fontSize: TEXT_SIZE.label,
+  },
+  arrow: {
+    fontSize: TEXT_SIZE.label,
+    color: white(0.18),
+  },
+  caption: {
+    fontFamily: FONT.sans,
+    fontSize: TEXT_SIZE.caption,
+    activeColor: "rgba(100,200,255,1)",
+    defaultColor: white(0.3),
+    activeBorderLeft: "rgba(100,200,255,0.4)",
+    paddingLeft: 4,
+  },
+  matrixLabel: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.label,
+    fontWeight: 500,
+    letterSpacing: "0.06em",
+    textTransform: "uppercase",
+    color: white(0.2),
+    marginBottom: 4,
+  },
+  matrixCell: {
+    borderRadius: 4,
+    fontSize: TEXT_SIZE.chartLabel,
+    matchBg: "rgba(100,200,255,0.1)",
+    defaultBg: white(0.04),
+    matchBorder: "rgba(100,200,255,0.15)",
+    defaultBorder: white(0.06),
+    matchColor: "rgba(100,200,255,1)",
+    defaultColor: white(0.2),
+    focusShadow: "0 0 8px rgba(100,200,255,0.15)",
+    transition: "all 0.15s ease",
+  },
+  matrixHeaderColor: {
+    active: "rgba(100,200,255,0.8)",
+    default: white(0.3),
+  },
+  lossAnnotation: {
+    gap: 8,
+    marginTop: 16,
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.label,
+    letterSpacing: "0.04em",
+    padding: "4px 10px",
+    borderRadius: 20,
+    color: "rgba(100,200,255,1)",
+    background: "rgba(100,200,255,0.06)",
+    border: "1px solid rgba(100,200,255,0.12)",
+  },
+  instruction: {
+    fontFamily: FONT.mono,
+    fontSize: TEXT_SIZE.caption,
+    color: white(0.18),
+    marginTop: 10,
+    textAlign: "center",
+  },
+};

@@ -1,0 +1,237 @@
+{
+  "caption_noncinematic": {
+    "real": "announcement, businessman, inventor, large audience, large crowd",
+    "synthetic": [
+      "a man in a white suit standing at a podium",
+      "a man in a white suit standing behind a podium"
+    ]
+  },
+  "caption_cinematic": [
+    {
+      "name": "cinemanet-color",
+      "caption": "neutral colour contrast",
+      "categories": [
+        "color.key",
+        "color.contrast",
+        "color.saturation",
+        "color.theory",
+        "color.tones"
+      ]
+    },
+    {
+      "name": "cinemanet-composition",
+      "caption": "centered composition, symmetric composition",
+      "categories": [
+        "shot.composition",
+        "shot.composition.symmetric"
+      ]
+    },
+    {
+      "name": "cinemanet-framing",
+      "caption": "",
+      "categories": [
+        "shot.framing",
+        "shot.angle",
+        "shot.focus",
+        "shot.lens-size"
+      ]
+    },
+    {
+      "name": "cinemanet-shot-type",
+      "caption": "cleansingle, camera below the subject",
+      "categories": [
+        "shot.height",
+        "shot.level.tilted",
+        "shot.type",
+        "shot.type.crowd",
+        "shot.type.over-the-shoulder"
+      ]
+    },
+    {
+      "name": "cinemanet-lighting",
+      "caption": "frontlit, hard lighting cast, neutral contrast lighting",
+      "categories": [
+        "shot.lighting.cast",
+        "shot.lighting.contrast",
+        "shot.lighting.direction",
+        "shot.lighting.edge",
+        "shot.lighting.silhouette"
+      ]
+    },
+    {
+      "name": "cinemanet-location-timeofday",
+      "caption": "day, indoors",
+      "categories": [
+        "shot.location",
+        "shot.time-of-day"
+      ]
+    }
+  ],
+  "caption_all_variants": "announcement, businessman, inventor, large audience, large crowd, nervous, showcase, speech, spotlights, white suit, red tie, white shirt, gold microphone, utopian, purple curtain, neutral colour contrast, centered composition, symmetric, camera below the subject, harsh lighting, neutral contrast lighting, light source in front of the subject, indoors, day time, cleansingle, a man in a white suit standing at a podium",
+  "classifier_labels": {
+    "color.contrast": {
+      "label": [
+        "color.contrast.neutral"
+      ],
+      "confidence": [
+        0.95263671875
+      ]
+    },
+    "color.key": {
+      "label": [
+        "color.key.na"
+      ],
+      "confidence": [
+        0.61279296875
+      ]
+    },
+    "color.saturation": {
+      "label": [
+        "color.saturation.neutral"
+      ],
+      "confidence": [
+        0.73095703125
+      ]
+    },
+    "color.theory": {
+      "label": [
+        "color.theory.analagous"
+      ],
+      "confidence": [
+        0.82470703125
+      ]
+    },
+    "color.tones": {
+      "label": [
+        "color.tones.cool"
+      ],
+      "confidence": [
+        0.447021484375
+      ]
+    },
+    "shot.angle": {
+      "label": [
+        "shot.angle.low-obvious"
+      ],
+      "confidence": [
+        0.796875
+      ]
+    },
+    "shot.composition": {
+      "label": [
+        "shot.composition.center"
+      ],
+      "confidence": [
+        0.98828125
+      ]
+    },
+    "shot.composition.symmetric": {
+      "label": [
+        "shot.composition.symmetric.likelihood"
+      ],
+      "confidence": [
+        0.94921875
+      ]
+    },
+    "shot.focus": {
+      "label": [
+        "shot.focus.neutral"
+      ],
+      "confidence": [
+        0.591796875
+      ]
+    },
+    "shot.framing": {
+      "label": [
+        "shot.framing.medium"
+      ],
+      "confidence": [
+        0.70166015625
+      ]
+    },
+    "shot.height": {
+      "label": [
+        "shot.height.below-subject"
+      ],
+      "confidence": [
+        0.94775390625
+      ]
+    },
+    "shot.lens-size": {
+      "label": [
+        "shot.lens-size.wide"
+      ],
+      "confidence": [
+        0.72705078125
+      ]
+    },
+    "shot.level.tilted": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.lighting.cast": {
+      "label": [
+        "shot.lighting.cast.hard"
+      ],
+      "confidence": [
+        0.96875
+      ]
+    },
+    "shot.lighting.contrast": {
+      "label": [
+        "shot.lighting.contrast.neutral"
+      ],
+      "confidence": [
+        0.91796875
+      ]
+    },
+    "shot.lighting.direction": {
+      "label": [
+        "shot.lighting.direction.front"
+      ],
+      "confidence": [
+        0.8916015625
+      ]
+    },
+    "shot.lighting.edge": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.lighting.silhouette": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.location": {
+      "label": [
+        "shot.location.interior"
+      ],
+      "confidence": [
+        0.955078125
+      ]
+    },
+    "shot.time-of-day": {
+      "label": [
+        "shot.time-of-day.day"
+      ],
+      "confidence": [
+        0.9931640625
+      ]
+    },
+    "shot.type": {
+      "label": [
+        "shot.type.cleansingle"
+      ],
+      "confidence": [
+        0.92919921875
+      ]
+    },
+    "shot.type.crowd": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.type.over-the-shoulder": {
+      "label": [],
+      "confidence": []
+    }
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "caption_noncinematic": {
+    "real": "western front, war, tank, tanks, tank warfare",
+    "synthetic": [
+      "a dirty field with a fence and a building in the background",
+      "a view of a field with barbed wire and a fence"
+    ]
+  },
+  "caption_cinematic": [
+    {
+      "name": "cinemanet-color",
+      "caption": "",
+      "categories": [
+        "color.key",
+        "color.contrast",
+        "color.saturation",
+        "color.theory",
+        "color.tones"
+      ]
+    },
+    {
+      "name": "cinemanet-composition",
+      "caption": "balanced composition",
+      "categories": [
+        "shot.composition",
+        "shot.composition.symmetric"
+      ]
+    },
+    {
+      "name": "cinemanet-framing",
+      "caption": "extreme-wide shot, no camera tilt, wide lens",
+      "categories": [
+        "shot.framing",
+        "shot.angle",
+        "shot.focus",
+        "shot.lens-size"
+      ]
+    },
+    {
+      "name": "cinemanet-shot-type",
+      "caption": "",
+      "categories": [
+        "shot.height",
+        "shot.level.tilted",
+        "shot.type",
+        "shot.type.crowd",
+        "shot.type.over-the-shoulder"
+      ]
+    },
+    {
+      "name": "cinemanet-lighting",
+      "caption": "low lighting contrast",
+      "categories": [
+        "shot.lighting.cast",
+        "shot.lighting.contrast",
+        "shot.lighting.direction",
+        "shot.lighting.edge",
+        "shot.lighting.silhouette"
+      ]
+    },
+    {
+      "name": "cinemanet-location-timeofday",
+      "caption": "day time, outdoors",
+      "categories": [
+        "shot.location",
+        "shot.time-of-day"
+      ]
+    }
+  ],
+  "caption_all_variants": "western front, war, tank, tanks, tank warfare, balistic tanks, french tanks, no mans land, world war one, large tanks, no camera tilt, balanced frame, extreme-wide framing, wide lens, low lighting contrast, outdoors, day-time, a dirty field with a fence and a building in the background",
+  "classifier_labels": {
+    "color.contrast": {
+      "label": [
+        "color.contrast.neutral"
+      ],
+      "confidence": [
+        0.6611328125
+      ]
+    },
+    "color.key": {
+      "label": [
+        "color.key.na"
+      ],
+      "confidence": [
+        0.77001953125
+      ]
+    },
+    "color.saturation": {
+      "label": [
+        "color.saturation.neutral"
+      ],
+      "confidence": [
+        0.6259765625
+      ]
+    },
+    "color.theory": {
+      "label": [
+        "color.theory.analagous"
+      ],
+      "confidence": [
+        0.71240234375
+      ]
+    },
+    "color.tones": {
+      "label": [
+        "color.tones.cool"
+      ],
+      "confidence": [
+        0.72314453125
+      ]
+    },
+    "shot.angle": {
+      "label": [
+        "shot.angle.level"
+      ],
+      "confidence": [
+        0.962890625
+      ]
+    },
+    "shot.composition": {
+      "label": [
+        "shot.composition.balanced"
+      ],
+      "confidence": [
+        0.970703125
+      ]
+    },
+    "shot.composition.symmetric": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.focus": {
+      "label": [
+        "shot.focus.deep"
+      ],
+      "confidence": [
+        0.74169921875
+      ]
+    },
+    "shot.framing": {
+      "label": [
+        "shot.framing.extreme-wide"
+      ],
+      "confidence": [
+        0.974609375
+      ]
+    },
+    "shot.height": {
+      "label": [
+        "shot.height.ground-level"
+      ],
+      "confidence": [
+        0.505859375
+      ]
+    },
+    "shot.lens-size": {
+      "label": [
+        "shot.lens-size.wide"
+      ],
+      "confidence": [
+        0.892578125
+      ]
+    },
+    "shot.level.tilted": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.lighting.cast": {
+      "label": [
+        "shot.lighting.cast.soft"
+      ],
+      "confidence": [
+        0.6533203125
+      ]
+    },
+    "shot.lighting.contrast": {
+      "label": [
+        "shot.lighting.contrast.low"
+      ],
+      "confidence": [
+        0.9853515625
+      ]
+    },
+    "shot.lighting.direction": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.lighting.edge": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.lighting.silhouette": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.location": {
+      "label": [
+        "shot.location.exterior"
+      ],
+      "confidence": [
+        0.99755859375
+      ]
+    },
+    "shot.time-of-day": {
+      "label": [
+        "shot.time-of-day.day"
+      ],
+      "confidence": [
+        0.94580078125
+      ]
+    },
+    "shot.type": {
+      "label": [
+        "shot.type.na"
+      ],
+      "confidence": [
+        0.96337890625
+      ]
+    },
+    "shot.type.crowd": {
+      "label": [],
+      "confidence": []
+    },
+    "shot.type.over-the-shoulder": {
+      "label": [],
+      "confidence": []
+    }
+  }
+}

@@ -1,0 +1,234 @@
+{
+    "caption_noncinematic": {
+      "real": "serious look, strong stare, whiskey glasses, black suit, black rotary phone",
+      "synthetic": [
+        "a man sitting at a table in a bar",
+        "a man in a suit sitting at a table with a bottle of whiskey"
+      ]
+    },
+    "caption_cinematic": [
+      {
+        "name": "cinemanet-color",
+        "caption": "neutral saturation, analogous color palette",
+        "categories": [
+          "color.key",
+          "color.contrast",
+          "color.saturation",
+          "color.theory",
+          "color.tones"
+        ]
+      },
+      {
+        "name": "cinemanet-composition",
+        "caption": "centered composition",
+        "categories": [
+          "shot.composition",
+          "shot.composition.symmetric"
+        ]
+      },
+      {
+        "name": "cinemanet-framing",
+        "caption": "medium lens, medium shot, levelled camera angle",
+        "categories": [
+          "shot.framing",
+          "shot.angle",
+          "shot.focus",
+          "shot.lens-size"
+        ]
+      },
+      {
+        "name": "cinemanet-shot-type",
+        "caption": "eye level shot, single",
+        "categories": [
+          "shot.height",
+          "shot.level.tilted",
+          "shot.type",
+          "shot.type.crowd",
+          "shot.type.over-the-shoulder"
+        ]
+      },
+      {
+        "name": "cinemanet-lighting",
+        "caption": "soft lighting, neutral contrast lighting, sidelit lighting",
+        "categories": [
+          "shot.lighting.cast",
+          "shot.lighting.contrast",
+          "shot.lighting.direction",
+          "shot.lighting.edge",
+          "shot.lighting.silhouette"
+        ]
+      },
+      {
+        "name": "cinemanet-location-timeofday",
+        "caption": "indoors",
+        "categories": [
+          "shot.location",
+          "shot.time-of-day"
+        ]
+      }
+    ],
+    "caption_all_variants": "serious look, strong stare, whiskey glasses, black suit, black rotary phone, ashtray, neutral colour saturation, analogous colors, no camera tilt, center composition, medium shot, camera at eye level, medium lens, soft lighting, neutral contrast lighting, primary light source on the left, interior, single, a man in a suit sitting at a table with a bottle of whiskey",
+    "classifier_labels": {
+      "color.contrast": {
+        "label": [
+          "color.contrast.neutral"
+        ],
+        "confidence": [
+          0.8271484375
+        ]
+      },
+      "color.key": {
+        "label": [
+          "color.key.na"
+        ],
+        "confidence": [
+          0.92041015625
+        ]
+      },
+      "color.saturation": {
+        "label": [
+          "color.saturation.neutral"
+        ],
+        "confidence": [
+          0.91015625
+        ]
+      },
+      "color.theory": {
+        "label": [
+          "color.theory.analagous"
+        ],
+        "confidence": [
+          0.99853515625
+        ]
+      },
+      "color.tones": {
+        "label": [
+          "color.tones.neutral"
+        ],
+        "confidence": [
+          0.66552734375
+        ]
+      },
+      "shot.angle": {
+        "label": [
+          "shot.angle.level"
+        ],
+        "confidence": [
+          1.0
+        ]
+      },
+      "shot.composition": {
+        "label": [
+          "shot.composition.center"
+        ],
+        "confidence": [
+          0.9970703125
+        ]
+      },
+      "shot.composition.symmetric": {
+        "label": [],
+        "confidence": []
+      },
+      "shot.focus": {
+        "label": [
+          "shot.focus.neutral"
+        ],
+        "confidence": [
+          0.51220703125
+        ]
+      },
+      "shot.framing": {
+        "label": [
+          "shot.framing.medium"
+        ],
+        "confidence": [
+          0.91943359375
+        ]
+      },
+      "shot.height": {
+        "label": [
+          "shot.height.eye-level"
+        ],
+        "confidence": [
+          0.998046875
+        ]
+      },
+      "shot.lens-size": {
+        "label": [
+          "shot.lens-size.medium"
+        ],
+        "confidence": [
+          0.99560546875
+        ]
+      },
+      "shot.level.tilted": {
+        "label": [],
+        "confidence": []
+      },
+      "shot.lighting.cast": {
+        "label": [
+          "shot.lighting.cast.soft"
+        ],
+        "confidence": [
+          0.8623046875
+        ]
+      },
+      "shot.lighting.contrast": {
+        "label": [
+          "shot.lighting.contrast.neutral"
+        ],
+        "confidence": [
+          1.0
+        ]
+      },
+      "shot.lighting.direction": {
+        "label": [
+          "shot.lighting.direction.left"
+        ],
+        "confidence": [
+          0.998046875
+        ]
+      },
+      "shot.lighting.edge": {
+        "label": [],
+        "confidence": []
+      },
+      "shot.lighting.silhouette": {
+        "label": [],
+        "confidence": []
+      },
+      "shot.location": {
+        "label": [
+          "shot.location.interior"
+        ],
+        "confidence": [
+          0.99755859375
+        ]
+      },
+      "shot.time-of-day": {
+        "label": [
+          "shot.time-of-day.day"
+        ],
+        "confidence": [
+          0.7890625
+        ]
+      },
+      "shot.type": {
+        "label": [
+          "shot.type.cleansingle"
+        ],
+        "confidence": [
+          0.9951171875
+        ]
+      },
+      "shot.type.crowd": {
+        "label": [],
+        "confidence": []
+      },
+      "shot.type.over-the-shoulder": {
+        "label": [],
+        "confidence": []
+      }
+    }
+  }
+  
