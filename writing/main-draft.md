@@ -140,11 +140,11 @@ Note that there are many different groups of concepts within these datasets, lik
 
 ## Conclusion
 
-We believe CinemaCLIP offers a demonstrable improvement over CLIP and VLM models for many industry professional use cases. With a x% improvement over the latest VLMs, CinemaClip can be run on commodity hardware on edge, at greatly faster than real-time rates. This enables opportunities like real-time video search and retrieval systems, live camera assist systems, on set validation, and more. 
+CinemaCLIP is one part of a family of models and techniques that we built at OZU to understand the art of visual storytelling, and is the backbone for a suite of tools and processes that power OZU's state of the art narrative understanding systems.
 
-CinemaCLIP is one part of a family of models and techniques that we built at OZU to understand the art of visual storytelling, and is the backbone for a suite of tools and processes that power OZU's state of the art narrative understanding systems.   
+It offers a demonstrable improvement over CLIP and VLM models for many industry professional use cases. Not only is it more accurate in understanding cinematic concepts, it can also be run on commodity hardware on edge, at greatly faster than real-time rates. This enables opportunities like real-time video search and retrieval systems, live camera assist systems, on set validation, and more.
 
-We also believe that our training formulation is useful for other tasks / domains - and is a strategy that can be adopted to add domain expertise to existing pretrained clip without performance loss in other domains. 
+Our key contributions besides the model itself are two-fold: a dataset and ontology of visual language at the frame level, and a novel training recipe to add domain expertise to CLIP models while mitigating catastrophic forgetting. We believe this recipe is generic and can be adapted to other domains as well.
 
 Stay tuned for more.
 
