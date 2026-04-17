@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { SECTIONS, HERO_ANNOTATIONS, HYPERPARAMETER_ROWS } from "./explorer/data.js";
-import { COLOR, FONT, STYLES, SPACE, LAYOUT_CONTAINERS, dividerStyle, PAGE_SHELL } from "./explorer/styles.js";
+import { STYLES, SPACE, LAYOUT_CONTAINERS, dividerStyle, PAGE_SHELL } from "./explorer/styles.js";
 import LeftRailTOC from "./explorer/components/LeftRailTOC.jsx";
 import OverallAccuracyDotPlot from "./explorer/charts/OverallAccuracyDotPlot.jsx";
 import GeneralKnowledgeCharts from "./explorer/charts/GeneralKnowledgeCharts.jsx";
@@ -42,9 +42,10 @@ export default function CinemaCLIPExplorer() {
 
       <div id="intro" style={Prose}>
         <h1 style={STYLES.H1}>Introducing CinemaCLIP</h1>
-        <p style={STYLES.Subtitle}>
+        <p style={{ ...STYLES.Subtitle, marginBottom: SPACE[3] }}>
           A hybrid CLIP model and taxonomy for the visual language of cinema
         </p>
+        <HeroByline />
       </div>
 
       <div style={Prose}>
@@ -74,8 +75,6 @@ export default function CinemaCLIPExplorer() {
         </p>
       </div>
 
-      {/* Metadata shelf */}
-      {/* <MetadataShelf /> */}
 
       {/* ════════════════════════════════════════════════════════════════════
           2. THE PROBLEM
@@ -235,13 +234,13 @@ export default function CinemaCLIPExplorer() {
       <div id="architecture" style={Prose}>
         <h2 style={STYLES.H2}>Architecture</h2>
         <p style={STYLES.Paragraph}>
-          Given the use cases for CinemaCLIP, we chose MobileCLIP-S1 - a modern clip architecture that can be deployed on edge devices, and run faster than realtime. During development of CinemaCLIP, we've had the privilege of running inference across petabytes of video archives in various data centers and compute environments. 
+          Given the use cases for CinemaCLIP, we chose <code style={STYLES.InlineCode}>MobileCLIP-S1</code> - a modern clip architecture that can be deployed on edge devices, and run faster than realtime. During development of CinemaCLIP, we've had the privilege of running inference across petabytes of video archives in various data centers and compute environments. 
         </p>
         <p style={STYLES.Paragraph}>
           This process is expensive and time consuming, and running models capable of fast inference on cheaper hardware is a huge win and enables analysis of very large archives in reasonable time for reasonable costs. This also enables local inference, for on set, and even in camera use cases. 
         </p>
         <p style={STYLES.Paragraph}>
-          MobileCLIP-S1 is designed to run on Apple's Neural Engine, a hardware accelerated inference chip shipped with phones, laptops and desktop systems. It balances strong out of the box performance with size. 
+          <code style={STYLES.InlineCode}>MobileCLIP-S1</code> is designed to run on Apple Neural Engine, a hardware accelerated inference chip shipped with phones, laptops and desktop systems. It balances strong out of the box performance with size. 
         </p>
         <p style={STYLES.Paragraph}>
           The capability for on device model deployment and integration into native applications allows inference to run where video resides and on available compute, be it cloud based video archives, local production or post production storage networks, or near-line local device storage.  
@@ -494,48 +493,20 @@ export default function CinemaCLIPExplorer() {
 // ─── Sub-components ─────────────────────────────────────────────────────────
 // Extracted for readability. These are page-specific, not reusable.
 
-function MetadataShelf() {
+function HeroByline() {
+  const S = PAGE_SHELL.heroByline;
+  const separator = <span style={S.separator}>·</span>;
   return (
-    <div style={PAGE_SHELL.metadata.wrapper}>
-      <div style={{
-        ...LAYOUT_CONTAINERS.Prose,
-        ...PAGE_SHELL.metadata.inner,
-      }}>
-        {[
-          {
-            label: "Authors",
-            value: (
-              <>
-                {["Rahul Somani", "Anton Marini", "Damian Stewart"].map((name, i) => (
-                  <span key={name}>{name}{i < 2 && <br />}</span>
-                ))}
-              </>
-            ),
-          },
-          {
-            label: "Published",
-            value: <span style={{ whiteSpace: "nowrap" }}>20 Feb, 2026</span>,
-          },
-          {
-            label: "HuggingFace",
-            value: (
-              <a
-                href="https://huggingface.co/placeholder"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={PAGE_SHELL.metadata.link}
-              >
-                Released artifacts &#8599;
-              </a>
-            ),
-          },
-        ].map(({ label, value }) => (
-          <div key={label} style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-            <span style={{ ...STYLES.Label, fontFamily: FONT.mono }}>{label}</span>
-            <span style={PAGE_SHELL.metadata.value}>{value}</span>
-          </div>
-        ))}
-      </div>
+    <div style={S.row}>
+      <span>Rahul Somani, Anton Marini, Damian Stewart</span>
+      {separator}
+      <a href="https://github.com/placeholder" target="_blank" rel="noopener noreferrer" style={S.link}>
+        GitHub &#8599;
+      </a>
+      {separator}
+      <a href="https://huggingface.co/placeholder" target="_blank" rel="noopener noreferrer" style={S.link}>
+        HuggingFace &#8599;
+      </a>
     </div>
   );
 }

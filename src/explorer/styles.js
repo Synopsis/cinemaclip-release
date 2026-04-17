@@ -307,27 +307,29 @@ export const PAGE_SHELL = {
     color: "#fff",
     fontFamily: FONT.sans,
   },
-  metadata: {
-    wrapper: {
-      width: "100%",
-      borderTop: `1px solid ${COLOR.ui.border}`,
-      borderBottom: `1px solid ${COLOR.ui.border}`,
-    },
-    inner: {
-      paddingTop: SPACE[7],
-      paddingBottom: SPACE[7],
+  heroByline: {
+    row: {
       display: "flex",
-      gap: SPACE.blockGap,
       alignItems: "baseline",
-    },
-    value: {
-      fontSize: TEXT_SIZE.bodySmall,
-      color: COLOR.text.strong,
+      flexWrap: "wrap",
+      gap: `${SPACE[2]}px ${SPACE[4]}px`,
+      fontFamily: FONT.sans,
+      fontSize: TEXT_SIZE.body,
+      fontWeight: 400,
+      color: COLOR.text.primary,
       lineHeight: 1.4,
+      marginBottom: SPACE[8],
     },
     link: {
+      fontFamily: FONT.sans,
+      fontSize: TEXT_SIZE.body,
+      fontWeight: 400,
       color: COLOR.accent,
       textDecoration: "none",
+    },
+    separator: {
+      color: COLOR.text.ghost,
+      fontWeight: 400,
     },
   },
   hyperparameterTable: {
