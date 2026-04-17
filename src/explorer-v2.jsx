@@ -317,7 +317,7 @@ export default function CinemaCLIPExplorer() {
       <div id="generalist-evals" style={Prose}>
         <h3 style={STYLES.H3}>Generalist Evals</h3>
         <p style={STYLES.Paragraph}>
-          We also don't want to over-specialize. It's important for our models to retain a wide understanding of general concepts so that existing functionality is retained. To that end, we validate our dataset and multi-task training approach by using existing datasets as proxies for generalist tasks.
+          We don't want to over-specialize in cinematic expertise. It's important for our models to retain a wide understanding of general concepts so that existing functionality is retained. To that end, we validate our dataset and multi-task training approach by using existing datasets as proxies for generalist tasks.
         </p>
       </div>
 
