@@ -108,35 +108,38 @@ SPACE.elementGap  = SPACE[6];  // 24 — between elements within a block
 // keys — different contexts may share a value now but drift later.
 
 export const TEXT_SIZE = {
-  // Display / headings (user says these read fine — tuned independently)
-  h1:             50,
-  h2:             40,
-  h3:             30,
-  h4:             20,
-  subtitle:       24,
+  // Display / headings
+  h1:         50,
+  h2:         40,
+  h3:         30,
+  h4:         20,
+  subtitle:   24,
 
   // Body copy
-  body:           22,   // paragraphs, list items
-  bodySmall:      18,   // secondary body, table cells, caption blobs
+  body:       22,   // paragraphs, list items
+  bodySmall:  18,   // secondary body, table cells, decorative italic labels
 
-  // Captions (mono secondary)
-  caption:               14,   // figure captions, rich-caption source copy
-  figureSubtitleCaption: 13,   // per-image subtitle captions within a figure (e.g. LAION examples)
+  // Caption — single 14px token (figure captions, chart labels, axis ticks, tooltips, TOC children)
+  caption:    14,
+
+  // Micro — small mono annotations, baselines, subtitles
+  micro:      12,
 
   // Labels — mono uppercase with tracking
-  label:          11,   // standard labels, table headers, category tags
-  labelSmall:     10,   // smaller labels, film credits, child numbering
+  label:      11,   // standard labels, table headers, category tags
+  labelSmall: 10,   // smaller labels, child numbering
 
-  // Table of contents
-  tocTitle:       16,   // top-level dropdown titles, sticky header
-  tocTitleChild:  14,   // nested dropdown titles, parent breadcrumb
+  // Film credit — shared between HTML overlays and SVG diagrams
+  filmCredit: 9,
+};
 
-  // Charts — keep a graduated scale for dense compositions
-  // chartValue:     30,   // primary value labels (numbers on/near data)
-  chartLabel:     14,   // category and model names
-  chartAxis:      14,    // axis tick labels
-  chartMicro:     12,    // baselines, tiny annotations
-  tooltip:        14,   // chart tooltips
+// SVG / diagram font sizes. Tiny intentionally — sized to viewBox geometry.
+// Use these for in-diagram labels, tick marks, and overlay annotations.
+export const SVG_TEXT = {
+  xs: 6,
+  sm: 7,
+  md: 8,
+  lg: 9,
 };
 
 // ─── Typography ─────────────────────────────────────────────────────────────
@@ -505,7 +508,7 @@ export const SECTION_NAV = {
   separator: {
     color: COLOR.text.tertiary,
     fontFamily: FONT.mono,
-    fontSize: 14,
+    fontSize: TEXT_SIZE.caption,
   },
   button: {
     background: "none",
@@ -516,7 +519,7 @@ export const SECTION_NAV = {
   },
   label: {
     fontFamily: FONT.serif,
-    fontSize: TEXT_SIZE.h4 + 2,
+    fontSize: TEXT_SIZE.body,
     transition: "all 0.3s ease",
     paddingBottom: 2,
   },
@@ -540,7 +543,7 @@ export const HERO_ANNOTATION = {
   },
   category: {
     fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.chartMicro,
+    fontSize: TEXT_SIZE.micro,
     color: white(0.35),
     letterSpacing: "0.1em",
     textTransform: "uppercase",
@@ -574,7 +577,7 @@ export const EXEMPLAR_IMAGE = {
   },
   label: {
     fontFamily: FONT.serif,
-    fontSize: 18,
+    fontSize: TEXT_SIZE.bodySmall,
     fontStyle: "italic",
     color: white(0.85),
     textShadow: "0 1px 8px rgba(0,0,0,0.6)",
@@ -584,7 +587,7 @@ export const EXEMPLAR_IMAGE = {
     bottom: 14,
     right: 12,
     fontFamily: FONT.mono,
-    fontSize: 9,
+    fontSize: TEXT_SIZE.filmCredit,
     color: white(0.4),
     letterSpacing: "0.03em",
     textShadow: "0 1px 6px rgba(0,0,0,0.8)",
@@ -632,7 +635,7 @@ export const EXEMPLAR_PLACEHOLDER = {
   },
   label: {
     fontFamily: FONT.serif,
-    fontSize: 18,
+    fontSize: TEXT_SIZE.bodySmall,
     fontStyle: "italic",
     color: white(0.85),
     textShadow: "0 1px 8px rgba(0,0,0,0.6)",
@@ -642,7 +645,7 @@ export const EXEMPLAR_PLACEHOLDER = {
     bottom: "14%",
     right: 12,
     fontFamily: FONT.mono,
-    fontSize: 9,
+    fontSize: TEXT_SIZE.filmCredit,
     color: white(0.25),
     letterSpacing: "0.03em",
   },
@@ -682,7 +685,7 @@ export const TAXONOMY_THUMBNAIL_STRIP = {
     bottom: 2,
     right: 3,
     fontFamily: FONT.mono,
-    fontSize: 5.5,
+    fontSize: SVG_TEXT.xs,
     pointerEvents: "none",
     letterSpacing: "0.02em",
   },
@@ -731,9 +734,9 @@ export const TAXONOMY_EXEMPLAR_GRID = {
   focusedFlex: 2.5,
   unfocusedFlex: 1,
   otherRowPadPct: 5,
-  labelFocusedSize: 18,
-  labelDefaultSize: 13,
-  labelOtherRowSize: 10,
+  labelFocusedSize: TEXT_SIZE.body,
+  labelDefaultSize: TEXT_SIZE.bodySmall,
+  labelOtherRowSize: TEXT_SIZE.labelSmall,
   image: {
     aspectRatio: MEDIA.aspectRatio,
     borderRadius: MEDIA.cardRadius,
@@ -757,7 +760,7 @@ export const TAXONOMY_EXEMPLAR_GRID = {
     bottom: 10,
     right: 10,
     fontFamily: FONT.mono,
-    fontSize: 9,
+    fontSize: TEXT_SIZE.filmCredit,
     color: white(0.4),
     letterSpacing: "0.03em",
     textShadow: "0 1px 6px rgba(0,0,0,0.8)",
@@ -794,7 +797,7 @@ export const TOC_RAIL = {
   },
   title: {
     fontFamily: FONT.OZU_SANS,
-    fontSize: TEXT_SIZE.tocTitleChild,
+    fontSize: TEXT_SIZE.caption,
     // fontStyle: "italic",
     color: white(0.32),
     hoverColor: white(0.6),
@@ -904,7 +907,7 @@ export const CHART = {
     defaultBorder: `1px solid ${white(0.15)}`,
     borderRadius: 5,
     padding: "5px 9px",
-    fontSize: TEXT_SIZE.tooltip,
+    fontSize: TEXT_SIZE.caption,
     fontFamily: FONT.mono,
     color: white(0.85),
     zIndex: 10,
@@ -926,9 +929,9 @@ export const OVERALL_ACCURACY_PLOT = {
   accMax: 0.95,
   maxWidth: 900,
   modelNameOffset: 10,
-  oursModelName: { fill: COLOR.text.primary, fontSize: TEXT_SIZE.chartLabel, fontWeight: 600 },
-  competitorModelName: { fill: CHART.axisLabel.fill, fontSize: TEXT_SIZE.chartMicro, fontWeight: 400 },
-  baselineModelName: { fill: COLOR.text.tertiary, fontSize: TEXT_SIZE.chartMicro, fontWeight: 400 },
+  oursModelName: { fill: COLOR.text.primary, fontSize: TEXT_SIZE.caption, fontWeight: 600 },
+  competitorModelName: { fill: CHART.axisLabel.fill, fontSize: TEXT_SIZE.micro, fontWeight: 400 },
+  baselineModelName: { fill: COLOR.text.tertiary, fontSize: TEXT_SIZE.micro, fontWeight: 400 },
   oursRadius: 6,
   oursZeroShotStrokeWidth: 2,
   oursClassifierStrokeWidth: 1.75,
@@ -943,12 +946,12 @@ export const OVERALL_ACCURACY_PLOT = {
   refLineStroke: CHART.baseline.stroke,
   refLineDash: "3 3",
   zeroShotDotStroke: "rgba(100,200,255,0.3)",
-  valueFontSize: TEXT_SIZE.chartLabel,  // Hero percentages (82%, 88%)
-  gapFontSize: TEXT_SIZE.chartMicro,    // Gap deltas and x-axis ticks
+  valueFontSize: TEXT_SIZE.caption,  // Hero percentages (82%, 88%)
+  gapFontSize: TEXT_SIZE.micro,    // Gap deltas and x-axis ticks
   zeroShotGapColor: "rgba(100,200,255,0.55)",
   classifierValueColor: "rgba(100,200,255,0.75)",
   classifierGapColor: "rgba(100,200,255,0.4)",
-  inlineLabelFontSize: TEXT_SIZE.chartMicro, // "zero-shot" / "classifiers" labels
+  inlineLabelFontSize: TEXT_SIZE.micro, // "zero-shot" / "classifiers" labels
   zeroShotLabelColor: "rgba(100,200,255,0.45)",
   classifierLabelColor: "rgba(100,200,255,0.38)",
   tooltipPadding: "6px 10px",
@@ -965,11 +968,11 @@ export const BENCHMARK_STRIP_PLOT = {
   oursRadius: 5,
   oursZeroShotStrokeWidth: 2,
   oursClassifierStrokeWidth: 1.5,
-  gapFontSize: TEXT_SIZE.chartAxis,
-  valueFontSize: TEXT_SIZE.chartLabel,
-  axisLabelFontSize: TEXT_SIZE.chartAxis,
-  baselineFontSize: TEXT_SIZE.chartMicro,
-  categoryFontSize: TEXT_SIZE.chartAxis,
+  gapFontSize: TEXT_SIZE.caption,
+  valueFontSize: TEXT_SIZE.caption,
+  axisLabelFontSize: TEXT_SIZE.caption,
+  baselineFontSize: TEXT_SIZE.micro,
+  categoryFontSize: TEXT_SIZE.caption,
   valueLabelOffset: 9,
 };
 
@@ -983,10 +986,10 @@ export const BENCHMARK_DOT_PLOT = {
   oursRadius: 6,
   oursZeroShotStrokeWidth: 2.5,
   oursClassifierStrokeWidth: 1.5,
-  gapFontSize: TEXT_SIZE.chartLabel,
-  valueFontSize: TEXT_SIZE.chartValue,
-  axisLabelFontSize: TEXT_SIZE.chartAxis,
-  baselineFontSize: TEXT_SIZE.chartMicro,
+  gapFontSize: TEXT_SIZE.caption,
+  valueFontSize: TEXT_SIZE.caption,
+  axisLabelFontSize: TEXT_SIZE.caption,
+  baselineFontSize: TEXT_SIZE.micro,
   valueLabelOffset: 12,
   tooltipPadding: "5px 9px",
 };
@@ -1002,27 +1005,27 @@ export const GENERAL_KNOWLEDGE_CHARTS = {
     stroke: COLOR.text.ghost,
     strokeWidth: 1,
     valueFill: CHART.dot.competitorBest.fill,
-    valueFontSize: TEXT_SIZE.chartLabel,
+    valueFontSize: TEXT_SIZE.caption,
   },
   fineTuned: {
     radius: 5,
     strokeWidth: 2,
-    valueFontSize: TEXT_SIZE.chartLabel,
+    valueFontSize: TEXT_SIZE.caption,
   },
-  deltaFontSize: TEXT_SIZE.chartLabel,
-  axisLabelFontSize: TEXT_SIZE.chartAxis,
+  deltaFontSize: TEXT_SIZE.caption,
+  axisLabelFontSize: TEXT_SIZE.caption,
   categoryLabel: {
-    fontSize: TEXT_SIZE.chartLabel,
+    fontSize: TEXT_SIZE.caption,
     fill: CHART.categoryLabel.fill,
     fontWeight: 500,
   },
   subtitle: {
-    fontSize: TEXT_SIZE.chartMicro,
+    fontSize: TEXT_SIZE.micro,
     fill: COLOR.text.ghost,
   },
   groupLabel: {
     fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.chartLabel,
+    fontSize: TEXT_SIZE.caption,
     color: COLOR.text.body,
     textTransform: "uppercase",
     letterSpacing: "0.1em",
@@ -1039,7 +1042,7 @@ export const GENERAL_KNOWLEDGE_CHARTS = {
     marginLeft: 32,
     paddingTop: 28,
     fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.chartLabel,
+    fontSize: TEXT_SIZE.caption,
     dotSize: 8,
     labelColor: COLOR.text.body,
     preDotColor: CHART.baselineLabelColor,
@@ -1051,13 +1054,13 @@ export const TEXT_SIMILARITY = {
   labelWidth: 108,
   gap: 2,
   labelPaddingRight: 10,
-  labelFontSize: TEXT_SIZE.chartValue,
+  labelFontSize: TEXT_SIZE.caption,
   labelDefault: white(0.35),
   labelHovered: white(0.7),
   labelDimmed: white(0.2),
   cellBorderRadius: 1,
   hoveredOutline: `1px solid ${white(0.5)}`,
-  cellFontSize: TEXT_SIZE.chartValue,
+  cellFontSize: TEXT_SIZE.caption,
   modelNameFontSize: TEXT_SIZE.caption,
   modelNameColor: white(0.35),
   modelNameLetterSpacing: "0.04em",
@@ -1066,7 +1069,7 @@ export const TEXT_SIMILARITY = {
   tabSeparator: {
     color: white(0.12),
     fontFamily: FONT.mono,
-    fontSize: 14,
+    fontSize: TEXT_SIZE.caption,
   },
   tabButton: {
     background: "none",
@@ -1077,7 +1080,7 @@ export const TEXT_SIMILARITY = {
   },
   tabLabel: {
     fontFamily: FONT.serif,
-    fontSize: 17,
+    fontSize: TEXT_SIZE.bodySmall,
     fontStyle: "italic",
     activeColor: white(0.85),
     inactiveColor: white(0.3),
@@ -1098,7 +1101,7 @@ export const TEXT_SIMILARITY = {
   },
   sectionTitle: {
     fontFamily: FONT.serif,
-    fontSize: 16,
+    fontSize: TEXT_SIZE.bodySmall,
     fontStyle: "italic",
     color: white(0.5),
     marginBottom: 16,
@@ -1112,7 +1115,7 @@ export const BENCHMARK_SECTION = {
   colGap: 6,
   header: {
     fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.chartLabel,
+    fontSize: TEXT_SIZE.caption,
     color: COLOR.text.body,
     letterSpacing: "0.1em",
     textTransform: "uppercase",
@@ -1154,7 +1157,7 @@ export const STANDARD_CLIP_DIAGRAM = {
     transition: "all 0.2s ease",
     barHeight: 3,
     barBg: "rgba(0,0,0,0.6)",
-    labelFontSize: TEXT_SIZE.chartLabel,
+    labelFontSize: TEXT_SIZE.caption,
     labelColor: white(0.7),
   },
   embCell: {
@@ -1188,7 +1191,7 @@ export const STANDARD_CLIP_DIAGRAM = {
   },
   matrixCell: {
     borderRadius: 4,
-    fontSize: TEXT_SIZE.chartLabel,
+    fontSize: TEXT_SIZE.caption,
     matchBg: "rgba(100,200,255,0.1)",
     defaultBg: white(0.04),
     matchBorder: "rgba(100,200,255,0.15)",
