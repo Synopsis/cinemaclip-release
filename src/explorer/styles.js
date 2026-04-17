@@ -126,8 +126,8 @@ export const TEXT_SIZE = {
   micro:      12,
 
   // Labels — mono uppercase with tracking
-  label:      11,   // standard labels, table headers, category tags
-  labelSmall: 10,   // smaller labels, child numbering
+  label:      14,   // standard labels, table headers, category tags
+  labelSmall: 12,   // smaller labels, child numbering
 
   // Film credit — shared between HTML overlays and SVG diagrams
   filmCredit: 9,
@@ -139,7 +139,7 @@ export const SVG_TEXT = {
   xs: 6,
   sm: 7,
   md: 8,
-  lg: 9,
+  lg: 11,
 };
 
 // ─── Typography ─────────────────────────────────────────────────────────────
@@ -320,9 +320,9 @@ export const RICH_CAPTION = {
     background: "#000",
   },
   sourceLabel: {
-    fontFamily: FONT.sans,
+    fontFamily: FONT.serif,
     // color: COLOR.text.tertiary,
-    fontSize: TEXT_SIZE.body,
+    fontSize: TEXT_SIZE.h4,
     fontWeight: 600,
     letterSpacing: "0.1em",
     textTransform: "uppercase",
@@ -465,7 +465,7 @@ export const LAION_EXAMPLES = {
   rowGap: 28,
   rowLabel: {
     fontFamily: FONT.sans,
-    fontSize: TEXT_SIZE.body,
+    fontSize: TEXT_SIZE.h4,
     letterSpacing: "0.08em",
     textTransform: "uppercase",
     color: COLOR.text.bodySecondary,
@@ -522,6 +522,7 @@ export const SECTION_NAV = {
     fontSize: TEXT_SIZE.body,
     transition: "all 0.3s ease",
     paddingBottom: 2,
+    textTransform: "uppercase"
   },
   activeColor: COLOR.text.body,
   inactiveColor: COLOR.text.tertiary,
@@ -704,8 +705,8 @@ export const TAXONOMY_CATEGORY_ROW = {
   },
   diagramColumnWidth: 280,
   categoryName: {
-    fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.label,
+    fontFamily: FONT.serif,
+    fontSize: TEXT_SIZE.bodySmall,
     color: white(0.35),
     letterSpacing: "0.1em",
     textTransform: "uppercase",
@@ -823,8 +824,8 @@ export const CAPTION_DECOMPOSITION = {
     background: MEDIA.imageBg,
   },
   heading: {
-    fontFamily: FONT.sans,
-    fontSize: TEXT_SIZE.body,
+    fontFamily: FONT.serif,
+    fontSize: TEXT_SIZE.bodySmall,
     fontWeight: 300,
     letterSpacing: "0.1em",
     textTransform: "uppercase",
@@ -848,7 +849,7 @@ export const CAPTION_DECOMPOSITION = {
   },
   labelCell: {
     fontFamily: FONT.sans,
-    fontSize: TEXT_SIZE.bodySmall,
+    fontSize: TEXT_SIZE.bodySmall-1,  // Looks better since it's uppercase.
     letterSpacing: "0.08em",
     textTransform: "uppercase",
     verticalAlign: "center",
@@ -1115,7 +1116,7 @@ export const BENCHMARK_SECTION = {
   colGap: 6,
   header: {
     fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.caption,
+    fontSize: TEXT_SIZE.h4,
     color: COLOR.text.body,
     letterSpacing: "0.1em",
     textTransform: "uppercase",
