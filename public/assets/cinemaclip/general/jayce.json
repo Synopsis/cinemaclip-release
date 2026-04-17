@@ -9,7 +9,7 @@
   "caption_cinematic": [
     {
       "name": "cinemanet-color",
-      "caption": "neutral colour contrast",
+      "caption": "neutral color contrast",
       "categories": [
         "color.key",
         "color.contrast",
@@ -67,7 +67,7 @@
       ]
     }
   ],
-  "caption_all_variants": "announcement, businessman, inventor, large audience, large crowd, nervous, showcase, speech, spotlights, white suit, red tie, white shirt, gold microphone, utopian, purple curtain, neutral colour contrast, centered composition, symmetric, camera below the subject, harsh lighting, neutral contrast lighting, light source in front of the subject, indoors, day time, cleansingle, a man in a white suit standing at a podium",
+  "caption_all_variants": "announcement, businessman, inventor, large audience, large crowd, nervous, showcase, speech, spotlights, white suit, red tie, white shirt, gold microphone, utopian, purple curtain, neutral color contrast, centered composition, symmetric, camera below the subject, harsh lighting, neutral contrast lighting, light source in front of the subject, indoors, day time, cleansingle, a man in a white suit standing at a podium",
   "classifier_labels": {
     "color.contrast": {
       "label": [

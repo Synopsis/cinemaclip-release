@@ -240,8 +240,8 @@ export const STYLES = {
     paddingLeft: SPACE[1],
   },
   FigureCaption: {
-    fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.caption+1,  // Fuck it.
+    fontFamily: FONT.sans,
+    fontSize: TEXT_SIZE.bodySmall,  // Fuck it.
     color: COLOR.text.tertiary,
     textAlign: "center",
     lineHeight: 1.5,
@@ -459,8 +459,8 @@ export const LAION_EXAMPLES = {
   marginBottom: 36,
   rowGap: 28,
   rowLabel: {
-    fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.caption,
+    fontFamily: FONT.sans,
+    fontSize: TEXT_SIZE.body,
     letterSpacing: "0.08em",
     textTransform: "uppercase",
     color: white(0.35),
@@ -482,8 +482,8 @@ export const LAION_EXAMPLES = {
     border: `1px solid ${COLOR.ui.border}`,
   },
   caption: {
-    fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.figureSubtitleCaption,
+    fontFamily: FONT.sans,
+    fontSize: TEXT_SIZE.bodySmall,
     color: COLOR.text.body,
     lineHeight: 1.5,
     marginTop: 8,

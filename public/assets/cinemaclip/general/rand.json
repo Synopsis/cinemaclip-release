@@ -9,7 +9,7 @@
   "caption_cinematic": [
     {
       "name": "cinemanet-color",
-      "caption": "analogous colors, de-saturated colors, warm colours",
+      "caption": "analogous colors, de-saturated colors, warm colors",
       "categories": [
         "color.key",
         "color.contrast",
@@ -67,7 +67,7 @@
       ]
     }
   ],
-  "caption_all_variants": "leaning on railing, algae on water, back to camera, facing away, pond, tall trees, de-saturated colors, analogous colour scheme, warm color tones, levelled camera angle, eye level shot, backlit, exterior, day-time, a man and woman standing on a wooden bridge overlooking a pond",
+  "caption_all_variants": "leaning on railing, algae on water, back to camera, facing away, pond, tall trees, de-saturated colors, analogous color scheme, warm color tones, levelled camera angle, eye level shot, backlit, exterior, day-time, a man and woman standing on a wooden bridge overlooking a pond",
   "classifier_labels": {
     "color.contrast": {
       "label": [

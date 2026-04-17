@@ -9,7 +9,7 @@
   "caption_cinematic": [
     {
       "name": "cinemanet-color",
-      "caption": "analogous colour palette, warm colours, neutral color contrast",
+      "caption": "analogous color palette, warm colors, neutral color contrast",
       "categories": [
         "color.key",
         "color.contrast",
@@ -67,7 +67,7 @@
       ]
     }
   ],
-  "caption_all_variants": "laughing, drunk, sitting, table, dinner, wine glass, curtains, wallapaper, suit, jacket, vest, necktie, linen shirt, neutral color contrast, analogous color scheme, warm colours, levelled camera angle, subject in the center, narrow depth of field, medium closeup framing, medium lens, hard lighting cast, neutral contrast lighting, interior, single, over the shoulder, a man with long hair and a beard is laughing",
+  "caption_all_variants": "laughing, drunk, sitting, table, dinner, wine glass, curtains, wallapaper, suit, jacket, vest, necktie, linen shirt, neutral color contrast, analogous color scheme, warm colors, levelled camera angle, subject in the center, narrow depth of field, medium closeup framing, medium lens, hard lighting cast, neutral contrast lighting, interior, single, over the shoulder, a man with long hair and a beard is laughing",
   "classifier_labels": {
     "color.contrast": {
       "label": [

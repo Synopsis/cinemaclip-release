@@ -252,7 +252,7 @@ export const SECTIONS = [
   },
   {
     id: "color",
-    phrase: "Colour",
+    phrase: "Color",
     description:
       "",
     categories: [
