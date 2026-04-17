@@ -1113,17 +1113,7 @@ export const TEXT_SIMILARITY = {
 export const BENCHMARK_SECTION = {
   cardWidth: 250,
   colGap: 6,
-  header: {
-    fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.h4,
-    color: COLOR.text.body,
-    letterSpacing: "0.1em",
-    textTransform: "uppercase",
-    paddingBottom: 4,
-    paddingLeft: 2,
-    lineHeight: 1,
-    topPadding: 10,
-  },
+  header: SUBHEADING_FIGURES,
   card: {
     background: white(0.01),
     border: `1px solid ${white(0.2)}`,
