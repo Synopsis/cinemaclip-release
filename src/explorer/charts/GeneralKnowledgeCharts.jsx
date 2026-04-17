@@ -29,7 +29,7 @@ function StripChart({ d, chartW, chartH }) {
   const lower = Math.min(d.ft, d.pt);
 
   return (
-    <svg width={chartW} height={chartH} style={{ display: "block" }}>
+    <svg width={chartW} height={chartH} style={{ display: "block", overflow: "visible" }}>
       {/* Y-axis gridlines + labels */}
       {[40, 50, 60, 70, 80].map((v) => (
         <g key={v}>
@@ -97,7 +97,7 @@ function StripChart({ d, chartW, chartH }) {
 
       {/* Category label */}
       <text
-        x={chartW / 2} y={chartH - 14}
+        x={chartW / 2} y={chartH - 10}
         textAnchor="middle" fill={S.categoryLabel.fill}
         fontSize={S.categoryLabel.fontSize} fontFamily={CHART.fontFamily}
         fontWeight={S.categoryLabel.fontWeight}
@@ -107,7 +107,7 @@ function StripChart({ d, chartW, chartH }) {
 
       {/* Subtitle */}
       <text
-        x={chartW / 2} y={chartH - 4}
+        x={chartW / 2} y={chartH + 6}
         textAnchor="middle" fill={S.subtitle.fill}
         fontSize={S.subtitle.fontSize} fontFamily={CHART.fontFamily}
       >
