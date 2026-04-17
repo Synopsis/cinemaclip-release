@@ -40,8 +40,9 @@ export default function CinemaCLIPExplorer() {
           1. HERO
           ════════════════════════════════════════════════════════════════════ */}
 
-      <div id="intro" style={Prose}>
-        <h1 style={STYLES.H1}>Introducing CinemaCLIP</h1>
+      <div id="intro" style={{...Prose, paddingTop: 96}}>
+        <img class="center-image" src="./assets/OZU_Wordmark_White.svg"></img>
+        <h1 style={{...STYLES.H1, paddingBottom: SPACE[3]}}>Introducing CinemaCLIP</h1>
         <p style={{ ...STYLES.Subtitle, marginBottom: SPACE[3] }}>
           A hybrid CLIP model and taxonomy for the visual language of cinema
         </p>
@@ -100,7 +101,7 @@ export default function CinemaCLIPExplorer() {
           3. THE GAP IN EXISTING APPROACHES
           ════════════════════════════════════════════════════════════════════ */}
 
-      <div id="training" style={{ ...Prose, marginTop: SPACE.sectionGap }}>
+      <div id="training" style={{ ...Prose }}>
         <h2 style={STYLES.H2}>The Gap In Existing Approaches</h2>
         <p style={STYLES.Paragraph}>
           CLIP learns by matching images to captions. Whether it's the original contrastive loss or SigLIP's sigmoid formulation, the fundamental task is the same: given a batch of images and captions, figure out which caption goes with which image.
@@ -185,7 +186,14 @@ export default function CinemaCLIPExplorer() {
           5. TAXONOMY BROWSER
           ════════════════════════════════════════════════════════════════════ */}
 
-      <div id="taxonomy" data-visual style={{ ...Visual, marginTop: SPACE.sectionGap }}>
+      <div id="taxonomy" style={Prose}>
+        <h2 style={STYLES.H2}>Taxonomy</h2>
+        <p style={STYLES.Paragraph}>
+          Placeholder: introduce the taxonomy of cinematic concepts and how to explore it below.
+        </p>
+      </div>
+
+      <div data-visual style={Visual}>
         <SectionNav
           sections={SECTIONS}
           activeId={activeSection}

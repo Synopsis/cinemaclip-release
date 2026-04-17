@@ -15,16 +15,12 @@ if (typeof document !== "undefined" && !document.getElementById("ozu-font-faces"
     @font-face {
       font-family: 'OZU-Sans';
       src: url(${fontOzuSans}) format('woff2');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
+      font-weight: 100;
     }
     @font-face {
       font-family: 'OZU-Display';
       src: url(${fontOzuDisplay}) format('woff2');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
+      font-weight: 100;
     }
   `;
   document.head.appendChild(style);
@@ -47,7 +43,7 @@ export const COLOR = {
     strong:    white(0.85),   // h3, metadata values, table headings
     heading:   white(0.75),   // subtitle, subheadings
     mid:       white(0.65),   // table header text, secondary emphasis
-    body:      white(0.45),   // paragraph text, table cells
+    body:      white(0.60),   // paragraph text, table cells
     secondary: white(0.35),   // metadata labels
     tertiary:  white(0.25),   // figure captions, axis labels
     ghost:     white(0.15),   // inactive TOC items, breadcrumb arrows
@@ -72,17 +68,17 @@ export const COLOR = {
 // ─── Fonts ──────────────────────────────────────────────────────────────────
 // Swap any typeface by editing one line here.
 
-export const FONT = {
-  serif: SERIF,                    // headings (H1–H4, Subtitle)
-  mono:  MONO,                            // 'JetBrains Mono', monospace
-  sans:  "'Inter', system-ui, sans-serif",                    // body (Paragraph, Description, List)
-};
-
 // export const FONT = {
-//   serif: OZU_DISPLAY,                     // headings (H1–H4, Subtitle)
+//   serif: SERIF,                    // headings (H1–H4, Subtitle)
 //   mono:  MONO,                            // 'JetBrains Mono', monospace
-//   sans:  OZU_SANS,                        // body (Paragraph, Description, List)
+//   sans:  "'Inter', system-ui, sans-serif",                    // body (Paragraph, Description, List)
 // };
+
+export const FONT = {
+  serif: OZU_DISPLAY,                     // headings (H1–H4, Subtitle)
+  mono:  MONO,                            // 'JetBrains Mono', monospace
+  sans:  OZU_SANS,                        // body (Paragraph, Description, List)
+};
 
 // ─── Spacing Scale ──────────────────────────────────────────────────────────
 // Numbered 1–10. Use SPACE[n] for px values.
@@ -116,11 +112,11 @@ export const TEXT_SIZE = {
   h2:             40,
   h3:             30,
   h4:             20,
-  subtitle:       26,
+  subtitle:       24,
 
   // Body copy
-  body:           17,   // paragraphs, list items
-  bodySmall:      15,   // secondary body, table cells, caption blobs
+  body:           22,   // paragraphs, list items
+  bodySmall:      18,   // secondary body, table cells, caption blobs
 
   // Captions (mono secondary)
   caption:               14,   // figure captions, rich-caption source copy
@@ -135,11 +131,11 @@ export const TEXT_SIZE = {
   tocTitleChild:  14,   // nested dropdown titles, parent breadcrumb
 
   // Charts — keep a graduated scale for dense compositions
-  chartValue:     11,   // primary value labels (numbers on/near data)
-  chartLabel:     10,   // category and model names
-  chartAxis:      9,    // axis tick labels
-  chartMicro:     8,    // baselines, tiny annotations
-  tooltip:        11,   // chart tooltips
+  // chartValue:     30,   // primary value labels (numbers on/near data)
+  chartLabel:     14,   // category and model names
+  chartAxis:      14,    // axis tick labels
+  chartMicro:     12,    // baselines, tiny annotations
+  tooltip:        14,   // chart tooltips
 };
 
 // ─── Typography ─────────────────────────────────────────────────────────────
@@ -153,7 +149,8 @@ export const STYLES = {
     color: COLOR.text.primary,
     lineHeight: 1.1,
     margin: 0,
-    paddingTop: SPACE[8],
+    paddingTop: SPACE[9],
+    paddingBottom: SPACE[9]
   },
   H2: {
     fontFamily: FONT.serif,
@@ -161,7 +158,9 @@ export const STYLES = {
     fontWeight: 400,
     color: COLOR.text.primary,
     lineHeight: 1.15,
-    margin: `${SPACE[6]}px 0 ${SPACE[4]}px 0`,
+    // margin: `${SPACE[6]}px 0 ${SPACE[4]}px 0`,
+    paddingTop: SPACE[6],
+    paddingBottom: SPACE[6]
   },
   H3: {
     fontFamily: FONT.serif,
@@ -169,7 +168,9 @@ export const STYLES = {
     fontWeight: 400,
     color: COLOR.text.heading,
     lineHeight: 1.3,
-    margin: `${SPACE[5]}px 0 ${SPACE[3]}px 0`,
+    // margin: `${SPACE[5]}px 0 ${SPACE[3]}px 0`,
+    paddingTop: SPACE[1],
+    paddingBottom: SPACE[1]
   },
   H4: {
     fontFamily: FONT.serif,
@@ -183,8 +184,8 @@ export const STYLES = {
     fontFamily: FONT.serif,
     fontSize: TEXT_SIZE.subtitle,
     fontWeight: 400,
-    fontStyle: "italic",
-    color: COLOR.text.mid,
+    color: COLOR.text.primary,
+    // fontStyle: "italic",
     lineHeight: 1.3,
     margin: `${SPACE[2]}px 0 ${SPACE[7]}px 0`,
   },
@@ -265,6 +266,8 @@ export const LAYOUT_CONTAINERS = {
     marginLeft: "auto",
     marginRight: "auto",
     padding: LAYOUT.PAGE_PADDING,
+    paddingTop: SPACE[9],
+    paddingBottom: SPACE[9]
   },
 };
 
@@ -289,14 +292,14 @@ export const MEDIA = {
 
 export const RICH_CAPTION = {
   sourceColors: {
-    [PIXMO_SOURCE_NAME]: "#a78bfa",           // soft purple
-    [SHAREGPT4V_SOURCE_NAME]: "#60a5fa",      // soft blue
+    [PIXMO_SOURCE_NAME]: white(0.8),           // soft purple
+    [SHAREGPT4V_SOURCE_NAME]: white(0.8),      // soft blue
   },
   bg: COLOR.bg,
   layout: {
     gap: 24,
     marginBottom: 36,
-    imageColumnWidth: 420,
+    imageColumnWidth: "50%",
   },
   image: {
     aspectRatio: MEDIA.aspectRatio,
@@ -348,15 +351,16 @@ export const PAGE_SHELL = {
       flexWrap: "wrap",
       gap: `${SPACE[2]}px ${SPACE[4]}px`,
       fontFamily: FONT.sans,
-      fontSize: TEXT_SIZE.body,
+      fontSize: TEXT_SIZE.bodySmall,
+      fontStyle: "italic",
       fontWeight: 400,
-      color: COLOR.text.primary,
+      color: white(0.5),
       lineHeight: 1.4,
-      marginBottom: SPACE[8],
+      paddingBottom: SPACE[9],
     },
     link: {
       fontFamily: FONT.sans,
-      fontSize: TEXT_SIZE.body,
+      fontSize: TEXT_SIZE.bodySmall,
       fontWeight: 400,
       color: COLOR.accent,
       textDecoration: "none",
@@ -758,121 +762,6 @@ export const TAXONOMY_EXEMPLAR_GRID = {
   },
 };
 
-export const TABLE_OF_CONTENTS = {
-  headerHeight: 44,
-  scrollMargin: 16,
-  header: {
-    background: "rgba(10,10,12,0.88)",
-    blur: 16,
-    zIndex: 1000,
-  },
-  progressBar: {
-    height: 2,
-    gradientStart: "rgba(100,200,255,0.4)",
-    transition: "width 0.12s linear",
-  },
-  trigger: {
-    maxWidth: 640,
-    padding: SPACE[6],
-  },
-  numbering: {
-    fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.labelSmall,
-    color: COLOR.text.tertiary,
-    letterSpacing: "0.08em",
-  },
-  rail: {
-    width: 1,
-    left: 21,
-  },
-  parentTitle: {
-    fontFamily: FONT.serif,
-    fontSize: TEXT_SIZE.tocTitleChild,
-    fontStyle: "italic",
-    color: white(0.3),
-  },
-  activeTitle: {
-    fontFamily: FONT.serif,
-    fontStyle: "italic",
-    topFontSize: TEXT_SIZE.tocTitle,
-    childFontSize: TEXT_SIZE.tocTitleChild,
-    activeColor: white(0.8),
-    defaultColor: COLOR.text.mid,
-    transition: "color 0.2s ease",
-  },
-  arrow: {
-    fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.label,
-    color: COLOR.text.ghost,
-    margin: "0 7px",
-  },
-  chevron: {
-    fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.label,
-    color: white(0.2),
-    transition: "transform 0.25s ease",
-    marginLeft: 8,
-  },
-  dropdown: {
-    maxWidth: 640,
-    background: "rgba(13,13,17,0.97)",
-    blur: 20,
-    border: `1px solid ${white(0.07)}`,
-    borderRadius: "0 0 8px 8px",
-    animation: "tocDropIn 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
-    padding: "12px 0 20px",
-    groupMarginBottom: 4,
-  },
-  groupLabel: {
-    fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.labelSmall,
-    color: white(0.2),
-    letterSpacing: "0.1em",
-    textTransform: "uppercase",
-    padding: "10px 16px 4px 36px",
-  },
-  item: {
-    gap: 8,
-    topLevelPadding: "7px 16px",
-    childPadding: "5px 16px",
-    transition: "background 0.15s ease",
-  },
-  dot: {
-    topLevelSize: 7,
-    childSize: 5,
-    borderRadius: "50%",
-    activeBorder: `2px solid ${COLOR.accent}`,
-    parentBorder: "1.5px solid rgba(100,200,255,0.4)",
-    defaultBorder: `1.5px solid ${COLOR.ui.border}`,
-    activeBg: "rgba(100,200,255,0.2)",
-    childMarginLeft: 8,
-    transition: "all 0.2s ease",
-  },
-  itemNumbering: {
-    fontFamily: FONT.mono,
-    topLevelFontSize: TEXT_SIZE.label,
-    childFontSize: TEXT_SIZE.labelSmall,
-    activeColor: COLOR.text.body,
-    defaultColor: COLOR.text.ghost,
-    width: 16,
-    transition: "color 0.2s ease",
-  },
-  itemTitle: {
-    fontFamily: FONT.serif,
-    topLevelFontSize: TEXT_SIZE.tocTitle,
-    childFontSize: TEXT_SIZE.tocTitleChild,
-    fontStyle: "italic",
-    activeColor: COLOR.text.strong,
-    parentColor: COLOR.text.body,
-    topLevelColor: white(0.4),
-    childColor: white(0.28),
-    transition: "color 0.2s ease",
-    lineHeight: 1.3,
-  },
-  divider: {
-    height: 16,
-  },
-};
 
 export const TOC_RAIL = {
   position: {
@@ -894,7 +783,7 @@ export const TOC_RAIL = {
     numberWidth: 22,
   },
   number: {
-    fontFamily: FONT.mono,
+    fontFamily: FONT.OZU_SANS,
     fontSize: TEXT_SIZE.label,
     color: white(0.2),
     activeColor: COLOR.text.body,
@@ -902,9 +791,9 @@ export const TOC_RAIL = {
     transition: "color 180ms ease",
   },
   title: {
-    fontFamily: FONT.serif,
+    fontFamily: FONT.OZU_SANS,
     fontSize: TEXT_SIZE.tocTitleChild,
-    fontStyle: "italic",
+    // fontStyle: "italic",
     color: white(0.32),
     hoverColor: white(0.6),
     activeColor: white(0.88),
@@ -981,13 +870,14 @@ export const CAPTION_DECOMPOSITION = {
 };
 
 // ─── Chart Shared Tokens ────────────────────────────────────────────────────
+// TODO: margin: 10px; padding: 10px;
 
 export const CHART = {
   fontFamily: FONT.mono,
-  gridline: { stroke: white(0.05), strokeWidth: 0.5 },
-  axisLabel: { fill: white(0.18) },
-  baseline: { stroke: white(0.18), strokeWidth: 1 },
-  baselineLabelColor: white(0.15),
+  gridline: { stroke: white(0.2), strokeWidth: 0.5 },
+  axisLabel: { fill: white(0.4) },
+  baseline: { stroke: white(0.3), strokeWidth: 1 },
+  baselineLabelColor: white(0.3),
   dumbbell: { stroke: "rgba(100,200,255,0.35)", strokeWidth: 1.5 },
   gap: {
     positiveStroke: CHART_ACCENT_DIM,
@@ -1063,9 +953,9 @@ export const OVERALL_ACCURACY_PLOT = {
 };
 
 export const BENCHMARK_STRIP_PLOT = {
-  defaultWidth: 136,
-  defaultHeight: 200,
-  pad: { top: 14, right: 8, bottom: 26, left: 28 },
+  defaultWidth: 250,
+  defaultHeight: 300,
+  pad: { top: 30, right: 30, bottom: 30, left: 30 },
   competitorRadiusDefault: 2.5,
   competitorRadiusBest: 4,
   oursRadius: 5,
@@ -1214,12 +1104,12 @@ export const TEXT_SIMILARITY = {
 };
 
 export const BENCHMARK_SECTION = {
-  cardWidth: 138,
+  cardWidth: 250,
   colGap: 6,
   header: {
     fontFamily: FONT.mono,
     fontSize: TEXT_SIZE.chartLabel,
-    color: white(0.22),
+    color: white(0.60),
     letterSpacing: "0.1em",
     textTransform: "uppercase",
     paddingBottom: 4,
@@ -1228,8 +1118,8 @@ export const BENCHMARK_SECTION = {
     topPadding: 10,
   },
   card: {
-    background: white(0.015),
-    border: `1px solid ${white(0.05)}`,
+    background: white(0.01),
+    border: `1px solid ${white(0.2)}`,
     borderRadius: 4,
   },
 };

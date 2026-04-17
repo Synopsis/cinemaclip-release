@@ -7,7 +7,7 @@ const S = BENCHMARK_SECTION;
 
 export default function BenchmarkSection() {
   const gridRef = useRef(null);
-  const [numCols, setNumCols] = useState(8);
+  const [numCols, setNumCols] = useState(5);
 
   useEffect(() => {
     const el = gridRef.current;
@@ -96,6 +96,8 @@ export default function BenchmarkSection() {
                     gridRow: rowIdx * 2 + 2,
                     gridColumn: seg.startCol + i + 1,
                     ...S.card,
+                    margin: 10,
+                    padding: 10
                   }}
                 >
                   <BenchmarkStripPlot categoryId={catId} />
