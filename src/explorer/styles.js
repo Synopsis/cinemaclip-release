@@ -5,6 +5,34 @@
 import { MONO, SERIF, LAYOUT, CHART_ACCENT, CHART_ACCENT_DIM, CHART_ACCENT_GLOW } from "./constants.js";
 import { PIXMO_SOURCE_NAME, SHAREGPT4V_SOURCE_NAME } from "./data.js";
 
+import fontOzuSans from "./assets/fonts/1bcd8637363caedc-s.p.woff2";       // OZU-Sans 400
+import fontOzuDisplay from "./assets/fonts/79d898901754430b-s.p.woff2";    // OZU-Display 700
+
+if (typeof document !== "undefined" && !document.getElementById("ozu-font-faces")) {
+  const style = document.createElement("style");
+  style.id = "ozu-font-faces";
+  style.textContent = `
+    @font-face {
+      font-family: 'OZU-Sans';
+      src: url(${fontOzuSans}) format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'OZU-Display';
+      src: url(${fontOzuDisplay}) format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+export const OZU_SANS    = "'OZU-Sans', system-ui, -apple-system, Helvetica, Arial, sans-serif";
+export const OZU_DISPLAY = "'OZU-Display', 'OZU-Sans', system-ui, sans-serif";
+
 // ─── Colors ─────────────────────────────────────────────────────────────────
 
 const white = (a) => `rgba(255,255,255,${a})`;
@@ -45,10 +73,16 @@ export const COLOR = {
 // Swap any typeface by editing one line here.
 
 export const FONT = {
-  serif: SERIF,                           // 'Instrument Serif', serif
+  serif: SERIF,                    // headings (H1–H4, Subtitle)
   mono:  MONO,                            // 'JetBrains Mono', monospace
-  sans:  "'Inter', system-ui, sans-serif",
+  sans:  "'Inter', system-ui, sans-serif",                    // body (Paragraph, Description, List)
 };
+
+// export const FONT = {
+//   serif: OZU_DISPLAY,                     // headings (H1–H4, Subtitle)
+//   mono:  MONO,                            // 'JetBrains Mono', monospace
+//   sans:  OZU_SANS,                        // body (Paragraph, Description, List)
+// };
 
 // ─── Spacing Scale ──────────────────────────────────────────────────────────
 // Numbered 1–10. Use SPACE[n] for px values.
