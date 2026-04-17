@@ -246,7 +246,7 @@ export const STYLES = {
     color: COLOR.text.secondary,
     textAlign: "center",
     lineHeight: 1.5,
-    margin: `${SPACE[3]}px 0 ${SPACE[3]}px 0`,
+    margin: `${SPACE[3]}px auto`,
     maxWidth: LAYOUT.PROSE_WIDTH,
   },
 };
