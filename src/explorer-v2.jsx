@@ -293,14 +293,19 @@ export default function CinemaCLIPExplorer() {
       </div>
 
       {/* ════════════════════════════════════════════════════════════════════
-          7. CINEMATIC PERFORMANCE / EVALS / BENCHMARKS
+          7. EVALUATIONS
           ════════════════════════════════════════════════════════════════════ */}
       <div id="evaluations" style={Prose}>
         <h2 style={STYLES.H2}>
           Evaluations
         </h2>
+      </div>
+
+      {/* Cinematic Evals */}
+      <div id="cinematic-evals" style={Prose}>
+        <h3 style={STYLES.H3}>Cinematic Evals</h3>
         <p style={STYLES.Paragraph}>
-          Here is a categorical comparison of CinemaCLIP against the leading existing CLIP models and state of the art VLMs across all our cinematography datasets.
+          Here is a categorical comparison of CinemaCLIP against the leading existing CLIP models and select VLMs across all our cinematography datasets. The solid dots denote zero-shot performance, and the rounded dots classifier performance. Overall, we do better than all compared models in every category.
         </p>
       </div>
 
@@ -308,12 +313,9 @@ export default function CinemaCLIPExplorer() {
         <BenchmarkSection />
       </div>
 
-      {/* ════════════════════════════════════════════════════════════════════
-          8. GENERAL KNOWLEDGE RETENTION
-          ════════════════════════════════════════════════════════════════════ */}
-
-      <div id="retention" style={Prose}>
-        <h2 style={STYLES.H2}>'General' Knowledge Retention / Improvement</h2>
+      {/* Generalist Evals */}
+      <div id="generalist-evals" style={Prose}>
+        <h3 style={STYLES.H3}>Generalist Evals</h3>
         <p style={STYLES.Paragraph}>
           We also don't want to over-specialize. It's important for our models to retain a wide understanding of general concepts so that existing functionality is retained. To that end, we validate our dataset and multi-task training approach by using existing datasets as proxies for generalist tasks.
         </p>

@@ -15,7 +15,6 @@ const SECTIONS = [
   { id: "augmentations", title: "Augmentations" },
   { id: "training-formulation", title: "Post Training" },
   { id: "evaluations", title: "Evaluations" },
-  { id: "retention", title: "Knowledge Retention" },
   { id: "conclusion", title: "Conclusion" },
   { id: "technical-addendum", title: "Technical Addendum" },
 ];
