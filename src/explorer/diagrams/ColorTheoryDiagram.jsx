@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, SVG_TEXT } from "../styles.js";
 
 export default function ColorTheoryDiagram({ labels, activeIndex, onSelect }) {
   const cx = 130;
@@ -165,7 +165,7 @@ export default function ColorTheoryDiagram({ labels, activeIndex, onSelect }) {
                 ? "rgba(255,255,255,0.5)"
                 : "rgba(255,255,255,0.15)"
             }
-            fontSize="8"
+            fontSize={SVG_TEXT.md}
             fontFamily={FONT.mono}
             style={{ pointerEvents: "none", transition: "all 0.3s ease" }}
           >
@@ -216,7 +216,7 @@ export default function ColorTheoryDiagram({ labels, activeIndex, onSelect }) {
                     ? "rgba(255,255,255,0.5)"
                     : "rgba(255,255,255,0.12)"
                 }
-                fontSize="8"
+                fontSize={SVG_TEXT.md}
                 fontFamily={FONT.mono}
                 style={{
                   transition: "all 0.3s ease",

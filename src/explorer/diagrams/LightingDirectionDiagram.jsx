@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, SVG_TEXT } from "../styles.js";
 
 export default function LightingDirectionDiagram({ labels, activeIndex, onSelect }) {
   const cx = 120;
@@ -137,7 +137,7 @@ export default function LightingDirectionDiagram({ labels, activeIndex, onSelect
           y={cy + 3}
           textAnchor="middle"
           fill="rgba(255,255,255,0.15)"
-          fontSize="8"
+          fontSize={SVG_TEXT.md}
           fontFamily={FONT.mono}
         >
           subject
@@ -160,7 +160,7 @@ export default function LightingDirectionDiagram({ labels, activeIndex, onSelect
             y={cy + orbitR + 35}
             textAnchor="middle"
             fill="rgba(255,255,255,0.12)"
-            fontSize="7"
+            fontSize={SVG_TEXT.sm}
             fontFamily={FONT.mono}
           >
             cam
@@ -205,7 +205,7 @@ export default function LightingDirectionDiagram({ labels, activeIndex, onSelect
                       ? "rgba(255,255,255,0.4)"
                       : "rgba(255,255,255,0.2)"
                   }
-                  fontSize="7"
+                  fontSize={SVG_TEXT.sm}
                   fontFamily={FONT.mono}
                 >
                   AMB

@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, SVG_TEXT } from "../styles.js";
 
 export default function ShotLensDiagram({ labels, activeIndex, onSelect }) {
   const camX = 25;
@@ -70,7 +70,7 @@ export default function ShotLensDiagram({ labels, activeIndex, onSelect }) {
                     y={camY - 5}
                     textAnchor="middle"
                     fill="rgba(255,255,255,0.6)"
-                    fontSize="9"
+                    fontSize={SVG_TEXT.lg}
                     fontFamily={FONT.mono}
                     style={{
                       pointerEvents: "none",
@@ -84,7 +84,7 @@ export default function ShotLensDiagram({ labels, activeIndex, onSelect }) {
                     y={camY + 7}
                     textAnchor="middle"
                     fill="rgba(255,255,255,0.35)"
-                    fontSize="7"
+                    fontSize={SVG_TEXT.sm}
                     fontFamily={FONT.mono}
                     style={{
                       pointerEvents: "none",
@@ -187,7 +187,7 @@ export default function ShotLensDiagram({ labels, activeIndex, onSelect }) {
                     ? "rgba(255,255,255,0.5)"
                     : "rgba(255,255,255,0.1)"
                 }
-                fontSize="7.5"
+                fontSize={SVG_TEXT.md}
                 fontFamily={FONT.mono}
                 style={{
                   transition: "all 0.3s ease",

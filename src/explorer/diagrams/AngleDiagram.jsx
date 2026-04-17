@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, SVG_TEXT } from "../styles.js";
 
 export default function AngleDiagram({ labels, activeIndex, onSelect }) {
   // The subject sits to the right. The camera orbits it on a semicircular
@@ -98,7 +98,7 @@ export default function AngleDiagram({ labels, activeIndex, onSelect }) {
           y={subjectY + 4}
           textAnchor="middle"
           fill="rgba(255,255,255,0.2)"
-          fontSize="9"
+          fontSize={SVG_TEXT.lg}
           fontFamily={FONT.mono}
         >
           subject
@@ -164,7 +164,7 @@ export default function AngleDiagram({ labels, activeIndex, onSelect }) {
                       ? "rgba(255,255,255,0.4)"
                       : "rgba(255,255,255,0.2)"
                   }
-                  fontSize="8"
+                  fontSize={SVG_TEXT.md}
                   fontFamily={FONT.mono}
                   style={{
                     transition: "all 0.3s ease",

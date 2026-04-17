@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, SVG_TEXT } from "../styles.js";
 
 export default function ColorTonesDiagram({ labels, activeIndex, onSelect }) {
   // Labels order: 0=B&W, 1=Cool, 2=Mixed, 3=Neutral, 4=Warm
@@ -107,7 +107,7 @@ export default function ColorTonesDiagram({ labels, activeIndex, onSelect }) {
                     ? "rgba(255,255,255,0.5)"
                     : "rgba(255,255,255,0.15)"
                 }
-                fontSize="8"
+                fontSize={SVG_TEXT.md}
                 fontFamily={FONT.mono}
                 style={{
                   transition: "all 0.3s ease",
@@ -221,7 +221,7 @@ export default function ColorTonesDiagram({ labels, activeIndex, onSelect }) {
                     ? "rgba(255,255,255,0.5)"
                     : "rgba(255,255,255,0.15)"
                 }
-                fontSize="8"
+                fontSize={SVG_TEXT.md}
                 fontFamily={FONT.mono}
                 style={{
                   transition: "all 0.3s ease",
@@ -325,7 +325,7 @@ export default function ColorTonesDiagram({ labels, activeIndex, onSelect }) {
                     ? "rgba(255,255,255,0.5)"
                     : "rgba(255,255,255,0.15)"
                 }
-                fontSize="8"
+                fontSize={SVG_TEXT.md}
                 fontFamily={FONT.mono}
                 style={{
                   transition: "all 0.3s ease",

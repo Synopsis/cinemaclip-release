@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, TEXT_SIZE } from "../styles.js";
 
 export default function GenericSelector({ labels, activeIndex, onSelect }) {
   return (
@@ -38,7 +38,7 @@ export default function GenericSelector({ labels, activeIndex, onSelect }) {
             <span
               style={{
                 fontFamily: FONT.mono,
-                fontSize: 12,
+                fontSize: TEXT_SIZE.micro,
                 color: isActive
                   ? "rgba(255,255,255,0.9)"
                   : isAdjacent

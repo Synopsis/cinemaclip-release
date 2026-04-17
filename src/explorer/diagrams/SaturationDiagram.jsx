@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, SVG_TEXT } from "../styles.js";
 
 export default function SaturationDiagram({ labels, activeIndex, onSelect }) {
   // Reference hue for the saturation demo (warm orange — cinematic)
@@ -137,7 +137,7 @@ export default function SaturationDiagram({ labels, activeIndex, onSelect }) {
                     ? "rgba(255,255,255,0.5)"
                     : "rgba(255,255,255,0.1)"
                 }
-                fontSize="8.5"
+                fontSize={SVG_TEXT.lg}
                 fontFamily={FONT.mono}
                 style={{
                   transition: "all 0.3s ease",

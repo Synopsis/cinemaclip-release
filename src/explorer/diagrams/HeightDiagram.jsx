@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, SVG_TEXT } from "../styles.js";
 
 export default function HeightDiagram({ labels, activeIndex, onSelect }) {
   const trackX = 90;
@@ -191,7 +191,7 @@ export default function HeightDiagram({ labels, activeIndex, onSelect }) {
                       ? "rgba(255,255,255,0.4)"
                       : "rgba(255,255,255,0.2)"
                   }
-                  fontSize="8"
+                  fontSize={SVG_TEXT.md}
                   fontFamily={FONT.mono}
                   style={{
                     transition: "all 0.3s ease",

@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, TEXT_SIZE } from "../styles.js";
 
 const HEADROOM = 8;
 const HEAD_CENTER_Y = 50;
@@ -162,7 +162,7 @@ export default function FramingDiagram({ labels, activeIndex, onSelect }) {
                     ? "rgba(255,255,255,0.4)"
                     : "rgba(255,255,255,0.12)"
                 }
-                fontSize={isActive ? 12 : 10}
+                fontSize={isActive ? TEXT_SIZE.micro : TEXT_SIZE.labelSmall}
                 fontFamily={FONT.mono}
                 fontWeight={isActive ? 500 : 400}
                 style={{
@@ -241,7 +241,7 @@ export default function FramingDiagram({ labels, activeIndex, onSelect }) {
                 y={wFrame.y + wFrame.h - 5}
                 textAnchor="end"
                 fill="rgba(100,200,255,0.95)"
-                fontSize={12}
+                fontSize={TEXT_SIZE.micro}
                 fontFamily={FONT.mono}
                 fontWeight={500}
                 style={{
@@ -372,7 +372,7 @@ export default function FramingDiagram({ labels, activeIndex, onSelect }) {
                       ? "rgba(255,255,255,0.4)"
                       : "rgba(255,255,255,0.12)"
                   }
-                  fontSize={isActive ? 12 : 10}
+                  fontSize={isActive ? TEXT_SIZE.micro : TEXT_SIZE.labelSmall}
                   fontFamily={FONT.mono}
                   fontWeight={isActive ? 500 : 400}
                   style={{

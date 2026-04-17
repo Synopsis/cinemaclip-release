@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, SVG_TEXT } from "../styles.js";
 
 export default function BinaryDiagram({ labels, activeIndex, onSelect, illustrations }) {
   const frameW = 110;
@@ -76,7 +76,7 @@ export default function BinaryDiagram({ labels, activeIndex, onSelect, illustrat
                     ? "rgba(255,255,255,0.55)"
                     : "rgba(255,255,255,0.2)"
                 }
-                fontSize="8.5"
+                fontSize={SVG_TEXT.lg}
                 fontFamily={FONT.mono}
                 style={{
                   transition: "all 0.3s ease",

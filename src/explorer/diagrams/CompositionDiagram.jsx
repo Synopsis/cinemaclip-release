@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, SVG_TEXT } from "../styles.js";
 
 export default function CompositionDiagram({ labels, activeIndex, onSelect }) {
   // Layout: 2x2 grid of mini frames
@@ -106,7 +106,7 @@ export default function CompositionDiagram({ labels, activeIndex, onSelect }) {
                 y={offsetY - 4}
                 textAnchor="middle"
                 fill={textColor}
-                fontSize="8.5"
+                fontSize={SVG_TEXT.lg}
                 fontFamily={FONT.mono}
                 style={{
                   transition: "all 0.3s ease",

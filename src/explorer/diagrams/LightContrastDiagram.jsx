@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, SVG_TEXT } from "../styles.js";
 
 export default function LightContrastDiagram({ labels, activeIndex, onSelect }) {
   const positions = [
@@ -164,7 +164,7 @@ export default function LightContrastDiagram({ labels, activeIndex, onSelect }) 
                     ? "rgba(255,255,255,0.5)"
                     : "rgba(255,255,255,0.1)"
                 }
-                fontSize="8.5"
+                fontSize={SVG_TEXT.lg}
                 fontFamily={FONT.mono}
                 style={{
                   transition: "all 0.3s ease",

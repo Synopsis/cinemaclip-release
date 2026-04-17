@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, SVG_TEXT } from "../styles.js";
 
 export default function LightCastDiagram({ labels, activeIndex, onSelect }) {
   const positions = [
@@ -104,7 +104,7 @@ export default function LightCastDiagram({ labels, activeIndex, onSelect }) {
                     x={pos.cx - rectW / 2 + 5}
                     y={yCenter + rectH / 2 + 12}
                     fill="rgba(255,255,255,0.18)"
-                    fontSize="6"
+                    fontSize={SVG_TEXT.xs}
                     fontFamily={FONT.mono}
                     style={{ pointerEvents: "none" }}
                   >
@@ -115,7 +115,7 @@ export default function LightCastDiagram({ labels, activeIndex, onSelect }) {
                     y={yCenter + rectH / 2 + 12}
                     textAnchor="end"
                     fill="rgba(255,255,255,0.18)"
-                    fontSize="6"
+                    fontSize={SVG_TEXT.xs}
                     fontFamily={FONT.mono}
                     style={{ pointerEvents: "none" }}
                   >
@@ -158,7 +158,7 @@ export default function LightCastDiagram({ labels, activeIndex, onSelect }) {
                     ? "rgba(255,255,255,0.5)"
                     : "rgba(255,255,255,0.1)"
                 }
-                fontSize="8.5"
+                fontSize={SVG_TEXT.lg}
                 fontFamily={FONT.mono}
                 style={{
                   transition: "all 0.3s ease",

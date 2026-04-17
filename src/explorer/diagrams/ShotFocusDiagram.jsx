@@ -1,5 +1,5 @@
 import React from "react";
-import { FONT } from "../styles.js";
+import { FONT, SVG_TEXT } from "../styles.js";
 
 export default function ShotFocusDiagram({ labels, activeIndex, onSelect }) {
   // Zone of focus: [start, end] as fraction of the depth axis (0=near, 1=far).
@@ -75,7 +75,7 @@ export default function ShotFocusDiagram({ labels, activeIndex, onSelect }) {
           x={axisLeft} y={100}
           textAnchor="middle"
           fill="rgba(255,255,255,0.12)"
-          fontSize="6.5"
+          fontSize={SVG_TEXT.sm}
           fontFamily={FONT.mono}
         >
           near
@@ -84,7 +84,7 @@ export default function ShotFocusDiagram({ labels, activeIndex, onSelect }) {
           x={axisRight} y={100}
           textAnchor="middle"
           fill="rgba(255,255,255,0.12)"
-          fontSize="6.5"
+          fontSize={SVG_TEXT.sm}
           fontFamily={FONT.mono}
         >
           far
@@ -145,7 +145,7 @@ export default function ShotFocusDiagram({ labels, activeIndex, onSelect }) {
               y={14}
               textAnchor="middle"
               fill="rgba(255,255,255,0.2)"
-              fontSize="6"
+              fontSize={SVG_TEXT.xs}
               fontFamily={FONT.mono}
               style={{
                 transition: "all 0.3s ease",
@@ -164,7 +164,7 @@ export default function ShotFocusDiagram({ labels, activeIndex, onSelect }) {
             y={14}
             textAnchor="middle"
             fill="rgba(255,255,255,0.15)"
-            fontSize="6"
+            fontSize={SVG_TEXT.xs}
             fontFamily={FONT.mono}
             style={{ pointerEvents: "none" }}
           >
@@ -298,7 +298,7 @@ export default function ShotFocusDiagram({ labels, activeIndex, onSelect }) {
                     ? "rgba(255,255,255,0.5)"
                     : "rgba(255,255,255,0.1)"
                 }
-                fontSize="8"
+                fontSize={SVG_TEXT.md}
                 fontFamily={FONT.mono}
                 style={{
                   transition: "all 0.3s ease",
