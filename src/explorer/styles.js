@@ -133,6 +133,17 @@ export const TEXT_SIZE = {
   filmCredit: 9,
 };
 
+export const SUBHEADING_FIGURES = {
+  fontFamily: FONT.serif,
+  fontSize: TEXT_SIZE.h4,
+  fontWeight: 600,
+  letterSpacing: "0.1em",
+  textTransform: "uppercase",
+  color: COLOR.text.body,
+  marginBottom: 12,
+  paddingBottom: 8,
+}
+
 // SVG / diagram font sizes. Tiny intentionally — sized to viewBox geometry.
 // Use these for in-diagram labels, tick marks, and overlay annotations.
 export const SVG_TEXT = {
@@ -319,16 +330,7 @@ export const RICH_CAPTION = {
     inactiveOpacity: 0.45,
     background: "#000",
   },
-  sourceLabel: {
-    fontFamily: FONT.serif,
-    // color: COLOR.text.tertiary,
-    fontSize: TEXT_SIZE.h4,
-    fontWeight: 600,
-    letterSpacing: "0.1em",
-    textTransform: "uppercase",
-    marginBottom: 12,
-    paddingBottom: 8,
-  },
+  sourceLabel: SUBHEADING_FIGURES,
   caption: {
     fontFamily: FONT.sans,
     fontSize: TEXT_SIZE.bodySmall,
@@ -464,12 +466,14 @@ export const LAION_EXAMPLES = {
   marginBottom: 36,
   rowGap: 28,
   rowLabel: {
-    fontFamily: FONT.sans,
+    fontFamily: FONT.serif,
     fontSize: TEXT_SIZE.h4,
-    letterSpacing: "0.08em",
+    fontWeight: 600,
+    letterSpacing: "0.1em",
     textTransform: "uppercase",
     color: COLOR.text.bodySecondary,
     marginBottom: 12,
+    paddingBottom: 8,
   },
   imageContainer: {
     display: "flex",
@@ -704,14 +708,7 @@ export const TAXONOMY_CATEGORY_ROW = {
     alignItems: "center",
   },
   diagramColumnWidth: 280,
-  categoryName: {
-    fontFamily: FONT.serif,
-    fontSize: TEXT_SIZE.bodySmall,
-    color: white(0.35),
-    letterSpacing: "0.1em",
-    textTransform: "uppercase",
-    marginBottom: 6,
-  },
+  categoryName: SUBHEADING_FIGURES,
   description: {
     fontSize: TEXT_SIZE.bodySmall,
     color: white(0.32),
@@ -812,9 +809,11 @@ export const CAPTION_DECOMPOSITION = {
   layout: {
     gap: 40,                    // between image column and content column
     imageColumnFlex: "0 0 50%",
+    imageColumnWidth: "50%",
     blobMarginBottom: 18,
     ruleMargin: "24px 0 20px",
   },
+  title: SUBHEADING_FIGURES,
   image: {
     width: "100%",
     aspectRatio: MEDIA.aspectRatio,

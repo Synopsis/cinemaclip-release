@@ -42,8 +42,6 @@ export default function RichCaptionExplorer() {
       <div
         style={{
           ...RICH_CAPTION.sourceLabel,
-          color: sourceColor,
-          borderBottom: `1px solid ${sourceColor}30`,
           width: RICH_CAPTION.layout.imageColumnWidth,
         }}
       >

@@ -63,8 +63,12 @@ export default function CaptionDecomposition() {
   const segments = useMemo(() => buildSegments(tasks), [tasks]);
 
   return (
-    <div style={{ display: "flex", gap: S.layout.gap }}>
-      {/* Image */}
+    <div>
+      <div style={{ ...S.title, width: S.layout.imageColumnWidth }}>
+        Caption Decomposition
+      </div>
+      <div style={{ display: "flex", gap: S.layout.gap }}>
+        {/* Image */}
       <div style={{ flex: S.layout.imageColumnFlex }}>
         <img src={IMAGE} alt="" style={S.image} />
       </div>
@@ -138,6 +142,7 @@ export default function CaptionDecomposition() {
             })}
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   );
