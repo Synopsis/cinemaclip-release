@@ -281,14 +281,14 @@ export default function CinemaCLIPExplorer() {
       </div>
 
       {/* ════════════════════════════════════════════════════════════════════
-          POST TRAINING
+          Model Soup
           ════════════════════════════════════════════════════════════════════ */}
       <div id="training-formulation" style={Prose}>
         <h3 style={STYLES.H3}>
-          Post Training
+          Model Soup
         </h3>
         <p style={STYLES.Paragraph}>
-          Finally, we weight blend (model soup / alpha mix) our resulting model with the pretrained model - 75% of our new fine tuned weights with 25% of the pretrained model. This last step ensures we retain generalist performance. Without it, our fine tuned model alone would perform 1-2% better on cinematic tasks but lose ~10% on general purpose tasks. Alpha mixing allows us to retain 14% better cinematic knowledge with next to no loss in general purpose performance. 
+          Finally, we weight blend our resulting model with the pretrained model - 75% of our new fine tuned weights with 25% of the pretrained model. This last step ensures we retain generalist performance. Without it, our fine tuned model alone would perform 1-2% better on cinematic tasks but lose ~10% on general purpose tasks. Alpha mixing allows us to retain 14% better cinematic knowledge with next to no loss in general purpose performance. 
         </p>
       </div>
 
