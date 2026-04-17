@@ -383,17 +383,17 @@ export default function CinemaCLIPExplorer() {
           11. TECHNICAL ADDENDUM
           ════════════════════════════════════════════════════════════════════ */}
 
-      <div id="technical-addendum" style={Prose}>
-        <h2 style={STYLES.H2}>
+      <div id="technical-addendum" style={{...Prose, paddingTop: 400}}>
+        <h1 style={STYLES.H1}>
           Technical Addendum
-        </h2>
+        </h1>
       </div>
 
       {/* ════════════════════════════════════════════════════════════════════
             Note on Generalist Knowledge
           ════════════════════════════════════════════════════════════════════ */}
       <div style={Prose}>
-        <h3 style={STYLES.H3}>Note on Generalist Knowledge</h3>
+        <h2 style={STYLES.H2}>Note on Generalist Knowledge</h2>
         <p style={STYLES.Paragraph}>
           Zero-shot accuracy on ImageNet-1K is a popular proxy for measuring a CLIP model's general performance. ImageNet is an object centric dataset and doesn't capture a lot of the nuance our users care about in real world usage. For instance, about 12% of ImageNet consists of dog breeds. There is little to no representation for the color of objects, materials, and textures.
         </p>
@@ -406,15 +406,13 @@ export default function CinemaCLIPExplorer() {
             Ablations
           ════════════════════════════════════════════════════════════════════ */}
       <div id="ablations-addendum" style={Prose}>
-        <h3 style={STYLES.H3}>
-          Ablations
-        </h3>
+        <h2 style={STYLES.H2}>Ablations</h2>
       </div>
 
       <div style={Prose}>
-        <h4 style={STYLES.H4}>
-          Alpha Mixing
-        </h4>
+        <h3 style={STYLES.H3}>
+          Model Soup
+        </h3>
         <p style={STYLES.Paragraph}>
           We tried blending our fine-tuned model with the pre-trained one at various <code style={STYLES.InlineCode}>alpha</code>s and found that <code style={STYLES.InlineCode}>0.75</code> (75% fine-tuned weights, 25% pre-trained) was the best combination. Not only did we perform better at ImageNet, which was expected, but we also had superior zero-shot performance on cinematic tasks. The classifier heads were slightly worse (88% vs. 89%), which was a reasonable tradeoff.
         </p>
@@ -431,9 +429,9 @@ export default function CinemaCLIPExplorer() {
       />
 
       <div style={Prose}>
-        <h4 style={STYLES.H4}>
+        <h3 style={STYLES.H3}>
           Teacher Model Labelling Threshold
-        </h4>
+        </h3>
         <p style={STYLES.Paragraph}>
           Our 23 teacher models, all classifiers, provided labels for 6/8 tasks. Being classifiers, we experimented with the confidence threshold at which we decide to use the model's prediction as part of the caption. Higher confidence levels meant more high quality labels, but too high a confidence would lead to too many empty captions. In practice, 85% worked best.
         </p>
@@ -453,9 +451,9 @@ export default function CinemaCLIPExplorer() {
       />
 
       <div style={Prose}>
-        <h4 style={STYLES.H4}>
+        <h3 style={STYLES.H3}>
           No. of Contrastive Tasks
-        </h4>
+        </h3>
         <p style={STYLES.Paragraph}>
           We experimented with the ideal no. of tasks to include in our multi-task formulation. Generally, adding more tasks led to better performance. Beyond 6 cinematic tasks, there were no notable gains, and with the confidence thresholding mentioned above, we ended up with over 40% of a batch having empty captions. For our formulation, 6 was the right balance. If one were to extend this to more domains, we expect performance to generally increase as long as they are well formulated. We only added expertise in the cinematic domain, and it'd be interesting to see how far this can be pushed - could we train models with a hundred domain expert tasks at once?
         </p>
@@ -473,9 +471,9 @@ export default function CinemaCLIPExplorer() {
       />
 
       <div style={Prose}>
-        <h4 style={STYLES.H4}>
+        <h3 style={STYLES.H3}>
           Batch Size
-        </h4>
+        </h3>
         <p style={STYLES.Paragraph}>
           Our effective batch size was 1,152 images with 9,216 captions per batch. We were bound by our hardware constraints (3x RTX 3090s w/ 24GB VRAM each) and were unable to test if performance increases further with larger batches. Most CLIP research and practitioners' experiences suggest that larger batch sizes are better, but there hasn't been a systematic study of the effect of batch size when <em>fine-tuning</em> CLIP models.
         </p>
@@ -485,7 +483,7 @@ export default function CinemaCLIPExplorer() {
             Training Dynamics & Hyperparameters
           ════════════════════════════════════════════════════════════════════ */}
       <div id="hyperparams" style={Prose}>
-        <h3 style={STYLES.H3}>Training Dynamics & Hyperparameters</h3>
+        <h2 style={STYLES.H2}>Training Dynamics & Hyperparameters</h2>
         <p style={STYLES.Paragraph}>
           Fine-tuning CLIP models can be fiddly. Many parameters need to be tuned specifically to the architecture you're training. We needed to be judicious about the areas we dove deeper into. We were systematic about some ablations, as elaborated above, and lacked bandwidth to go deeper on other hyperparameters. Here is our assessment of the most significant hyperparameters:
         </p>
@@ -580,7 +578,7 @@ function HyperparameterTable({ rows }) {
 function AblationTable({ headers, rows, highlightRow }) {
   const S = PAGE_SHELL.ablationTable;
   return (
-    <div style={{ ...LAYOUT_CONTAINERS.Prose, marginBottom: SPACE[5], display: "flex", justifyContent: "center" }}>
+    <div style={{ ...LAYOUT_CONTAINERS.Prose, padding: S.padding, display: "flex", justifyContent: "center" }}>
       <table style={S.table}>
         <thead>
           <tr>

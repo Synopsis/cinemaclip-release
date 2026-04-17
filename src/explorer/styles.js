@@ -44,7 +44,8 @@ export const COLOR = {
     heading:   white(0.75),   // subtitle, subheadings
     mid:       white(0.65),   // table header text, secondary emphasis
     body:      white(0.60),   // paragraph text, table cells
-    secondary: white(0.35),   // metadata labels
+    bodySecondary: white(0.55),
+    secondary: white(0.40),   // metadata labels
     tertiary:  white(0.25),   // figure captions, axis labels
     ghost:     white(0.15),   // inactive TOC items, breadcrumb arrows
   },
@@ -242,7 +243,7 @@ export const STYLES = {
   FigureCaption: {
     fontFamily: FONT.sans,
     fontSize: TEXT_SIZE.bodySmall,  // Fuck it.
-    color: COLOR.text.tertiary,
+    color: COLOR.text.secondary,
     textAlign: "center",
     lineHeight: 1.5,
     margin: `${SPACE[3]}px 0 ${SPACE[3]}px 0`,
@@ -316,9 +317,9 @@ export const RICH_CAPTION = {
     background: "#000",
   },
   sourceLabel: {
-    fontFamily: FONT.mono,
+    fontFamily: FONT.sans,
     // color: COLOR.text.tertiary,
-    fontSize: TEXT_SIZE.caption,
+    fontSize: TEXT_SIZE.body,
     fontWeight: 600,
     letterSpacing: "0.1em",
     textTransform: "uppercase",
@@ -328,7 +329,7 @@ export const RICH_CAPTION = {
   caption: {
     fontFamily: FONT.sans,
     fontSize: TEXT_SIZE.bodySmall,
-    color: white(0.55),
+    color: COLOR.text.bodySecondary,
     lineHeight: 1.7,
     paddingRight: 8,
   },
@@ -386,8 +387,8 @@ export const PAGE_SHELL = {
       borderBottom: `1px solid ${white(0.15)}`,
       color: COLOR.text.mid,
       fontWeight: 500,
-      fontFamily: FONT.mono,
-      fontSize: TEXT_SIZE.label,
+      fontFamily: FONT.serif,
+      fontSize: TEXT_SIZE.body,
       textTransform: "uppercase",
       letterSpacing: "0.08em",
     },
@@ -400,14 +401,14 @@ export const PAGE_SHELL = {
       fontSize: TEXT_SIZE.bodySmall,
     },
     paramTd: {
-      fontFamily: FONT.mono,
+      fontFamily: FONT.sans,
       color: COLOR.text.mid,
     },
     valueTd: {
       fontFamily: FONT.mono,
       textAlign: "center",
       whiteSpace: "nowrap",
-      color: CHART_ACCENT,
+      color: COLOR.text.body,
       fontWeight: 500,
     },
     notesTd: {},
@@ -419,6 +420,7 @@ export const PAGE_SHELL = {
     groupBorder: `1px solid ${white(0.1)}`,
   },
   ablationTable: {
+    padding: 10,
     table: {
       borderCollapse: "collapse",
       fontFamily: FONT.mono,
@@ -439,7 +441,7 @@ export const PAGE_SHELL = {
       textAlign: "center",
       padding: "5px 20px",
       borderBottom: `1px solid ${white(0.04)}`,
-      color: white(0.45),
+      color: COLOR.text.secondary,
       verticalAlign: "middle",
       fontSize: TEXT_SIZE.bodySmall,
     },
@@ -447,10 +449,10 @@ export const PAGE_SHELL = {
       color: COLOR.text.mid,
     },
     value: {
-      color: white(0.45),
+      color: COLOR.text.secondary,
     },
     highlight: {
-      color: CHART_ACCENT,
+      color: COLOR.text.body,
     },
   },
 };
@@ -463,7 +465,7 @@ export const LAION_EXAMPLES = {
     fontSize: TEXT_SIZE.body,
     letterSpacing: "0.08em",
     textTransform: "uppercase",
-    color: white(0.35),
+    color: COLOR.text.bodySecondary,
     marginBottom: 12,
   },
   imageContainer: {
@@ -499,8 +501,9 @@ export const SECTION_NAV = {
     justifyContent: "center",
     lineHeight: 2,
   },
+  // Separator between titles on the top. Framing | Composition | ...
   separator: {
-    color: white(0.12),
+    color: COLOR.text.tertiary,
     fontFamily: FONT.mono,
     fontSize: 14,
   },
@@ -513,13 +516,12 @@ export const SECTION_NAV = {
   },
   label: {
     fontFamily: FONT.serif,
-    fontSize: 19,
-    fontStyle: "italic",
+    fontSize: TEXT_SIZE.h4 + 2,
     transition: "all 0.3s ease",
     paddingBottom: 2,
   },
-  activeColor: white(0.92),
-  inactiveColor: white(0.3),
+  activeColor: COLOR.text.body,
+  inactiveColor: COLOR.text.tertiary,
   activeBorder: `1px solid ${white(0.4)}`,
   inactiveBorder: "1px solid transparent",
 };
@@ -805,7 +807,7 @@ export const TOC_RAIL = {
 export const CAPTION_DECOMPOSITION = {
   layout: {
     gap: 40,                    // between image column and content column
-    imageColumnFlex: "0 0 40%",
+    imageColumnFlex: "0 0 50%",
     blobMarginBottom: 18,
     ruleMargin: "24px 0 20px",
   },
@@ -818,12 +820,12 @@ export const CAPTION_DECOMPOSITION = {
     background: MEDIA.imageBg,
   },
   heading: {
-    fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.caption,
+    fontFamily: FONT.sans,
+    fontSize: TEXT_SIZE.body,
     fontWeight: 300,
     letterSpacing: "0.1em",
     textTransform: "uppercase",
-    color: white(0.55),
+    color: COLOR.text.body,
     margin: "0 0 12px 0",
     lineHeight: 1.2,
   },
@@ -833,19 +835,20 @@ export const CAPTION_DECOMPOSITION = {
   },
   rule: {
     height: 1,
-    background: white(0.18),
+    background: COLOR.text.ghost,
   },
   table: {
     width: "100%",
     borderCollapse: "collapse",
     fontFamily: FONT.sans,
+    // verticalAlign: "center",
   },
   labelCell: {
-    fontFamily: FONT.mono,
-    fontSize: TEXT_SIZE.label,
+    fontFamily: FONT.sans,
+    fontSize: TEXT_SIZE.bodySmall,
     letterSpacing: "0.08em",
     textTransform: "uppercase",
-    verticalAlign: "top",
+    verticalAlign: "center",
     padding: "9px 16px 9px 0",
     width: 140,
     whiteSpace: "nowrap",
@@ -856,15 +859,16 @@ export const CAPTION_DECOMPOSITION = {
     fontSize: TEXT_SIZE.bodySmall,
     lineHeight: 1.5,
     padding: "9px 0",
+    verticalAlign: "center",
     borderBottom: `1px solid ${white(0.05)}`,
     transition: "color 0.15s ease",
   },
   text: {
-    rest:      COLOR.text.body,  // blob phrases, table captions — matches paragraph body text
-    dim:       white(0.15),      // non-hovered body text when something is hovered
-    restLabel: white(0.45),      // normal mono label
-    dimLabel:  white(0.15),      // non-hovered mono label when something is hovered
-    separator: white(0.25),      // ", " between segments in the blob
+    rest:      COLOR.text.bodySecondary,  // blob phrases, table captions — matches paragraph body text
+    dim:       COLOR.text.tertiary,      // non-hovered body text when something is hovered
+    restLabel: COLOR.text.bodySecondary,      // table left col for broken down captions
+    dimLabel:  COLOR.text.tertiary,      // non-hovered mono label when something is hovered
+    separator: COLOR.text.tertiary,      // ", " between segments in the blob
   },
   transition: "color 0.15s ease",
 };
