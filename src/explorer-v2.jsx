@@ -252,7 +252,7 @@ export default function CinemaCLIPExplorer() {
           ════════════════════════════════════════════════════════════════════ */}
 
       <div id="ablations" style={Prose}>
-        <h3 style={STYLES.H3}>Ablations</h3>
+        <h3 style={STYLES.H3}>Fine-Tuning Scope</h3>
         <p style={STYLES.Paragraph}>
           Given that any pretrained clip model consists of 2 components, a text encoder and vision encoder, we ran ablations to determine how much of each encoder to unfreeze for training. Our intuition is as follows - expert text captions are formulated differently than non expert captions. Additionally, cinematic images have a different distribution - shots are typically darker, and consist of more diverse compositions compared to product shots, advertisements and social media images which dominate the internet scale data.
         </p>
