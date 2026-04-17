@@ -4,7 +4,7 @@ export const MONO = "'JetBrains Mono', monospace";
 export const SERIF = "'Instrument Serif', serif";
 
 export const LAYOUT = {
-  PROSE_WIDTH: "65vh",
+  PROSE_WIDTH: "75vh",
   VISUAL_WIDTH: 1120,
   PAGE_PADDING: 24,
   PROSE_TOP_PADDING: 5,
