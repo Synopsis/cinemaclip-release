@@ -6,7 +6,6 @@ import OverallAccuracyDotPlot from "./explorer/charts/OverallAccuracyDotPlot.jsx
 import GeneralKnowledgeCharts from "./explorer/charts/GeneralKnowledgeCharts.jsx";
 import { CinematicSimilarityMatrices, NonCinematicSimilarityMatrices } from "./explorer/charts/TextSimilarityMatrices.jsx";
 import BenchmarkSection from "./explorer/sections/BenchmarkSection.jsx";
-import StandardCLIPDiagram from "./explorer/sections/StandardCLIPDiagram.jsx";
 import HeroAnnotation from "./explorer/components/HeroAnnotation.jsx";
 import CategoryRow from "./explorer/components/CategoryRow.jsx";
 import LaionExamplesGrid from "./explorer/components/LaionExamplesGrid.jsx";
